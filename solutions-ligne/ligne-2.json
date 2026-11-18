@@ -1,0 +1,115 @@
+{
+ "solution": {
+  "pieces": [
+   {
+    "id": "rem",
+    "type": "remplisseuse",
+    "x": 3,
+    "z": 2,
+    "params": {}
+   },
+   {
+    "id": "bac",
+    "type": "compteur",
+    "x": 5,
+    "z": 2,
+    "params": {
+     "nom": "nb_bouteilles"
+    }
+   },
+   {
+    "id": "cap",
+    "type": "capsuleuse",
+    "x": 8,
+    "z": 2,
+    "params": {}
+   },
+   {
+    "id": "tdb",
+    "type": "tableau",
+    "x": 5,
+    "z": 5,
+    "params": {
+     "bac": "nb_bouteilles"
+    }
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-cuve-suite-rem",
+    "de": "cuve",
+    "sortie": "suite",
+    "vers": "rem",
+    "cases": [
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-rem-suite-bac",
+    "de": "rem",
+    "sortie": "suite",
+    "vers": "bac",
+    "cases": [
+     [
+      4,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-bac-suite-cap",
+    "de": "bac",
+    "sortie": "suite",
+    "vers": "cap",
+    "cases": [
+     [
+      6,
+      2
+     ],
+     [
+      7,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-cap-suite-q2",
+    "de": "cap",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      9,
+      2
+     ],
+     [
+      10,
+      2
+     ]
+    ]
+   }
+  ]
+ },
+ "variantes": [
+  {
+   "nom": "sans tableau de bord",
+   "retirer": [
+    "tdb"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

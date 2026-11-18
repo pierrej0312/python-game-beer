@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+outils-construction/node_modules/
+qa/journaux/
+.DS_Store
+Thumbs.db
+outils-construction/_executer_ligne.py
+qa/rapports/brut/

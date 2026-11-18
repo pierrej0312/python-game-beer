@@ -1,0 +1,89 @@
+{
+ "id": "5.2-chariot",
+ "serie": 5,
+ "numero": 2,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 8,
+ "titre": "while charge le chariot tant qu'il reste de la place",
+ "notion": "while, and, compteur",
+ "enonce": "Le chariot porte 4 fûts au plus. Complétez charger_chariot() : une boucle while charge un fût à chaque tour, tant que le chariot n'est pas plein et qu'il reste des fûts sur le quai. La fonction renvoie le nombre de fûts chargés.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "charger_chariot",
+  "parametres": [
+   "futs_sur_le_quai"
+  ],
+  "types": {
+   "futs_sur_le_quai": "int"
+  },
+  "doc": "Charge le chariot fût par fût. Renvoie le nombre de fûts chargés."
+ },
+ "cas": [
+  {
+   "libelle": "Avec 9 fûts sur le quai, le chariot repart avec 4 fûts",
+   "args": [
+    9
+   ],
+   "attendu": 4
+  },
+  {
+   "libelle": "Avec 4 fûts sur le quai, le chariot repart plein",
+   "args": [
+    4
+   ],
+   "attendu": 4
+  },
+  {
+   "libelle": "Sans fût sur le quai, rien n'est chargé",
+   "args": [
+    0
+   ],
+   "attendu": 0,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Contrôle surprise : avec 3 fûts seulement, le chariot repart avec 3 fûts",
+   "args": [
+    3
+   ],
+   "attendu": 3,
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 5 postes (instructions) au plus",
+  "description3": "Sans fût sur le quai, rien n'est chargé",
+  "max": 5
+ },
+ "indices": [
+  "La boucle continue tant que deux conditions sont vraies : il reste de la place, et il reste des fûts.",
+  "À chaque tour : un fût de plus sur le chariot (charges += 1), un fût de moins sur le quai (futs_sur_le_quai -= 1)."
+ ],
+ "depart": "def charger_chariot(futs_sur_le_quai):\n    \"\"\"Charge le chariot fût par fût. Renvoie le nombre de fûts chargés.\"\"\"\n    charges = 0\n    # À vous de jouer : une boucle while\n    return charges\n"
+}

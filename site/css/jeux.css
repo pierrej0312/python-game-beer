@@ -1,0 +1,144 @@
+/* Interface des jeux : charte BStorm (violet, vert, fond clair, fenêtre de code sombre). La scène 3D garde sa palette. */
+:root {
+  --violet: #2E1A6E; --vert: #23AB67; --vert-fonce: #17824C; --fond: #F7F6FB; --blanc: #FFFFFF; --texte: #3A3A48; --gris: #8A8A98;
+  --bord: #DAD6E8; --violet-clair: #ECEAF6; --vert-clair: #E2F3E9; --rouge: #EE434B; --rouge-clair: #FDE9EA; --accent: #FFC857;
+  --scene: #131419; --code: #1d1638;
+  --police: "Barlow", "Segoe UI", system-ui, Arial, sans-serif;
+  --police-titre: "Zen Maru Gothic", "Barlow", "Segoe UI", system-ui, Arial, sans-serif;
+  --police-code: "JetBrains Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { font-family: var(--police); font-size: 16px; color: var(--texte); background: var(--fond); }
+h1, h2, h3 { font-family: var(--police-titre); color: var(--violet); margin: 0; }
+button, input, select { font: inherit; }
+code, .code { font-family: var(--police-code); font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; }
+[hidden] { display: none !important; }
+.surtitre { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vert-fonce); }
+
+.bouton { border: 2px solid var(--violet); background: var(--blanc); color: var(--violet); border-radius: 10px; padding: 8px 14px; font-weight: 600; cursor: pointer; min-height: 40px; }
+.bouton:hover { background: var(--violet-clair); }
+.bouton:focus-visible, input:focus-visible, .carte-mission:focus-visible, .onglet:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.bouton.principal { background: var(--vert-fonce); border-color: var(--vert-fonce); color: var(--blanc); }
+.bouton.principal:hover { background: var(--violet); border-color: var(--violet); }
+.bouton.sombre { background: #262932; border-color: #4a4f5c; color: #eef0f5; }
+.bouton.sombre:hover { background: #343844; }
+.bouton.sombre[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #1c1e23; }
+.bouton.discret { border-color: var(--texte); color: var(--texte); font-weight: 500; }
+.bouton.danger { border-color: var(--rouge); color: var(--rouge); }
+
+/* ----- accueil ----- */
+.accueil { min-height: 100%; display: grid; place-items: center; padding: 24px; background: linear-gradient(160deg, #1a1c22 0%, #2a2140 100%); }
+.accueil-carte { background: var(--blanc); border-radius: 18px; padding: 36px 40px; max-width: 640px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.45); border-bottom: 6px solid #f28c1e; }
+.accueil-carte h1 { font-size: 34px; margin: 6px 0 12px; }
+.accueil-carte p { line-height: 1.5; margin: 0 0 18px; }
+.champ { display: block; margin: 0 0 16px; }
+.champ span { display: block; font-weight: 600; margin-bottom: 6px; color: var(--violet); }
+.champ input[type="text"] { width: 100%; padding: 10px 12px; border: 2px solid var(--bord); border-radius: 10px; }
+.champ small { color: var(--texte); font-size: 14px; }
+.choix { display: flex; gap: 18px; flex-wrap: wrap; margin: 0 0 18px; border: 0; padding: 0; }
+.choix legend { font-weight: 600; color: var(--violet); margin-bottom: 6px; padding: 0; }
+.etat-python { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; padding: 6px 12px; border-radius: 999px; background: var(--violet-clair); color: var(--violet); }
+.etat-python::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.etat-python.pret { background: var(--vert-clair); color: var(--violet); }
+.etat-python.pret::before { background: var(--vert); }
+.etat-python.echec { background: var(--rouge-clair); color: #a3262d; }
+.etat-python.echec::before { background: var(--rouge); }
+.accueil-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+/* ----- carte des missions ----- */
+.carte { min-height: 100%; padding: 22px 28px 40px; background: linear-gradient(170deg, #1a1c22 0%, #251d3a 100%); color: #eef0f5; }
+.carte-entete { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.carte-entete h1 { color: #ffffff; font-size: 30px; }
+.carte-entete .surtitre { color: #f5b82e; }
+.carte-outils { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.series { display: grid; grid-template-columns: repeat(6, minmax(170px, 1fr)); gap: 14px; }
+@media (max-width: 1250px) { .series { grid-template-columns: repeat(3, minmax(170px, 1fr)); } }
+.serie { background: #23262e; border-radius: 14px; padding: 14px; border-top: 5px solid #f28c1e; }
+.serie.fermee { opacity: 0.55; border-top-color: #4a4f5c; }
+.serie h2 { color: #ffffff; font-size: 18px; margin-bottom: 2px; }
+.serie .serie-numero { color: #f5b82e; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; }
+.serie .serie-etat { font-size: 14px; color: #b9bdc9; margin: 4px 0 12px; min-height: 20px; }
+.carte-mission { display: block; width: 100%; text-align: left; background: #2f333d; color: #eef0f5; border: 2px solid transparent; border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; cursor: pointer; }
+.carte-mission:hover:not(:disabled) { border-color: #f28c1e; }
+.carte-mission:disabled { cursor: not-allowed; }
+.carte-mission .mission-numero { font-size: 14px; color: #b9bdc9; font-weight: 600; }
+.carte-mission .mission-titre { display: block; font-weight: 600; margin: 2px 0 6px; line-height: 1.25; }
+.carte-mission.surprise { background: repeating-linear-gradient(135deg, #3a3423 0 12px, #2f333d 12px 24px); border-color: #f5b82e; }
+.badge { display: inline-block; font-size: 14px; font-weight: 700; letter-spacing: 0.01em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: #f5b82e; color: #1c1e23; margin-left: 6px; white-space: nowrap; }
+.carte-mission .badge { display: block; width: fit-content; margin: 3px 0 2px; }
+.carte-mission.atelier { border-left: 4px solid #8fb3ff; }   /* séries 3 à 6 : la mission se joue dans l'atelier */
+.badge.bonus { background: #7cc8f2; }
+.etoiles { display: inline-flex; gap: 3px; vertical-align: middle; }
+.etoile { width: 20px; height: 20px; fill: none; stroke: #8A8A98; stroke-width: 2; }
+.etoile.gagnee { fill: var(--accent); stroke: #c98a00; }
+.message-carte { margin-top: 16px; min-height: 24px; font-weight: 600; }
+
+/* ----- écran de mission ----- */
+.mission { display: grid; grid-template-columns: 45% minmax(0, 55%); height: 100%; overflow: hidden; }
+.cote-code > * { min-width: 0; }
+.cote-scene { background: var(--scene); display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.barre-scene { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #eef0f5; }
+.barre-scene .mission-id { font-weight: 700; color: #f5b82e; letter-spacing: 0.06em; }
+.vue { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+.vue canvas { display: block; }
+.legende-rejeu { position: absolute; left: 12px; right: 12px; bottom: 10px; background: rgba(19,20,25,0.82); color: #eef0f5; border-radius: 10px; padding: 8px 12px; font-size: 15px; min-height: 38px; border-left: 4px solid #f28c1e; }
+.legende-rejeu.echec { border-left-color: var(--rouge); }
+.commandes { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; align-items: center; }
+.commandes .bouton { padding: 6px 12px; }
+.commandes .espace { flex: 1; }
+.journal-texte { list-style: none; margin: 0; padding: 14px; color: #eef0f5; overflow: auto; height: 100%; font-size: 16px; }
+.journal-texte li { padding: 6px 8px; border-left: 4px solid var(--vert); margin-bottom: 6px; background: #1f2229; border-radius: 6px; }
+.journal-texte li.journal-echec { border-left-color: var(--rouge); }
+.journal-texte li.journal-info { border-left-color: #4a4f5c; color: #b9bdc9; }
+.journal-texte .marque { font-weight: 700; font-size: 14px; padding: 1px 6px; border-radius: 4px; background: var(--vert-fonce); color: #fff; }
+.journal-texte .journal-echec .marque { background: var(--rouge); }
+
+.cote-code { display: grid; grid-template-rows: auto minmax(0, 2fr) minmax(0, 1fr); min-width: 0; min-height: 0; height: 100%; }
+.enonce { padding: 12px 18px 10px; border-bottom: 1px solid var(--bord); background: var(--blanc); }
+.enonce h1 { font-size: 22px; line-height: 1.2; margin: 2px 0 6px; }
+.enonce p { margin: 0 0 6px; line-height: 1.4; }
+.enonce .objectifs { font-size: 14px; line-height: 1.35; color: var(--texte); list-style: none; padding: 0; margin: 0; }
+.enonce .objectifs li { display: flex; gap: 6px; align-items: center; }
+.enonce .objectifs .etoile { width: 15px; height: 15px; }
+.enonce .objectifs li.gagnee { color: var(--vert-fonce); font-weight: 600; }
+.zone-editeur { display: flex; flex-direction: column; min-height: 0; background: var(--code); }
+.barre-editeur { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: #171130; color: #cfc9ea; font-size: 14px; }
+.barre-editeur .nom-fichier { font-family: var(--police-code); }
+.barre-editeur .espace { flex: 1; }
+.barre-editeur .bouton { min-height: 32px; padding: 3px 10px; background: transparent; border-color: #4b4480; color: #e6e2f7; font-size: 14px; }
+.barre-editeur .bouton:hover { background: #2a2357; }
+#editeur { flex: 1; min-height: 0; overflow: hidden; }
+#editeur .cm-editor { height: 100%; }
+#editeur .cm-scroller { overflow: auto; }
+.zone-tests { display: flex; flex-direction: column; min-height: 0; background: var(--blanc); border-top: 3px solid var(--violet); }
+.onglets { display: flex; gap: 2px; padding: 6px 10px 0; border-bottom: 1px solid var(--bord); align-items: center; }
+.onglet { border: 0; background: transparent; padding: 8px 12px; font-weight: 600; color: var(--texte); border-bottom: 3px solid transparent; cursor: pointer; }
+.onglet[aria-selected="true"] { color: var(--violet); border-bottom-color: var(--vert); }
+.onglet.nouveau { animation: clignote 1.2s ease-in-out 3; }
+@keyframes clignote { 50% { background: var(--accent); } }
+@media (prefers-reduced-motion: reduce) { .onglet.nouveau { animation: none; background: var(--accent); } }
+.onglets .resume { margin-left: auto; font-size: 14px; color: var(--texte); padding-right: 6px; }
+.panneau { flex: 1; overflow: auto; padding: 10px 14px; min-height: 0; font-size: 15px; }
+.test { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; border-radius: 8px; margin-bottom: 4px; }
+.test .marque { flex: none; font-weight: 700; font-size: 14px; padding: 2px 7px; border-radius: 5px; color: #fff; background: var(--gris); min-width: 52px; text-align: center; }
+.test.ok { background: var(--vert-clair); } .test.ok .marque { background: var(--vert-fonce); }
+.test.echec { background: var(--rouge-clair); } .test.echec .marque { background: #c2323a; }
+.test .detail { display: block; font-family: var(--police-code); font-size: 14px; color: #7a2026; margin-top: 2px; font-variant-ligatures: none; }
+.test .groupe { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--violet); margin-left: 6px; }
+.sortie { font-family: var(--police-code); white-space: pre-wrap; margin: 0; font-variant-ligatures: none; }
+.erreur-original { font-family: var(--police-code); background: var(--rouge-clair); color: #7a2026; padding: 8px 10px; border-radius: 8px; margin: 0 0 8px; font-variant-ligatures: none; }
+.erreur-explication { margin: 0 0 6px; }
+.erreur-conseil { margin: 0; padding: 8px 10px; background: var(--violet-clair); border-radius: 8px; border-left: 4px solid var(--violet); }
+.indice { padding: 8px 10px; background: var(--vert-clair); border-left: 4px solid var(--vert); border-radius: 8px; margin: 0 0 8px; }
+.vide { color: var(--texte); }
+
+.bilan { position: absolute; inset: 0; display: grid; place-items: end center; padding-bottom: 14px; background: linear-gradient(rgba(19,20,25,0) 35%, rgba(19,20,25,0.7) 100%); z-index: 5; pointer-events: none; }
+.bilan-carte { pointer-events: auto; }
+.bilan-carte { background: var(--blanc); border-radius: 16px; padding: 22px 26px; max-width: 460px; width: calc(100% - 32px); border-bottom: 6px solid var(--vert); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
+.bilan-carte h2 { font-size: 24px; margin-bottom: 8px; }
+.bilan-carte .etoile { width: 34px; height: 34px; }
+.bilan-carte p { margin: 6px 0; line-height: 1.35; }
+.bilan-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.avis { position: absolute; top: 10px; left: 12px; right: 12px; background: #f5b82e; color: #1c1e23; border-radius: 10px; padding: 8px 12px; font-weight: 600; z-index: 4; display: flex; gap: 10px; align-items: center; }
+a.bouton { text-decoration: none; display: inline-flex; align-items: center; }

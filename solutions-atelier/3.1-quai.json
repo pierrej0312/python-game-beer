@@ -1,0 +1,33 @@
+{
+ "solution": "def quai_du_client(type_client):\n    \"\"\"Renvoie le quai d'un client : \"Q1\", \"Q2\", \"Q3\" ou \"Q4\".\"\"\"\n    if type_client == \"café\":\n        quai = \"Q1\"\n    elif type_client == \"magasin\":\n        quai = \"Q2\"\n    elif type_client == \"particulier\":\n        quai = \"Q3\"\n    else:\n        quai = \"Q4\"\n    return quai\n",
+ "variantes": [
+  {
+   "nom": "sans else : les autres clients n'ont pas de quai",
+   "remplacer": [
+    "    else:\n        quai = \"Q4\"\n",
+    ""
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "if au lieu de elif : le café repart au quai Q4",
+   "remplacer": [
+    "    elif type_client == \"particulier\":",
+    "    if type_client == \"particulier\":"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

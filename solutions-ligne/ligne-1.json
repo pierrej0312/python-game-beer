@@ -1,0 +1,90 @@
+{
+ "solution": {
+  "pieces": [
+   {
+    "id": "rem",
+    "type": "remplisseuse",
+    "x": 3,
+    "z": 3,
+    "params": {}
+   },
+   {
+    "id": "cap",
+    "type": "capsuleuse",
+    "x": 7,
+    "z": 3,
+    "params": {}
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-cuve-suite-rem",
+    "de": "cuve",
+    "sortie": "suite",
+    "vers": "rem",
+    "cases": [
+     [
+      1,
+      3
+     ],
+     [
+      2,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-rem-suite-cap",
+    "de": "rem",
+    "sortie": "suite",
+    "vers": "cap",
+    "cases": [
+     [
+      4,
+      3
+     ],
+     [
+      5,
+      3
+     ],
+     [
+      6,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-cap-suite-q1",
+    "de": "cap",
+    "sortie": "suite",
+    "vers": "q1",
+    "cases": [
+     [
+      8,
+      3
+     ],
+     [
+      9,
+      3
+     ],
+     [
+      10,
+      3
+     ]
+    ]
+   }
+  ]
+ },
+ "variantes": [
+  {
+   "nom": "capsuleuse avant la remplisseuse",
+   "inverser": [
+    "rem",
+    "cap"
+   ],
+   "attendu": {
+    "erreur": true
+   }
+  }
+ ]
+}

@@ -1,0 +1,231 @@
+{
+  "series": [
+    {
+      "numero": 1,
+      "titre": "Les variables et les calculs",
+      "outil": "Révision de jeudi : des nombres, des opérateurs, une conversion."
+    },
+    {
+      "numero": 2,
+      "titre": "Le texte",
+      "outil": "Révision de jeudi : les méthodes de texte et les f-strings."
+    },
+    {
+      "numero": 3,
+      "titre": "Les conditions",
+      "outil": "Nouveau : l'atelier. Construisez la fonction dans le hall ou écrivez-la en Python ; le chariot suit le chemin que vos conditions choisissent."
+    },
+    {
+      "numero": 4,
+      "titre": "Les listes et les tuples",
+      "outil": "Nouveau : les rayonnages et les caisses plombées. La file des commandes arrive dans une liste."
+    },
+    {
+      "numero": 5,
+      "titre": "Les boucles",
+      "outil": "Nouveau : le carrousel (for) et la boucle tant que (while). Le chariot refait le tour à chaque élément."
+    },
+    {
+      "numero": 6,
+      "titre": "Les dictionnaires et les sets",
+      "outil": "Nouveau : l'armoire à tiroirs et le bac de tri. Le stock de la brasserie tient dans un dictionnaire."
+    }
+  ],
+  "missions": [
+    {
+      "id": "1.1-prix-casier",
+      "serie": 1,
+      "numero": 1,
+      "titre": "Un prix s'additionne avec sa consigne",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 3
+    },
+    {
+      "id": "1.2-volume-fut",
+      "serie": 1,
+      "numero": 2,
+      "titre": "La division entière compte les bouteilles pleines",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 3
+    },
+    {
+      "id": "1.3-prix-commande",
+      "serie": 1,
+      "numero": 3,
+      "titre": "Ce qui vient du clavier se convertit avant le calcul",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 5
+    },
+    {
+      "id": "2.1-etiquette",
+      "serie": 2,
+      "numero": 1,
+      "titre": "Une étiquette se nettoie en une ligne",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 3
+    },
+    {
+      "id": "2.2-bon-livraison",
+      "serie": 2,
+      "numero": 2,
+      "titre": "Une f-string compose le bon de livraison",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 6
+    },
+    {
+      "id": "3.1-quai",
+      "serie": 3,
+      "numero": 1,
+      "titre": "Le type de client décide du quai",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 5,
+      "atelier": true
+    },
+    {
+      "id": "3.2-tarif",
+      "serie": 3,
+      "numero": 2,
+      "titre": "La remise dépend du client",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 5,
+      "atelier": true
+    },
+    {
+      "id": "3.3-stock-bas",
+      "serie": 3,
+      "numero": 3,
+      "titre": "L'ordre des tests décide du résultat",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "3.4-remise-magasin",
+      "serie": 3,
+      "numero": 4,
+      "titre": "L'ordre des elif décide de la remise",
+      "surprise": false,
+      "bonus": true,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "4.1-trois-premieres",
+      "serie": 4,
+      "numero": 1,
+      "titre": "Une tranche prend les trois premières commandes",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 4,
+      "atelier": true
+    },
+    {
+      "id": "4.2-derniere-livraison",
+      "serie": 4,
+      "numero": 2,
+      "titre": "L'indice -1 donne la dernière livraison",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 5,
+      "atelier": true
+    },
+    {
+      "id": "4.3-fut-tuple",
+      "serie": 4,
+      "numero": 3,
+      "titre": "Un tuple se décompose en noms",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 4,
+      "atelier": true
+    },
+    {
+      "id": "4.4-file-commandes",
+      "serie": 4,
+      "numero": 4,
+      "titre": "Une liste garde les commandes dans l'ordre",
+      "surprise": false,
+      "bonus": true,
+      "dureeIndicativeMin": 8,
+      "atelier": true
+    },
+    {
+      "id": "5.1-tournee",
+      "serie": 5,
+      "numero": 1,
+      "titre": "Une boucle numérote toute la tournée",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "5.2-chariot",
+      "serie": 5,
+      "numero": 2,
+      "titre": "while charge le chariot tant qu'il reste de la place",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 8,
+      "atelier": true
+    },
+    {
+      "id": "5.3-cuves",
+      "serie": 5,
+      "numero": 3,
+      "titre": "Une boucle contrôle chaque cuve",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 7,
+      "atelier": true
+    },
+    {
+      "id": "5.4-tournees-chariot",
+      "serie": 5,
+      "numero": 4,
+      "titre": "Une boucle while tourne tant qu'il reste des casiers",
+      "surprise": false,
+      "bonus": true,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "6.1-stock",
+      "serie": 6,
+      "numero": 1,
+      "titre": "Une clé met à jour le stock d'une bière",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 7,
+      "atelier": true
+    },
+    {
+      "id": "6.2-clients-livres",
+      "serie": 6,
+      "numero": 2,
+      "titre": "Un set retire les doublons",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 4,
+      "atelier": true
+    },
+    {
+      "id": "6.3-futs-par-quai",
+      "serie": 6,
+      "numero": 3,
+      "titre": "Un dictionnaire compte les fûts par quai",
+      "surprise": false,
+      "bonus": true,
+      "dureeIndicativeMin": 8,
+      "atelier": true
+    }
+  ]
+}

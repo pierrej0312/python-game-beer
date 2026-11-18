@@ -1,0 +1,29 @@
+{
+ "solution": "def sortir_du_stock(stock, sorties):\n    \"\"\"Retire les sorties du stock. Renvoie le stock mis à jour.\"\"\"\n    for code, nb in sorties:\n        if code in stock:\n            stock[code] -= nb\n    return stock\n",
+ "variantes": [
+  {
+   "nom": "= au lieu de -= : le stock prend le nombre sorti",
+   "remplacer": [
+    "stock[code] -= nb",
+    "stock[code] = nb"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "sans le test de la clé : KeyError sur B07",
+   "remplacer": [
+    "        if code in stock:\n            stock[code] -= nb",
+    "        stock[code] -= nb"
+   ],
+   "attendu": {
+    "erreurCas": "KeyError"
+   }
+  }
+ ]
+}

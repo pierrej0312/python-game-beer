@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les missions de la Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/controls/OrbitControls.js":"./vendor/three/addons/OrbitControls.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js","three/addons/geometries/RoundedBoxGeometry.js":"./vendor/three/addons/RoundedBoxGeometry.js"}}</script>
+</head>
+<body>
+
+<!-- Formulaire caché, lu par Netlify au moment de la mise en ligne : il déclare les champs envoyés par le jeu. -->
+<form name="resultat-missions" data-netlify="true" hidden>
+  <input name="pseudo"><input name="date"><input name="serie_max_atteinte"><input name="missions_reussies">
+  <input name="etoiles_total"><input name="missions_a_revoir"><input name="mode"><input name="qualite">
+</form>
+
+<main class="carte" id="vue-carte" hidden>
+  <header class="carte-entete">
+    <div>
+      <div class="surtitre">Brasserie de la Fonderie</div>
+      <h1>Choisissez une mission</h1>
+    </div>
+    <div class="carte-outils">
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+      <button class="bouton sombre" id="bouton-qualite" type="button"></button>
+      <button class="bouton sombre" id="bouton-sans3d" type="button"></button>
+      <button class="bouton principal" id="bouton-envoyer" type="button">Envoyer mes résultats</button>
+      <button class="bouton sombre" id="bouton-zero" type="button">Recommencer à zéro</button>
+    </div>
+  </header>
+  <div class="series" id="series"></div>
+  <p class="message-carte" id="message-carte" role="status"></p>
+</main>
+
+<main class="mission" id="vue-mission" hidden>
+  <section class="cote-scene" aria-label="Entrepôt">
+    <div class="barre-scene">
+      <button class="bouton sombre" id="bouton-carte" type="button">Carte</button>
+      <span class="mission-id" id="mission-id"></span>
+      <span class="etoiles" id="mission-etoiles"></span>
+    </div>
+    <div class="vue" id="vue">
+      <div class="legende-rejeu" id="legende" role="status" aria-live="polite"></div>
+    </div>
+    <div class="commandes">
+      <button class="bouton principal" id="bouton-executer" type="button" title="Ctrl+Entrée">Exécuter</button>
+      <button class="bouton sombre" id="bouton-rejouer" type="button">Rejouer</button>
+      <button class="bouton sombre" id="bouton-pas" type="button" title="F10">Pas à pas</button>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false" title="P">Pause</button>
+      <button class="bouton sombre" id="bouton-vitesse" type="button" aria-pressed="false">Rejeu rapide</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-son" type="button" aria-pressed="true" title="M">Son</button>
+    </div>
+  </section>
+  <section class="cote-code">
+    <header class="enonce">
+      <div class="surtitre" id="mission-surtitre"></div>
+      <h1 id="mission-titre"></h1>
+      <p id="mission-enonce"></p>
+      <ul class="objectifs" id="mission-objectifs"></ul>
+    </header>
+    <div class="zone-editeur">
+      <div class="barre-editeur">
+        <span class="nom-fichier" id="nom-fichier">mission.py</span>
+        <span class="espace"></span>
+        <button class="bouton" id="bouton-agrandir" type="button" title="Agrandir le texte">A+</button>
+        <button class="bouton" id="bouton-depart" type="button">Revenir au code de départ</button>
+      </div>
+      <div id="editeur"></div>
+    </div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="tests" aria-selected="true" type="button">Tests</button>
+        <button class="onglet" role="tab" data-onglet="sortie" aria-selected="false" type="button">Sortie</button>
+        <button class="onglet" role="tab" data-onglet="erreur" aria-selected="false" type="button">Erreur</button>
+        <button class="onglet" role="tab" data-onglet="indice" aria-selected="false" type="button">Indice</button>
+        <span class="resume" id="resume-tests"></span>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/missions.js"></script>
+</body>
+</html>

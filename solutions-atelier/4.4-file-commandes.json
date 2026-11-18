@@ -1,0 +1,67 @@
+{
+ "solution": "commandes = [\"Café du Pont\", \"Cave aux Bulles\", \"Marie Dumont\", \"Taverne Saint-Jean\"]\ncommandes.append(\"Lucas Bertrand\")\ncommandes.remove(\"Marie Dumont\")\ncamion = commandes[0:2]\nprint(camion)\nprint(len(commandes))\nprint(sorted(commandes))\n",
+ "variantes": [
+  {
+   "nom": "tranche [0:1] (la case de fin n'est pas prise)",
+   "remplacer": [
+    "commandes[0:2]",
+    "commandes[0:1]"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": ".sort() au lieu de sorted()",
+   "remplacer": [
+    "print(sorted(commandes))",
+    "commandes.sort()\nprint(commandes)"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "print(commandes.sort()) affiche None",
+   "remplacer": [
+    "print(sorted(commandes))",
+    "print(commandes.sort())"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "case 4 d'une liste de 4 : IndexError",
+   "remplacer": [
+    "camion = commandes[0:2]",
+    "camion = commandes[4]"
+   ],
+   "attendu": {
+    "erreur": "IndexError"
+   }
+  },
+  {
+   "nom": "Marie Dupont n'est pas dans la liste : ValueError",
+   "remplacer": [
+    "commandes.remove(\"Marie Dumont\")",
+    "commandes.remove(\"Marie Dupont\")"
+   ],
+   "attendu": {
+    "erreur": "ValueError"
+   }
+  }
+ ]
+}

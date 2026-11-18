@@ -1,0 +1,82 @@
+{
+ "id": "3.3-stock-bas",
+ "serie": 3,
+ "numero": 3,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 6,
+ "titre": "L'ordre des tests décide du résultat",
+ "notion": "elif, ordre des tests",
+ "enonce": "Complétez etat_stock() : pour 0 casier, elle renvoie \"Rupture de stock\" ; sous 10 casiers, \"Stock bas\" ; sinon, \"Stock suffisant\".",
+ "reussiSi": "les 3 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "etat_stock",
+  "parametres": [
+   "casiers"
+  ],
+  "types": {
+   "casiers": "int"
+  },
+  "doc": "Renvoie l'état du stock d'une bière."
+ },
+ "cas": [
+  {
+   "libelle": "40 casiers de La Coulée : stock suffisant",
+   "args": [
+    40
+   ],
+   "attendu": "Stock suffisant"
+  },
+  {
+   "libelle": "9 casiers de Le Crassier : stock bas",
+   "args": [
+    9
+   ],
+   "attendu": "Stock bas"
+  },
+  {
+   "libelle": "0 casier : rupture de stock, pas seulement stock bas",
+   "args": [
+    0
+   ],
+   "attendu": "Rupture de stock"
+  },
+  {
+   "libelle": "10 casiers tout juste : le stock est suffisant",
+   "args": [
+    10
+   ],
+   "attendu": "Stock suffisant",
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Contrôle surprise : 1 casier, c'est un stock bas, pas une rupture",
+   "args": [
+    1
+   ],
+   "attendu": "Stock bas",
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 5 postes (instructions) au plus",
+  "description3": "10 casiers tout juste donnent un stock suffisant",
+  "max": 5
+ },
+ "indices": [
+  "Testez le cas le plus exigeant en premier.",
+  "0 est aussi plus petit que 10 : le test de la rupture doit passer avant celui du stock bas."
+ ],
+ "depart": "def etat_stock(casiers):\n    \"\"\"Renvoie l'état du stock d'une bière.\"\"\"\n    etat = \"Stock suffisant\"\n    # À vous de jouer\n    return etat\n"
+}

@@ -1,0 +1,33 @@
+{
+ "solution": "def description_fut(fut):\n    \"\"\"Renvoie la description d'un fût, par exemple \"Fût 23 : Le Crassier\".\"\"\"\n    numero, biere = fut\n    return f\"Fût {numero} : {biere}\"\n",
+ "variantes": [
+  {
+   "nom": "noms inversés",
+   "remplacer": [
+    "numero, biere = fut",
+    "biere, numero = fut"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "texte sans f : les accolades restent",
+   "remplacer": [
+    "f\"Fût {numero} : {biere}\"",
+    "\"Fût {numero} : {biere}\""
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

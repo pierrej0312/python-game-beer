@@ -1,0 +1,310 @@
+{
+ "id": "ligne-3",
+ "numero": 3,
+ "titre": "Écarter les bouteilles mal remplies",
+ "notion": "Une condition (if / else)",
+ "enonce": "La remplisseuse a des ratés : certaines bouteilles de La Coulée contiennent moins de 33 cl. Une bouteille de moins de 32 cl part au rebut ; les autres sont capsulées puis expédiées au quai Q2 (magasins). Posez un contrôle qualité et réglez sa condition.",
+ "reussiSi": "les 12 bouteilles d'au moins 32 cl arrivent capsulées au quai Q2, les 4 autres au rebut.",
+ "palette": [
+  "capsuleuse",
+  "controle"
+ ],
+ "champs": [
+  "volume_cl"
+ ],
+ "valeurs": {
+  "volume_cl": [
+   29,
+   30,
+   31,
+   32,
+   33
+  ]
+ },
+ "fixes": [
+  {
+   "id": "cuve",
+   "type": "cuve",
+   "x": 0,
+   "z": 3,
+   "params": {
+    "cuve": "C1"
+   }
+  },
+  {
+   "id": "q2",
+   "type": "quai",
+   "x": 11,
+   "z": 3,
+   "params": {
+    "quai": "Q2"
+   }
+  },
+  {
+   "id": "rebut",
+   "type": "rebut",
+   "x": 6,
+   "z": 6,
+   "params": {}
+  }
+ ],
+ "depart": {
+  "pieces": [
+   {
+    "id": "rem",
+    "type": "remplisseuse",
+    "x": 2,
+    "z": 3,
+    "params": {}
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-cuve-suite-rem",
+    "de": "cuve",
+    "sortie": "suite",
+    "vers": "rem",
+    "cases": [
+     [
+      1,
+      3
+     ]
+    ]
+   }
+  ]
+ },
+ "donnees": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 31
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 30
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 29
+   },
+   {
+    "numero": 11,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 13,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 31
+   },
+   {
+    "numero": 14,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 15,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 16,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 32
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 31
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 32
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 30
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "tapis",
+  "description1": "Les bonnes bouteilles au quai, les mal remplies au rebut",
+  "description2": "Ligne compacte : 10 cases de tapis au plus",
+  "description3": "Le lendemain, une bouteille de 32 cl tout juste part bien au quai",
+  "max": 10
+ },
+ "indices": [
+  "Le contrôle qualité mesure le volume : il doit se trouver après la remplisseuse, sinon toutes les bouteilles mesurent 0 cl.",
+  "« Moins de 32 cl » s'écrit < 32. Avec <= 32, une bouteille de 32 cl partirait au rebut alors qu'elle est bonne."
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

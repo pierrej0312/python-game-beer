@@ -1,0 +1,38 @@
+{
+  "id": "1.3-prix-commande",
+  "serie": 1,
+  "numero": 3,
+  "titre": "Ce qui vient du clavier se convertit avant le calcul",
+  "notions": [
+    "opérateurs",
+    "conversions"
+  ],
+  "enonce": "La Taverne Saint-Jean commande 5 casiers de La Braise à 31,20 €, consigne de 3,00 € par casier. Complétez total_commande() pour qu'elle renvoie le total, consignes comprises.",
+  "fonctionAttendue": "total_commande",
+  "scene": {
+    "objets": [
+      {
+        "id": "LOT-5",
+        "type": "casier",
+        "biere": "B03",
+        "nombre": 5
+      }
+    ]
+  },
+  "scenarioPrincipal": "scenario_principal",
+  "etoiles": {
+    "critere": "lignes",
+    "max": 4,
+    "description1": "Tous les tests visibles passent",
+    "description2": "Votre code tient en 4 lignes ou moins (sans les commentaires)",
+    "description3": "Le test bonus passe aussi"
+  },
+  "indices": [
+    "Chaque casier coûte son prix plus sa consigne.",
+    "Pour le contrôle surprise : int() transforme le texte \"5\" en nombre 5."
+  ],
+  "reussiSi": "Les 2 tests visibles passent.",
+  "surprise": true,
+  "bonus": false,
+  "dureeIndicativeMin": 5
+}

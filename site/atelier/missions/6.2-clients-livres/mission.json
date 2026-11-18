@@ -1,0 +1,102 @@
+{
+ "id": "6.2-clients-livres",
+ "serie": 6,
+ "numero": 2,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 4,
+ "titre": "Un set retire les doublons",
+ "notion": "set, sorted",
+ "enonce": "La liste des livraisons du jour contient plusieurs fois les mêmes clients. Complétez clients_livres() pour qu'elle renvoie la liste des clients, sans doublon, triée par ordre alphabétique.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "clients_livres",
+  "parametres": [
+   "livraisons"
+  ],
+  "types": {
+   "livraisons": "list"
+  },
+  "doc": "Renvoie la liste triée des clients livrés, sans doublon."
+ },
+ "cas": [
+  {
+   "libelle": "Six livraisons, trois clients différents",
+   "args": [
+    [
+     "Café du Pont",
+     "Cave aux Bulles",
+     "Café du Pont",
+     "Marie Dumont",
+     "Cave aux Bulles",
+     "Café du Pont"
+    ]
+   ],
+   "attendu": [
+    "Café du Pont",
+    "Cave aux Bulles",
+    "Marie Dumont"
+   ]
+  },
+  {
+   "libelle": "Une seule livraison, un seul client",
+   "args": [
+    [
+     "Taverne Saint-Jean"
+    ]
+   ],
+   "attendu": [
+    "Taverne Saint-Jean"
+   ]
+  },
+  {
+   "libelle": "Sans livraison, la liste est vide",
+   "args": [
+    []
+   ],
+   "attendu": [],
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 1 postes (instructions) au plus",
+  "description3": "Sans livraison, la liste est vide",
+  "max": 1
+ },
+ "indices": [
+  "set(livraisons) ne garde qu'un exemplaire de chaque client.",
+  "Un set n'a pas d'ordre : sorted() renvoie une liste triée."
+ ],
+ "depart": "def clients_livres(livraisons):\n    \"\"\"Renvoie la liste triée des clients livrés, sans doublon.\"\"\"\n    # À vous de jouer\n    return []\n"
+}

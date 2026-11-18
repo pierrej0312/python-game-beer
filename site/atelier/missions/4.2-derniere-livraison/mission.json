@@ -1,0 +1,98 @@
+{
+ "id": "4.2-derniere-livraison",
+ "serie": 4,
+ "numero": 2,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 5,
+ "titre": "L'indice -1 donne la dernière livraison",
+ "notion": "listes, indices négatifs, liste vide",
+ "enonce": "Complétez derniere_livraison() pour qu'elle renvoie le dernier client livré de la liste.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "derniere_livraison",
+  "parametres": [
+   "livraisons"
+  ],
+  "types": {
+   "livraisons": "list"
+  },
+  "doc": "Renvoie le dernier client livré."
+ },
+ "cas": [
+  {
+   "libelle": "Après trois livraisons, la dernière est celle de Lucas Bertrand",
+   "args": [
+    [
+     "Cave aux Bulles",
+     "Café du Pont",
+     "Lucas Bertrand"
+    ]
+   ],
+   "attendu": "Lucas Bertrand"
+  },
+  {
+   "libelle": "Avec une seule livraison, la dernière est aussi la première",
+   "args": [
+    [
+     "Café du Pont"
+    ]
+   ],
+   "attendu": "Café du Pont"
+  },
+  {
+   "libelle": "La liste des livraisons n'est pas modifiée",
+   "args": [
+    [
+     "Cave aux Bulles",
+     "Café du Pont",
+     "Lucas Bertrand"
+    ]
+   ],
+   "attendu": "Lucas Bertrand",
+   "groupe": "bonus",
+   "inchange": true
+  },
+  {
+   "libelle": "Contrôle surprise : sans aucune livraison, la fonction renvoie « Aucune livraison »",
+   "args": [
+    []
+   ],
+   "attendu": "Aucune livraison",
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 3 postes (instructions) au plus",
+  "description3": "La liste reçue n'est pas modifiée",
+  "max": 3
+ },
+ "indices": [
+  "L'indice -1 désigne le dernier élément d'une liste.",
+  "Pour le contrôle surprise : une liste vide compte pour faux, if livraisons: le teste."
+ ],
+ "depart": "def derniere_livraison(livraisons):\n    \"\"\"Renvoie le dernier client livré.\"\"\"\n    # À vous de jouer\n    return \"\"\n"
+}

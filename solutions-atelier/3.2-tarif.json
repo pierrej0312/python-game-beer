@@ -1,0 +1,33 @@
+{
+ "solution": "def prix_futs(type_client, nb_futs, prix_fut):\n    \"\"\"Renvoie le prix d'une commande de fûts, remise comprise.\"\"\"\n    total = nb_futs * prix_fut\n    if type_client == \"café\":\n        total = total * 0.90\n    return total\n",
+ "variantes": [
+  {
+   "nom": "total * 0.10 : le café paie la remise, pas le prix",
+   "remplacer": [
+    "total * 0.90",
+    "total * 0.10"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "remise de 10 € au lieu de 10 %",
+   "remplacer": [
+    "total * 0.90",
+    "total - 10"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

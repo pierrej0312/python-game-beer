@@ -1,0 +1,33 @@
+{
+ "solution": "def etat_stock(casiers):\n    \"\"\"Renvoie l'état du stock d'une bière.\"\"\"\n    if casiers == 0:\n        etat = \"Rupture de stock\"\n    elif casiers < 10:\n        etat = \"Stock bas\"\n    else:\n        etat = \"Stock suffisant\"\n    return etat\n",
+ "variantes": [
+  {
+   "nom": "stock bas testé avant la rupture",
+   "remplacer": [
+    "    if casiers == 0:\n        etat = \"Rupture de stock\"\n    elif casiers < 10:\n        etat = \"Stock bas\"",
+    "    if casiers < 10:\n        etat = \"Stock bas\"\n    elif casiers == 0:\n        etat = \"Rupture de stock\""
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "casiers <= 10 : 10 casiers donnent un stock bas",
+   "remplacer": [
+    "casiers < 10",
+    "casiers <= 10"
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

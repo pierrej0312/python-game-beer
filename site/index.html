@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les jeux Python de la Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+</head>
+<body>
+<main class="accueil">
+  <form class="accueil-carte" id="formulaire" autocomplete="off">
+    <div class="surtitre">Python de base · Data Analyst 2026</div>
+    <h1>Votre code fait tourner la brasserie</h1>
+    <p>Des missions autour de la Brasserie de la Fonderie. Dans les séries 1 et 2, vous écrivez quelques lignes de Python et le préparateur rejoue votre code dans l'entrepôt. À partir de la série 3, l'atelier : vous construisez la fonction dans le hall avec des postes et des tapis, ou vous l'écrivez en Python, et le chariot rejoue chaque cas de test. Le hall et le code se suivent.</p>
+    <label class="champ">
+      <span>Prénom ou pseudo</span>
+      <input type="text" id="pseudo" name="pseudo" maxlength="30">
+      <small>Un pseudo suffit. Il sert seulement si vous envoyez vos résultats au formateur.</small>
+    </label>
+    <fieldset class="choix">
+      <legend>Qualité de la 3D</legend>
+      <label><input type="radio" name="qualite" value="haute" checked> Haute</label>
+      <label><input type="radio" name="qualite" value="basse"> Basse (poste lent)</label>
+    </fieldset>
+    <label class="champ"><input type="checkbox" id="sans3d"> Jouer sans la 3D : un plateau en cases et un journal en texte remplacent la scène.</label>
+    <div class="accueil-actions">
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+      <button class="bouton principal" type="submit" data-cible="missions.html">Ouvrir la carte des missions</button>
+    </div>
+  </form>
+</main>
+<script type="module" src="js/accueil.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* Jeu 2 : la ligne de production. Complète jeux.css (mêmes couleurs de la charte BStorm côté code, hall sombre côté scène). */
+
+.mission.ligne { grid-template-columns: 56% minmax(0, 44%); }
+.mission.ligne .barre-scene .espace { flex: 1; }
+.mesure { font-size: 14px; color: #d8dbe3; background: #262932; border-radius: 8px; padding: 4px 10px; }
+.mesure.depasse { color: #ffd2cf; background: #4a2427; }
+
+/* palette : outils et pièces du niveau */
+.palette-zone { display: flex; align-items: flex-start; gap: 10px; padding-right: 12px; background: #1b1d23; border-bottom: 1px solid #2c2f38; }
+.palette-zone #bouton-depart { margin-top: 8px; flex: none; }
+.palette { flex: 1; display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 12px; }
+.groupe-outils { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.titre-groupe { font-size: 14px; font-weight: 700; color: #b9bdc9; margin-right: 2px; }
+.bouton.outil { background: #262932; border-color: #4a4f5c; color: #eef0f5; padding: 4px 10px; min-height: 34px; font-size: 15px; }
+.bouton.outil:hover { background: #343844; }
+.bouton.outil[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #1c1e23; }
+.bouton.outil.machine-def { border-color: #f28c1e; }
+
+/* réglages de la pièce choisie : onglet « Pièce » du panneau des tests */
+.panneau.reglages { color: var(--texte); }
+.reglages h2 { font-size: 18px; margin-bottom: 2px; }
+.reglages .reglage { max-width: 420px; }
+.reglages .python { font-family: var(--police-code); font-size: 14px; color: var(--violet); margin: 0 0 8px; }
+.reglage { display: block; margin: 8px 0; }
+.reglage span { display: block; font-size: 14px; font-weight: 600; color: var(--violet); margin-bottom: 3px; }
+.reglage select, .reglage input { width: 100%; font-size: 15px; padding: 6px 8px; border: 2px solid var(--bord); border-radius: 8px; background: #fff; color: var(--texte); }
+.reglage input { font-family: var(--police-code); }
+.reglages .aide { font-size: 14px; margin: 6px 0; }
+.message-erreur { color: #a3262d; font-size: 14px; margin: 4px 0; }
+.message-erreur:empty { display: none; }
+
+/* carte des niveaux */
+.intro-carte { max-width: 900px; font-size: 16px; line-height: 1.45; color: #d8dbe3; margin: 0 0 18px; }
+.niveaux { display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 14px; max-width: 1100px; }
+.carte-niveau { display: flex; flex-direction: column; gap: 4px; text-align: left; background: #2f333d; color: #eef0f5; border: 2px solid transparent; border-radius: 12px; padding: 14px 16px; cursor: pointer; }
+.carte-niveau:hover:not(:disabled) { border-color: #f28c1e; }
+.carte-niveau:disabled { cursor: not-allowed; background: #262932; color: #b9bdc9; }
+.carte-niveau:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.niveau-numero { font-size: 14px; font-weight: 700; color: #f5b82e; letter-spacing: 0.08em; text-transform: uppercase; }
+.niveau-titre { font-size: 19px; font-weight: 700; line-height: 1.25; }
+.niveau-notion { font-size: 15px; color: #d8dbe3; }
+.niveau-ferme { font-size: 14px; color: #b9bdc9; }
+.carte-niveau .etoile { width: 22px; height: 22px; }
+
+/* code généré */
+.info-code { font-size: 14px; color: #d8d4ee; margin-left: 10px; }
+
+/* onglet Problèmes */
+.probleme { display: block; width: 100%; text-align: left; border: 0; border-left: 4px solid var(--rouge); background: var(--rouge-clair); color: #6e1a1f; padding: 8px 10px; border-radius: 6px; margin-bottom: 6px; font-size: 15px; cursor: pointer; }
+.probleme:hover { background: #fbd9db; }
+.probleme.avertissement { border-left-color: #c98a0a; background: #fff4d6; color: #5c3d00; }
+.probleme.avertissement:hover { background: #ffecb8; }
+.message-avertissement { color: #5c3d00; background: #fff4d6; border-left: 4px solid #c98a0a; padding: 6px 8px; border-radius: 6px; font-size: 15px; }
+
+/* création de la machine */
+.dialogue { position: fixed; inset: 0; background: rgba(19,20,25,0.6); display: grid; place-items: center; z-index: 20; }
+.dialogue-carte { background: var(--blanc); color: var(--texte); border-radius: 14px; padding: 20px 22px; width: min(460px, 92vw); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+.dialogue-carte h2 { margin-bottom: 6px; }
+.dialogue-carte p { line-height: 1.4; }
+.dialogue-carte input { font-family: var(--police-code); }
+.etapes-machine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+/* mode sans 3D : grille de cases et journal */
+.vue2d { position: absolute; inset: 0; display: grid; grid-template-rows: minmax(0, 1fr) 96px; gap: 6px; padding: 6px 8px 58px; }
+.zone-grille { container-type: size; min-height: 0; display: grid; place-items: center; }
+.grille2d { display: grid; gap: 3px; width: min(100cqw, 150cqh); height: min(100cqh, 66.6cqw); }
+.case2d { min-width: 0; min-height: 0; border: 1px solid #3a3e48; border-radius: 6px; background: #22252c; color: #eef0f5; font-size: 14px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 2px; overflow: hidden; cursor: pointer; line-height: 1.1; }
+.case2d:hover { border-color: #f28c1e; }
+.case2d:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.case2d span { font-weight: 500; font-size: 14px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* cases petites : le symbole seul ; le détail reste dans l'info-bulle et pour les lecteurs d'écran */
+@container (max-height: 420px) { .case2d span { display: none; } }
+.case2d.tapis2d { background: #1b1c20; color: #f5b82e; font-size: 20px; }
+.case2d.tapis2d.apercu { background: #4a3a14; }
+.case2d.piece2d { background: #3a3f4b; }
+.case2d.fixe { background: #4a4030; }
+.case2d.piece-quai { background: #5a4a10; }
+.case2d.piece-rebut { background: #5a2a2a; }
+.case2d.piece-detecteur { background: #4a3a5a; }
+.case2d.tapis2d.trappe2d { background: #050506; color: var(--rouge); box-shadow: inset 0 0 0 2px var(--rouge); }
+.case2d.selection { outline: 3px solid var(--accent); }
+.case2d.probleme { box-shadow: inset 0 0 0 3px var(--rouge); }
+.case2d.active { background: #2d6b4f; }
+.journal2d { height: 100%; background: #1b1d23; border-radius: 8px; padding: 8px; }
+.journal2d li { font-size: 15px; }

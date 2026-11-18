@@ -1,0 +1,88 @@
+/* Atelier de construction. Complète jeux.css et ligne.css. */
+
+.atelier .barre-scene .etat-python { margin: 0; }
+
+/* barre d'outils flottante, verticale : des icônes seules ; l'infobulle donne le nom, le nom Python et la catégorie */
+.barre-outils { position: absolute; left: 10px; top: 8px; z-index: 6; display: flex; flex-direction: column; gap: 4px; padding: 5px; background: rgba(19,20,25,0.9); border: 1px solid #343844; border-radius: 12px; }
+.barre-outils .separateur { height: 1px; background: #343844; margin: 2px 4px; }
+.icone-outil { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border: 2px solid transparent; border-radius: 9px; background: #262932; color: #f4f6fb; cursor: pointer; padding: 0; }
+.icone-outil svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icone-outil::after { content: ""; position: absolute; left: -2px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: var(--couleur, transparent); }
+.icone-outil:hover { background: #343844; }
+.icone-outil:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.icone-outil[aria-pressed="true"], .icone-outil[aria-expanded="true"] { border-color: var(--couleur, var(--accent)); background: #343844; }
+.icone-outil[aria-disabled="true"] { color: #6b707c; cursor: not-allowed; }
+.icone-outil .fleche-sous-menu { position: absolute; right: 3px; bottom: 3px; width: 0; height: 0; border-left: 6px solid var(--couleur, #b9bdc9); border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+
+.sous-menu { position: absolute; left: 58px; z-index: 7; display: grid; grid-template-columns: repeat(5, 40px); gap: 6px; padding: 6px; background: rgba(19,20,25,0.95); border: 1px solid var(--couleur, #343844); border-radius: 12px; }
+.sous-menu .titre-sous-menu { grid-column: 1 / -1; font-size: 14px; font-weight: 700; color: var(--couleur, #eef0f5); padding: 0 2px 2px; }
+.sous-menu .titre-sous-menu code { font-weight: 500; color: #d8dbe3; margin-left: 6px; }
+
+.info-bulle { position: absolute; z-index: 9; width: 290px; background: #fff; color: var(--texte); border-radius: 10px; padding: 10px 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.45); pointer-events: none; border-top: 5px solid var(--couleur, var(--accent)); }
+.info-bulle .ib-nom { font-size: 16px; font-weight: 700; color: var(--violet); }
+.info-bulle .ib-python { font-family: var(--police-code); font-size: 15px; color: #3a3a48; margin: 2px 0 6px; font-variant-ligatures: none; }
+.info-bulle .ib-categorie { display: inline-block; font-size: 14px; font-weight: 700; color: #1c1e23; background: var(--couleur, #eee); border-radius: 5px; padding: 1px 7px; margin-bottom: 6px; }
+.info-bulle .ib-aide { font-size: 14px; line-height: 1.35; margin: 0; }
+.info-bulle .ib-grise { font-size: 14px; color: #a3262d; margin: 6px 0 0; }
+
+/* bulle de saisie, accrochée au poste posé */
+.bulle { position: absolute; z-index: 8; width: 400px; max-height: calc(100% - 20px); overflow: auto; background: #fff; color: var(--texte); border-radius: 12px; padding: 12px 14px; box-shadow: 0 14px 36px rgba(0,0,0,0.5); border-top: 5px solid var(--couleur, var(--accent)); }
+.bulle h2 { font-size: 17px; margin: 0; color: var(--violet); }
+.bulle .b-python { font-family: var(--police-code); font-size: 14px; color: #5a5a68; margin: 0 0 6px; }
+.bulle .reglage { margin: 7px 0; }
+.bulle .reglage span { font-size: 14px; }
+.bulle .reglage input, .bulle .reglage select { font-size: 15px; padding: 5px 7px; }
+.bulle .aide { font-size: 14px; margin: 2px 0 0; color: #5a5a68; }
+.bulle .elements { display: flex; flex-direction: column; gap: 5px; margin: 6px 0; }
+.bulle .element { display: grid; grid-template-columns: 22px 84px 1fr 30px 30px 30px; gap: 4px; align-items: center; }
+.bulle .element .rang { font-family: var(--police-code); font-size: 14px; color: #5a5a68; text-align: right; }
+.bulle .element select, .bulle .element input { font-size: 14px; padding: 4px 5px; border: 2px solid var(--bord); border-radius: 6px; min-width: 0; }
+.bulle .element input { font-family: var(--police-code); }
+.bulle .mini { width: 30px; height: 30px; padding: 0; border: 1px solid var(--bord); border-radius: 6px; background: #f3f2f8; color: var(--texte); cursor: pointer; font-size: 15px; }
+.bulle .mini:hover { background: #e6e3f3; }
+.bulle .apercu { font-family: var(--police-code); font-size: 14px; background: var(--code); color: #eef0f5; border-radius: 8px; padding: 7px 9px; margin: 8px 0 4px; white-space: pre-wrap; word-break: break-word; font-variant-ligatures: none; }
+.bulle .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+.bulle .actions .bouton { padding: 5px 12px; }
+
+/* fiche de la pièce (onglet Pièce) */
+.fiche-piece .categorie { display: inline-block; font-size: 14px; font-weight: 700; color: #1c1e23; background: var(--couleur, #eee); border-radius: 5px; padding: 1px 7px; }
+.fiche-piece .ligne-code { font-family: var(--police-code); background: #f3f2f8; border-radius: 6px; padding: 6px 8px; margin: 6px 0; font-variant-ligatures: none; }
+.fiche-piece .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 8px; }
+.fiche-piece .actions .bouton { padding: 4px 12px; }
+.bandeau-code { background: #fff4d6; color: #5c3d00; border-left: 4px solid #c98a0a; font-size: 14px; padding: 4px 10px; }
+.bandeau-code:empty { display: none; }
+
+/* conditions dans la bulle : le texte, et l'assistant qui l'écrit (ce qu'on compare, comparaison, valeur) */
+.bulle .ligne-condition { display: grid; grid-template-columns: 42px 1fr 30px; gap: 6px; align-items: start; }
+.bulle .ligne-condition .mot-cle { font-family: var(--police-code); font-weight: 700; color: #7a3fc4; padding-top: 6px; font-size: 15px; }
+.bulle .condition input.code { width: 100%; font-family: var(--police-code); font-size: 15px; padding: 5px 7px; border: 2px solid var(--bord); border-radius: 6px; box-sizing: border-box; }
+.bulle .assistant { display: grid; grid-template-columns: 1fr 74px 1fr; gap: 4px; margin-top: 4px; }
+.bulle .assistant select, .bulle .assistant input { font-size: 14px; padding: 3px 5px; border: 1px solid var(--bord); border-radius: 6px; min-width: 0; }
+.bulle .case-a-cocher { display: flex; gap: 8px; align-items: center; }
+.bulle .case-a-cocher input { width: 18px; height: 18px; }
+.commandes .choix-cas { flex: 1 1 auto; min-width: 0; font-size: 14px; max-width: 250px; padding: 6px 8px; border-radius: 6px; border: 1px solid #343844; background: #262932; color: #eef0f5; }
+.emplacement-legende { color: #8fb3ff; }
+.atelier .commandes { flex-wrap: nowrap; }
+.bulle .paire { display: grid; grid-template-columns: 1fr 12px 1fr 30px; gap: 4px; align-items: center; }
+.bulle .paire .element { grid-template-columns: 76px 1fr !important; }
+.bulle .paire .fleche { font-family: var(--police-code); font-weight: 700; text-align: center; }
+
+/* ---------- sans 3D : le hall en cases, les données en texte, un journal ---------- */
+.atelier2d { grid-template-rows: auto minmax(0, 1fr) 120px; padding-left: 58px; }
+.donnees2d { display: flex; flex-wrap: wrap; gap: 6px; max-height: 132px; overflow-y: auto; }
+.donnees2d .vide { margin: 4px 0; font-size: 14px; color: #b9bfcc; }
+.donnee2d { display: flex; align-items: baseline; gap: 6px; max-width: 100%; background: #23262e; color: #eef0f5; border: 1px solid #3a3f4b; border-radius: 6px; padding: 4px 8px; font-size: 14px; text-align: left; cursor: pointer; }
+.donnee2d code { font-family: var(--police-code); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 46ch; }
+.donnee2d .type2d { font-size: 14px; color: #9aa3b5; }
+.donnee2d.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.atelier2d .case2d.piece2d { border-left: 4px solid var(--couleur); text-align: left; }
+.atelier2d .case2d.piece2d span { font-family: var(--police-code); }
+.atelier2d .case2d.quai2d { background: #2f3a2c; }
+.atelier2d .case2d.emplacement2d { outline: 2px dashed var(--accent); outline-offset: -4px; color: var(--accent); font-weight: 700; }
+.atelier2d .case2d.tapis2d.manuel { color: #ffb15c; }
+.atelier2d .zone-grille { overflow: auto; place-items: start center; }
+.atelier2d .zone-grille { place-items: start; }
+.atelier2d .grille2d { width: max-content; height: max-content; }
+.atelier2d .case2d strong { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+.atelier2d .case2d.piece2d strong { font-family: var(--police-code); font-weight: 600; }
+.atelier2d .case2d span { display: block; }   /* la case garde ses deux lignes : mot-clé, puis la donnée visée */

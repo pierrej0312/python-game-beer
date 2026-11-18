@@ -1,0 +1,38 @@
+{
+  "id": "2.2-bon-livraison",
+  "serie": 2,
+  "numero": 2,
+  "titre": "Une f-string compose le bon de livraison",
+  "notions": [
+    "f-strings",
+    "format"
+  ],
+  "enonce": "Complétez ligne_bon() pour qu'elle renvoie la ligne du bon de livraison : le client, le nombre de casiers, la bière, puis le total avec deux décimales. Le modèle est dans le code de départ.",
+  "fonctionAttendue": "ligne_bon",
+  "scene": {
+    "objets": [
+      {
+        "id": "LOT-3",
+        "type": "casier",
+        "biere": "B01",
+        "nombre": 3
+      }
+    ]
+  },
+  "scenarioPrincipal": "scenario_principal",
+  "etoiles": {
+    "critere": "lignes",
+    "max": 5,
+    "description1": "Tous les tests visibles passent",
+    "description2": "Votre code tient en 5 lignes ou moins (sans les commentaires)",
+    "description3": "Le test bonus passe aussi"
+  },
+  "indices": [
+    "Dans une f-string, {total:.2f} affiche total avec deux décimales.",
+    "Recopiez le modèle et remplacez chaque valeur par son nom entre accolades."
+  ],
+  "reussiSi": "Les 2 tests visibles passent.",
+  "surprise": true,
+  "bonus": false,
+  "dureeIndicativeMin": 6
+}

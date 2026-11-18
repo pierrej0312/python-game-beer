@@ -1,0 +1,157 @@
+{
+ "solution": {
+  "pieces": [
+   {
+    "id": "m1",
+    "type": "machine",
+    "x": 5,
+    "z": 1,
+    "params": {
+     "biere": "La Coulée"
+    }
+   },
+   {
+    "id": "m3",
+    "type": "machine",
+    "x": 5,
+    "z": 5,
+    "params": {
+     "biere": "La Braise"
+    }
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-cuve1-suite-m1",
+    "de": "cuve1",
+    "sortie": "suite",
+    "vers": "m1",
+    "cases": [
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      4,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "t-m1-suite-q1",
+    "de": "m1",
+    "sortie": "suite",
+    "vers": "q1",
+    "cases": [
+     [
+      6,
+      1
+     ],
+     [
+      7,
+      1
+     ],
+     [
+      8,
+      1
+     ],
+     [
+      9,
+      1
+     ],
+     [
+      10,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "t-cuve3-suite-m3",
+    "de": "cuve3",
+    "sortie": "suite",
+    "vers": "m3",
+    "cases": [
+     [
+      1,
+      5
+     ],
+     [
+      2,
+      5
+     ],
+     [
+      3,
+      5
+     ],
+     [
+      4,
+      5
+     ]
+    ]
+   },
+   {
+    "id": "t-m3-suite-q2",
+    "de": "m3",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      6,
+      5
+     ],
+     [
+      7,
+      5
+     ],
+     [
+      8,
+      5
+     ],
+     [
+      9,
+      5
+     ],
+     [
+      10,
+      5
+     ]
+    ]
+   }
+  ],
+  "machine": {
+   "nom": "conditionner",
+   "etapes": [
+    "remplir",
+    "capsuler",
+    "etiqueter"
+   ]
+  }
+ },
+ "variantes": [
+  {
+   "nom": "machine sans étiquetage",
+   "machine": {
+    "nom": "conditionner",
+    "etapes": [
+     "remplir",
+     "capsuler"
+    ]
+   },
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

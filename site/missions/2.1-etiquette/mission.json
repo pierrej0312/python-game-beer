@@ -1,0 +1,37 @@
+{
+  "id": "2.1-etiquette",
+  "serie": 2,
+  "numero": 1,
+  "titre": "Une étiquette se nettoie en une ligne",
+  "notions": [
+    "chaînes",
+    "méthodes"
+  ],
+  "enonce": "L'étiquette d'un fût a été saisie à la main, avec des espaces et des minuscules. Complétez nettoyer_etiquette() pour qu'elle renvoie l'étiquette sans espaces autour et en majuscules.",
+  "fonctionAttendue": "nettoyer_etiquette",
+  "scene": {
+    "objets": [
+      {
+        "id": "FUT-1",
+        "type": "fut",
+        "biere": "B03"
+      }
+    ]
+  },
+  "scenarioPrincipal": "scenario_principal",
+  "etoiles": {
+    "critere": "lignes",
+    "max": 2,
+    "description1": "Tous les tests visibles passent",
+    "description2": "Votre code tient en 2 lignes ou moins (sans les commentaires)",
+    "description3": "Le test bonus passe aussi"
+  },
+  "indices": [
+    "strip() retire les espaces autour d'un texte, upper() le met en majuscules.",
+    "Les deux méthodes s'enchaînent : saisie.strip().upper()."
+  ],
+  "reussiSi": "Les 2 tests visibles passent.",
+  "surprise": false,
+  "bonus": false,
+  "dureeIndicativeMin": 3
+}

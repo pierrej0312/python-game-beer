@@ -1,0 +1,236 @@
+{
+ "id": "ligne-5",
+ "numero": 5,
+ "titre": "Remplir en plusieurs passages",
+ "notion": "La boucle while",
+ "enonce": "La nouvelle remplisseuse verse 11 cl à chaque passage : une bouteille de 33 cl doit passer plusieurs fois dessous. Construisez un anneau de tapis. À son entrée, un détecteur de boucle renvoie la bouteille faire un tour par la remplisseuse tant qu'elle n'est pas pleine, puis la laisse sortir vers la capsuleuse et le camion du quai Q2 (magasins).",
+ "reussiSi": "les 8 bouteilles de La Coulée arrivent au quai Q2 pleines (33 cl) et capsulées.",
+ "palette": [
+  "detecteur",
+  "remplisseuse",
+  "capsuleuse"
+ ],
+ "champs": [
+  "volume_cl"
+ ],
+ "valeurs": {
+  "volume_cl": [
+   11,
+   22,
+   30,
+   33
+  ]
+ },
+ "fixes": [
+  {
+   "id": "cuve",
+   "type": "cuve",
+   "x": 0,
+   "z": 3,
+   "params": {
+    "cuve": "C1"
+   }
+  },
+  {
+   "id": "q2",
+   "type": "quai",
+   "x": 11,
+   "z": 5,
+   "params": {
+    "quai": "Q2"
+   }
+  }
+ ],
+ "depart": {
+  "pieces": [],
+  "tapis": []
+ },
+ "donnees": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 11,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 22,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 11,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 22,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33,
+    "_dose": 11
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "tapis",
+  "description1": "Les 8 bouteilles arrivent au quai pleines (33 cl) et capsulées",
+  "description2": "Ligne compacte : 14 cases de tapis au plus",
+  "description3": "Le lendemain, des bouteilles déjà entamées (11 ou 22 cl) font juste les tours qu'il leur faut",
+  "max": 14
+ },
+ "indices": [
+  "Le détecteur se pose à l'entrée de l'anneau : il regarde la bouteille avant chaque tour. Sa sortie « encore un tour » mène à la remplisseuse, et un tapis ramène la bouteille de la remplisseuse au détecteur.",
+  "La bouteille quitte l'anneau dès que la condition devient fausse. Avec < 33, elle tourne tant qu'elle n'est pas pleine ; avec <= 33, elle repasserait pleine sous la remplisseuse."
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

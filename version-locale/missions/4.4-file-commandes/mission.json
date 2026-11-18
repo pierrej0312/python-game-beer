@@ -1,0 +1,40 @@
+{
+ "id": "4.4-file-commandes",
+ "serie": 4,
+ "numero": 4,
+ "bonus": true,
+ "surprise": false,
+ "dureeIndicativeMin": 8,
+ "titre": "Une liste garde les commandes dans l'ordre",
+ "notion": "Les listes : indices, tranches, append, remove",
+ "enonce": "Le standard a noté les commandes du jour, dans l'ordre : Café du Pont, Cave aux Bulles, Marie Dumont, Taverne Saint-Jean. Rangez-les dans un rayonnage nommé commandes. Lucas Bertrand commande à son tour ; Marie Dumont annule. Le premier camion emporte les deux premières commandes : rangez-les dans camion, puis affichez camion et le nombre de commandes au tableau de bord.",
+ "reussiSi": "commandes contient les 4 commandes à préparer, camion les deux premières, et le tableau de bord affiche camion puis 4.",
+ "palette": [
+  "creer_liste",
+  "creer_tuple",
+  "variable",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "afficher"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "commandes, camion et le tableau de bord sont justes",
+  "description2": "Programme court : 7 postes au plus",
+  "description3": "Le tableau de bord affiche aussi les commandes par ordre alphabétique, sans changer l'ordre de commandes",
+  "max": 7
+ },
+ "indices": [
+  "Une tranche s'arrête juste avant la case de fin : [0:2] prend les cases 0 et 1.",
+  "Pour trier sans toucher au rayonnage, sorted() en fait une copie triée ; .sort() range le rayonnage lui-même et ne renvoie rien (None)."
+ ],
+ "depart": ""
+}

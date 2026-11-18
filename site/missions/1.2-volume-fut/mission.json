@@ -1,0 +1,37 @@
+{
+  "id": "1.2-volume-fut",
+  "serie": 1,
+  "numero": 2,
+  "titre": "La division entière compte les bouteilles pleines",
+  "notions": [
+    "opérateurs",
+    "division entière"
+  ],
+  "enonce": "Un fût contient 20 litres, une bouteille 33 cl. Complétez bouteilles_par_fut() pour qu'elle renvoie le nombre de bouteilles pleines que l'on remplit avec un fût.",
+  "fonctionAttendue": "bouteilles_par_fut",
+  "scene": {
+    "objets": [
+      {
+        "id": "FUT-1",
+        "type": "fut",
+        "biere": "B01"
+      }
+    ]
+  },
+  "scenarioPrincipal": "scenario_principal",
+  "etoiles": {
+    "critere": "lignes",
+    "max": 3,
+    "description1": "Tous les tests visibles passent",
+    "description2": "Votre code tient en 3 lignes ou moins (sans les commentaires)",
+    "description3": "Le test bonus passe aussi"
+  },
+  "indices": [
+    "L'opérateur // donne le nombre de fois que ça rentre, sans la virgule.",
+    "Le calcul tient en une ligne : fut_cl // bouteille_cl."
+  ],
+  "reussiSi": "Les 2 tests visibles passent.",
+  "surprise": false,
+  "bonus": false,
+  "dureeIndicativeMin": 3
+}

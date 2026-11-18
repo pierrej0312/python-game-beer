@@ -1,0 +1,90 @@
+{
+ "id": "3.4-remise-magasin",
+ "serie": 3,
+ "numero": 4,
+ "bonus": true,
+ "surprise": false,
+ "dureeIndicativeMin": 6,
+ "titre": "L'ordre des elif décide de la remise",
+ "notion": "if, elif, else dans une fonction",
+ "enonce": "Les magasins ont une remise sur les casiers : 2 % à partir de 5 casiers, 5 % à partir de 10 casiers, rien en dessous. Complétez la fonction : elle reçoit le nombre de casiers commandés et renvoie le taux de remise en pour cent (0, 2 ou 5).",
+ "reussiSi": "les trois cas de test renvoient la bonne remise.",
+ "fonction": {
+  "nom": "remise_magasin",
+  "parametres": [
+   "nb_casiers"
+  ],
+  "types": {
+   "nb_casiers": "int"
+  }
+ },
+ "cas": [
+  {
+   "args": [
+    3
+   ],
+   "attendu": 0
+  },
+  {
+   "args": [
+    7
+   ],
+   "attendu": 2
+  },
+  {
+   "args": [
+    12
+   ],
+   "attendu": 5
+  },
+  {
+   "args": [
+    5
+   ],
+   "attendu": 2,
+   "groupe": "bonus"
+  },
+  {
+   "args": [
+    10
+   ],
+   "attendu": 5,
+   "groupe": "bonus"
+  },
+  {
+   "args": [
+    4
+   ],
+   "attendu": 0,
+   "groupe": "bonus"
+  },
+  {
+   "args": [
+    9
+   ],
+   "attendu": 2,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas 3, 7 et 12 casiers renvoient la bonne remise",
+  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description3": "Les cas aux limites (4, 5, 9 et 10 casiers) aussi",
+  "max": 4
+ },
+ "indices": [
+  "Python teste les conditions dans l'ordre et s'arrête à la première vraie : 12 casiers, c'est aussi « au moins 5 ». Quelle condition faut-il tester d'abord ?",
+  "« À partir de 10 » : 10 compte. Comparez avec >= plutôt qu'avec >."
+ ],
+ "depart": "def remise_magasin(nb_casiers):\n    pass\n"
+}

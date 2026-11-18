@@ -1,0 +1,19 @@
+Les missions de la Brasserie de la Fonderie, version VS Code
+=============================================================
+
+Cette version sert si le jeu en ligne ne s'ouvre pas, ou pour retravailler une mission dans VS Code.
+Les missions, les tests et les étoiles sont les mêmes que dans le jeu ; il n'y a pas d'entrepôt en 3D.
+
+1. Ouvrez ce dossier dans VS Code (Fichier > Ouvrir le dossier).
+2. Ouvrez le fichier de la mission, par exemple missions/3.1-quai/depart.py, et complétez la fonction.
+3. Dans le terminal de VS Code, lancez les tests :
+
+       python lancer_tests.py 3.1-quai
+
+   Sans nom de mission, la commande affiche la liste des missions.
+4. Lisez les lignes ÉCHEC : elles disent ce qui était attendu et ce que votre code a renvoyé.
+
+Séries 3 à 6 : en ligne, ces missions se jouent dans l'atelier (le hall en 3D ou le Python). Ici, seul le Python :
+les cas de test sont les mêmes, et l'étoile 2 compte les instructions de la fonction (un poste du hall = une instruction).
+
+Le dossier moteur/ contient le code qui lance les tests : inutile de le modifier.

@@ -1,0 +1,33 @@
+{
+ "solution": "def cuves_hors_plage(cuves, temperatures):\n    \"\"\"Renvoie la liste des cuves dont la température sort de 18 à 22 °C.\"\"\"\n    alertes = []\n    for cuve, t in zip(cuves, temperatures):\n        if t < 18 or t > 22:\n            alertes.append(cuve)\n    return alertes\n",
+ "variantes": [
+  {
+   "nom": "<= et >= : les bornes comptées hors plage",
+   "remplacer": [
+    "t < 18 or t > 22",
+    "t <= 18 or t >= 22"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "and au lieu de or : aucune cuve n'est jamais hors plage",
+   "remplacer": [
+    "t < 18 or t > 22",
+    "t < 18 and t > 22"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

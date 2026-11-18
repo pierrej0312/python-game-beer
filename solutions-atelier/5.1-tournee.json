@@ -1,0 +1,33 @@
+{
+ "solution": "def feuille_de_route(arrets):\n    \"\"\"Renvoie la liste des lignes de la feuille de route.\"\"\"\n    lignes = []\n    for numero, client in enumerate(arrets, start=1):\n        lignes.append(f\"Arrêt {numero} : {client}\")\n    return lignes\n",
+ "variantes": [
+  {
+   "nom": "enumerate sans start=1 : la tournée commence à l'arrêt 0",
+   "remplacer": [
+    "enumerate(arrets, start=1)",
+    "enumerate(arrets)"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "return dans la boucle : une seule ligne",
+   "remplacer": [
+    "        lignes.append(f\"Arrêt {numero} : {client}\")\n    return lignes",
+    "        lignes.append(f\"Arrêt {numero} : {client}\")\n        return lignes"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

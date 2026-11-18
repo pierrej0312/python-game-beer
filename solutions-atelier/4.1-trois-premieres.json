@@ -1,0 +1,33 @@
+{
+ "solution": "def premieres_commandes(file):\n    \"\"\"Renvoie les trois premières commandes de la file.\"\"\"\n    return file[0:3]\n",
+ "variantes": [
+  {
+   "nom": "file[1:4] : la première commande est à l'indice 0",
+   "remplacer": [
+    "file[0:3]",
+    "file[1:4]"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "file[0:2] : la tranche s'arrête avant la fin",
+   "remplacer": [
+    "file[0:3]",
+    "file[0:2]"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

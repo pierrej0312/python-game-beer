@@ -1,0 +1,321 @@
+{
+ "solution": {
+  "pieces": [
+   {
+    "id": "c1",
+    "type": "controle",
+    "x": 2,
+    "z": 3,
+    "params": {
+     "champ": "biere",
+     "comparateur": "==",
+     "valeur": "La Coulée"
+    }
+   },
+   {
+    "id": "e1",
+    "type": "etiqueteuse",
+    "x": 5,
+    "z": 1,
+    "params": {
+     "biere": "La Coulée"
+    }
+   },
+   {
+    "id": "c2",
+    "type": "controle",
+    "x": 4,
+    "z": 3,
+    "params": {
+     "champ": "biere",
+     "comparateur": "==",
+     "valeur": "La Braise"
+    }
+   },
+   {
+    "id": "e2",
+    "type": "etiqueteuse",
+    "x": 6,
+    "z": 3,
+    "params": {
+     "biere": "La Braise"
+    }
+   },
+   {
+    "id": "c3",
+    "type": "controle",
+    "x": 4,
+    "z": 5,
+    "params": {
+     "champ": "biere",
+     "comparateur": "==",
+     "valeur": "Le Crassier"
+    }
+   },
+   {
+    "id": "e3",
+    "type": "etiqueteuse",
+    "x": 6,
+    "z": 5,
+    "params": {
+     "biere": "Le Crassier"
+    }
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-stock-suite-c1",
+    "de": "stock",
+    "sortie": "suite",
+    "vers": "c1",
+    "cases": [
+     [
+      1,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-c1-oui-e1",
+    "de": "c1",
+    "sortie": "oui",
+    "vers": "e1",
+    "cases": [
+     [
+      2,
+      2
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      4,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "t-e1-suite-q2",
+    "de": "e1",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      6,
+      1
+     ],
+     [
+      7,
+      1
+     ],
+     [
+      8,
+      1
+     ],
+     [
+      9,
+      1
+     ],
+     [
+      10,
+      1
+     ],
+     [
+      11,
+      1
+     ],
+     [
+      11,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-c1-non-c2",
+    "de": "c1",
+    "sortie": "non",
+    "vers": "c2",
+    "cases": [
+     [
+      3,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-c2-oui-e2",
+    "de": "c2",
+    "sortie": "oui",
+    "vers": "e2",
+    "cases": [
+     [
+      5,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-e2-suite-q2",
+    "de": "e2",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      7,
+      3
+     ],
+     [
+      8,
+      3
+     ],
+     [
+      9,
+      3
+     ],
+     [
+      10,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "t-c2-non-c3",
+    "de": "c2",
+    "sortie": "non",
+    "vers": "c3",
+    "cases": [
+     [
+      4,
+      4
+     ]
+    ]
+   },
+   {
+    "id": "t-c3-oui-e3",
+    "de": "c3",
+    "sortie": "oui",
+    "vers": "e3",
+    "cases": [
+     [
+      5,
+      5
+     ]
+    ]
+   },
+   {
+    "id": "t-e3-suite-q2",
+    "de": "e3",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      7,
+      5
+     ],
+     [
+      8,
+      5
+     ],
+     [
+      9,
+      5
+     ],
+     [
+      10,
+      5
+     ],
+     [
+      11,
+      5
+     ],
+     [
+      11,
+      4
+     ]
+    ]
+   },
+   {
+    "id": "t-c3-non-rebut",
+    "de": "c3",
+    "sortie": "non",
+    "vers": "rebut",
+    "cases": [
+     [
+      4,
+      6
+     ],
+     [
+      4,
+      7
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      7
+     ],
+     [
+      8,
+      7
+     ],
+     [
+      9,
+      7
+     ],
+     [
+      10,
+      7
+     ]
+    ]
+   }
+  ]
+ },
+ "variantes": [
+  {
+   "nom": "Le Crassier dans le else",
+   "retirer": [
+    "c3"
+   ],
+   "tapis": [
+    {
+     "id": "t-c2-non-e3",
+     "de": "c2",
+     "sortie": "non",
+     "vers": "e3",
+     "cases": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       5,
+       5
+      ]
+     ]
+    }
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     false
+    ]
+   }
+  }
+ ]
+}

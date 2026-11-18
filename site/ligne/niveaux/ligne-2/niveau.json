@@ -1,0 +1,472 @@
+{
+ "id": "ligne-2",
+ "numero": 2,
+ "titre": "Compter la production",
+ "notion": "Une variable",
+ "enonce": "Le brasseur veut savoir combien de bouteilles de La Braise la ligne a produites. Ajoutez sur le tapis un bac compteur : chaque bouteille qui passe y ajoute 1. Donnez-lui un nom de variable, puis posez un tableau de bord qui affiche ce bac à la fin.",
+ "reussiSi": "les 18 bouteilles arrivent au quai Q2 et le tableau de bord affiche 18.",
+ "palette": [
+  "remplisseuse",
+  "capsuleuse",
+  "compteur",
+  "tableau"
+ ],
+ "fixes": [
+  {
+   "id": "cuve",
+   "type": "cuve",
+   "x": 0,
+   "z": 2,
+   "params": {
+    "cuve": "C3"
+   }
+  },
+  {
+   "id": "q2",
+   "type": "quai",
+   "x": 11,
+   "z": 2,
+   "params": {
+    "quai": "Q2"
+   }
+  }
+ ],
+ "depart": {
+  "pieces": [
+   {
+    "id": "rem",
+    "type": "remplisseuse",
+    "x": 3,
+    "z": 2,
+    "params": {}
+   },
+   {
+    "id": "cap",
+    "type": "capsuleuse",
+    "x": 8,
+    "z": 2,
+    "params": {}
+   }
+  ],
+  "tapis": [
+   {
+    "id": "t-cuve-suite-rem",
+    "de": "cuve",
+    "sortie": "suite",
+    "vers": "rem",
+    "cases": [
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-rem-suite-cap",
+    "de": "rem",
+    "sortie": "suite",
+    "vers": "cap",
+    "cases": [
+     [
+      4,
+      2
+     ],
+     [
+      5,
+      2
+     ],
+     [
+      6,
+      2
+     ],
+     [
+      7,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "t-cap-suite-q2",
+    "de": "cap",
+    "sortie": "suite",
+    "vers": "q2",
+    "cases": [
+     [
+      9,
+      2
+     ],
+     [
+      10,
+      2
+     ]
+    ]
+   }
+  ]
+ },
+ "donnees": {
+  "C3": [
+   {
+    "numero": 1,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 11,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 13,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 14,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 15,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 16,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 17,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 18,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "C3": [
+   {
+    "numero": 1,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 11,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 13,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 14,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 15,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 16,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 17,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 18,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 19,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 20,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 21,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 22,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 23,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 24,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "tapis",
+  "description1": "Le tableau de bord affiche le nombre de bouteilles produites",
+  "description2": "Ligne compacte : 7 cases de tapis au plus",
+  "description3": "Le bac compte juste aussi pour le brassin du lendemain (24 bouteilles)",
+  "max": 7
+ },
+ "indices": [
+  "Pour poser le bac sur le tapis, retirez un morceau de tapis (outil Retirer), posez le bac à sa place, puis retracez les deux tapis.",
+  "Le tableau de bord n'a pas besoin de tapis : réglez-le pour qu'il affiche votre bac. Le print() s'écrit après la boucle."
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

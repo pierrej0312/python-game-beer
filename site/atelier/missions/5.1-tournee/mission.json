@@ -1,0 +1,93 @@
+{
+ "id": "5.1-tournee",
+ "serie": 5,
+ "numero": 1,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 6,
+ "titre": "Une boucle numérote toute la tournée",
+ "notion": "for, enumerate, append",
+ "enonce": "Complétez feuille_de_route() : pour chaque arrêt de la tournée, elle ajoute à la liste une ligne comme \"Arrêt 1 : Café du Pont\", numérotée à partir de 1.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "feuille_de_route",
+  "parametres": [
+   "arrets"
+  ],
+  "types": {
+   "arrets": "list"
+  },
+  "doc": "Renvoie la liste des lignes de la feuille de route."
+ },
+ "cas": [
+  {
+   "libelle": "Trois arrêts donnent trois lignes, numérotées de 1 à 3",
+   "args": [
+    [
+     "Café du Pont",
+     "Taverne Saint-Jean",
+     "Cave aux Bulles"
+    ]
+   ],
+   "attendu": [
+    "Arrêt 1 : Café du Pont",
+    "Arrêt 2 : Taverne Saint-Jean",
+    "Arrêt 3 : Cave aux Bulles"
+   ]
+  },
+  {
+   "libelle": "Un seul arrêt donne une seule ligne",
+   "args": [
+    [
+     "Marie Dumont"
+    ]
+   ],
+   "attendu": [
+    "Arrêt 1 : Marie Dumont"
+   ]
+  },
+  {
+   "libelle": "Une tournée sans arrêt donne une liste vide",
+   "args": [
+    []
+   ],
+   "attendu": [],
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description3": "Une tournée sans arrêt donne une liste vide",
+  "max": 4
+ },
+ "indices": [
+  "enumerate(arrets, start=1) donne le numéro et le client à chaque tour.",
+  "Dans la boucle : lignes.append(f\"Arrêt {numero} : {client}\")."
+ ],
+ "depart": "def feuille_de_route(arrets):\n    \"\"\"Renvoie la liste des lignes de la feuille de route.\"\"\"\n    lignes = []\n    # À vous de jouer : une boucle, et lignes.append(...) à chaque tour\n    return lignes\n"
+}

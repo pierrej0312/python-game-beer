@@ -1,0 +1,164 @@
+{
+ "id": "6.1-stock",
+ "serie": 6,
+ "numero": 1,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 7,
+ "titre": "Une clé met à jour le stock d'une bière",
+ "notion": "dictionnaires, for, in",
+ "enonce": "Chaque sortie est un tuple : le code de la bière, puis le nombre de fûts sortis. Complétez sortir_du_stock() pour qu'elle retire chaque sortie du stock, puis renvoie le stock.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "sortir_du_stock",
+  "parametres": [
+   "stock",
+   "sorties"
+  ],
+  "types": {
+   "stock": "dict",
+   "sorties": "list"
+  },
+  "doc": "Retire les sorties du stock. Renvoie le stock mis à jour."
+ },
+ "cas": [
+  {
+   "libelle": "4 fûts de B01 et 2 fûts de B03 sortent du stock",
+   "args": [
+    {
+     "B01": 12,
+     "B02": 6,
+     "B03": 8
+    },
+    [
+     {
+      "__tuple__": [
+       "B01",
+       4
+      ]
+     },
+     {
+      "__tuple__": [
+       "B03",
+       2
+      ]
+     }
+    ]
+   ],
+   "attendu": {
+    "B01": 8,
+    "B02": 6,
+    "B03": 6
+   }
+  },
+  {
+   "libelle": "6 fûts de B02 sortent : il n'en reste plus",
+   "args": [
+    {
+     "B01": 12,
+     "B02": 6,
+     "B03": 8
+    },
+    [
+     {
+      "__tuple__": [
+       "B02",
+       6
+      ]
+     }
+    ]
+   ],
+   "attendu": {
+    "B01": 12,
+    "B02": 0,
+    "B03": 8
+   }
+  },
+  {
+   "libelle": "Sans sortie, le stock ne change pas",
+   "args": [
+    {
+     "B01": 12,
+     "B02": 6
+    },
+    []
+   ],
+   "attendu": {
+    "B01": 12,
+    "B02": 6
+   },
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Contrôle surprise : une bière absente du stock (B07) est ignorée, sans erreur",
+   "args": [
+    {
+     "B01": 12,
+     "B02": 6,
+     "B03": 8
+    },
+    [
+     {
+      "__tuple__": [
+       "B01",
+       4
+      ]
+     },
+     {
+      "__tuple__": [
+       "B07",
+       1
+      ]
+     }
+    ]
+   ],
+   "attendu": {
+    "B01": 8,
+    "B02": 6,
+    "B03": 8
+   },
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description3": "Sans sortie, le stock ne change pas",
+  "max": 4
+ },
+ "indices": [
+  "stock[code] -= nb retire nb fûts de la bière dont le code est la clé.",
+  "Pour le contrôle surprise : le mot in teste si une clé existe dans un dictionnaire, avant d'y toucher."
+ ],
+ "depart": "def sortir_du_stock(stock, sorties):\n    \"\"\"Retire les sorties du stock. Renvoie le stock mis à jour.\"\"\"\n    for code, nb in sorties:\n        # À vous de jouer : retirez nb fûts de la bière code\n        pass\n    return stock\n"
+}

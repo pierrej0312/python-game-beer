@@ -1,0 +1,1344 @@
+{
+ "version": "v1",
+ "resultats": [
+  {
+   "section": "fonctionnement",
+   "nom": "Python se charge sur la page d'accueil",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "Python se charge sur la carte (Python 3.14.2, 2590 ms, page isolée : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.1-prix-casier : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', False]], 'sortie': [], 'duree': 4.920340061187744}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.1-prix-casier : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.301975727081299}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.2-volume-fut : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 4.064025640487671}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.2-volume-fut : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.180710077285767}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.3-prix-commande : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', True], ['cache', False]], 'sortie': [], 'duree': 4.023737192153931}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "1.3-prix-commande : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 4.234573125839233}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "2.1-etiquette : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', False]], 'sortie': [], 'duree': 4.410174131393433}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "2.1-etiquette : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.19173526763916}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "2.2-bon-livraison : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', False], ['cache', False]], 'sortie': [], 'duree': 4.2429351806640625}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "2.2-bon-livraison : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 4.236407279968262}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.1-quai : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 6, 'tests': [['visible', False], ['visible', False], ['visible', False], ['bonus', False]], 'sortie': [], 'duree': 4.231194257736206}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.1-quai : la solution de référence obtient 3 étoiles (3D : True, 6 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 6, 'tests': [['visible', True], ['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.243566274642944}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.2-tarif : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.14728045463562}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.2-tarif : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.277576208114624}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.3-stock-bas : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', False], ['visible', False], ['bonus', True], ['cache', False]], 'sortie': [], 'duree': 4.21801495552063}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "3.3-stock-bas : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 3.8744771480560303}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.1-trois-premieres : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 1, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 4.162636756896973}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.1-trois-premieres : la solution de référence obtient 3 étoiles (3D : True, 7 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 7, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.186011075973511}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.2-derniere-livraison : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 2, 'tests': [['visible', False], ['visible', False], ['bonus', True], ['cache', False]], 'sortie': [], 'duree': 4.01557469367981}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.2-derniere-livraison : la solution de référence obtient 3 étoiles (3D : True, 2 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 2, 'tests': [['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 3.751145124435425}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.3-fut-tuple : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 3, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 3.770474910736084}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "4.3-fut-tuple : la solution de référence obtient 3 étoiles (3D : True, 3 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 3, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.183210372924805}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.1-tournee : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 9, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 4.159782648086548}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.1-tournee : la solution de référence obtient 3 étoiles (3D : True, 9 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 9, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.200702428817749}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.2-chariot : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 1, 'tests': [['visible', False], ['visible', False], ['bonus', True], ['cache', False]], 'sortie': [], 'duree': 4.168307542800903}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.2-chariot : la solution de référence obtient 3 étoiles (3D : True, 5 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 5, 'tests': [['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 4.157341957092285}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.3-cuves : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 4, 'tests': [['visible', False], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 3.9892261028289795}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "5.3-cuves : la solution de référence obtient 3 étoiles (3D : True, 4 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 4, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 3.8818395137786865}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.1-stock : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 5, 'tests': [['visible', False], ['visible', False], ['bonus', True], ['cache', False]], 'sortie': [], 'duree': 4.102365255355835}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.1-stock : la solution de référence obtient 3 étoiles (3D : True, 5 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 5, 'tests': [['visible', True], ['visible', True], ['bonus', True], ['cache', True]], 'sortie': [], 'duree': 4.0653510093688965}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.2-clients-livres : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 4, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 3.906531572341919}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.2-clients-livres : la solution de référence obtient 3 étoiles (3D : True, 4 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 4, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.47493839263916}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.3-futs-par-quai : le code de départ échoue proprement",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [False, False, False], 'erreur': None, 'nbActions': 9, 'tests': [['visible', False], ['visible', False], ['bonus', True]], 'sortie': [], 'duree': 4.928830146789551}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "6.3-futs-par-quai : la solution de référence obtient 3 étoiles (3D : True, 9 actions rejouées, bilan affiché : True)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 9, 'tests': [['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 4.062538146972656}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : erreur de syntaxe (SyntaxError, ligne 1)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'SyntaxError', 'ligne': 1, 'messageOriginal': \"SyntaxError: expected ':'\", 'explication': 'Python ne comprend pas cette ligne : il manque un signe, ou il y en a un en trop.', 'conseil': \"Regardez la ligne indiquée et celle d'avant : deux-points, parenthèses, guillemets.\"}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : erreur d'indentation (IndentationError, ligne 2)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'IndentationError', 'ligne': 2, 'messageOriginal': 'IndentationError: expected an indented block after function definition on line 1', 'explication': 'Le décalage en début de ligne ne correspond pas au bloc attendu.', 'conseil': 'Après une ligne qui finit par deux-points, le bloc est décalé de 4 espaces.'}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : nom inconnu (NameError, ligne 2)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'NameError', 'ligne': 2, 'messageOriginal': \"NameError: name 'consine' is not defined\", 'explication': 'Vous utilisez un nom que Python ne connaît pas encore.', 'conseil': \"Vérifiez l'orthographe, et que la variable est créée avant cette ligne.\"}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : indice hors limites (IndexError, ligne 2)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'IndexError', 'ligne': 2, 'messageOriginal': 'IndexError: list index out of range', 'explication': \"Vous demandez une position qui n'existe pas dans la liste.\", 'conseil': \"Une liste de 3 éléments va de l'indice 0 à l'indice 2.\"}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : clé absente (KeyError, ligne 3)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'KeyError', 'ligne': 3, 'messageOriginal': \"KeyError: clé absente : 'B99'\", 'explication': \"Cette clé n'existe pas dans le dictionnaire.\", 'conseil': \"Vérifiez la clé, ou testez sa présence avec in avant de l'utiliser.\"}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : boucle sans fin sans appel à l'API (KeyboardInterrupt, ligne 3)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'KeyboardInterrupt', 'ligne': 3, 'messageOriginal': 'KeyboardInterrupt', 'explication': \"L'exécution a été arrêtée : elle durait trop longtemps.\", 'conseil': \"Une boucle while ne s'arrête probablement jamais : vérifiez sa condition.\"}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "boucle « while True: pass » interrompue par le moteur en 5.2 s (seuil 7 s) ; résultat affiché après 8.1 s avec la 3D en rendu logiciel",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "(5210, 8.090462446212769)"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "après l'interruption, l'interface reste utilisable (solution relancée : 3 étoiles)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'etoiles': [True, True, True], 'erreur': None, 'nbActions': 6, 'tests': [['visible', True], ['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 3.9740004539489746}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : boucle sans fin avec appel à l'API (ActionImpossible, ligne 4)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'ActionImpossible', 'ligne': 4, 'messageOriginal': 'ActionImpossible: Le chariot est plein : il porte 4 fûts au plus.', 'explication': 'Le préparateur ne peut pas faire cette action maintenant.', 'conseil': 'Le chariot est plein : il porte 4 fûts au plus.'}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "erreur expliquée : fonction renommée (FonctionAbsente, ligne None)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'erreur': {'type': 'FonctionAbsente', 'ligne': None, 'messageOriginal': 'La fonction prix_casier_consigne() est introuvable.', 'explication': \"La fonction attendue n'existe pas dans votre code.\", 'conseil': 'Gardez la ligne def du code de départ, avec le même nom.'}, 'onglet': 'erreur'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "Ctrl+Entrée dans l'éditeur lance l'exécution",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "touches P (pause) et M (son)",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'pause': 'true', 'son': 'true'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "F10 rejoue une action à la fois",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "bouton A+ : le texte de l'éditeur passe de 16px à 19px",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "mode sans 3D : les 17 solutions donnent les mêmes résultats qu'en 3D, journal en texte complet",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "« Revenir au code de départ » demande une confirmation puis remet le code",
+   "ok": true,
+   "classe": "visible",
+   "detail": "Confirmer ?"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "au départ, seule la série 1 est ouverte",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[False, True, True, True, True, True]"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "une mission d'une série fermée ne s'ouvre pas par son adresse",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "indices : aucun après 1 échec, le premier après 2, le second après 4",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[0, 1, 1, 2]"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "fin de série : récapitulatif et annonce de la série suivante",
+   "ok": true,
+   "classe": "visible",
+   "detail": "Mission réussie\n\nÉtoile 2 gagnée : 3 lignes, l'objectif était 4 ou moins.\n\nÉtoile 3 gagnée : le test bonus passe.\n\nContrôle surprise : réussi.\n\nSérie 1 réussie : 9 étoile(s) sur 9.\n\nSérie 2 ouverte. Révision de jeudi : les méthodes de texte et les f-strings.\n\nLe même exercice vous attend dans VS Code si le formateur l'a prévu.\n\nAméliorer\nMission suivante"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "la série 2 s'ouvre quand la série 1 est réussie",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[False, False, True, True, True, True]"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "sauvegarde : 9 étoiles avant rechargement, 9 après",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "(9, 9)"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "sauvegarde : le dernier code du stagiaire revient dans l'éditeur",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "envoi des résultats : champs attendus, aucun code envoyé",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'form-name': 'resultat-missions', 'pseudo': 'Controle', 'date': '2026-11-18T01:43:28', 'serie_max_atteinte': '1', 'missions_reussies': '3', 'etoiles_total': '9', 'missions_a_revoir': '', 'mode': 'sans 3D', 'qualite': 'basse'}"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "« Recommencer à zéro » demande une confirmation puis efface les étoiles (pseudo conservé)",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "envoi sans pseudo : le jeu demande le pseudo au lieu d'envoyer",
+   "ok": true,
+   "classe": "visible",
+   "detail": "Indiquez un prénom ou un pseudo sur la page d'accueil avant d'envoyer vos résultats."
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "stockage du navigateur bloqué : repli en mémoire, la mission se joue et les étoiles s'affichent",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "prefers-reduced-motion : la scène passe en mode calme et la mission se rejoue jusqu'au bilan",
+   "ok": true,
+   "classe": "visible",
+   "detail": ""
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "sans les en-têtes d'isolement (page isolée : False) : boucle sans fin arrêtée en 5.1 s, Python rechargé, solution relancée en 1.9 s",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "({'etoiles': [False, False, False], 'erreur': {'type': 'KeyboardInterrupt', 'ligne': None, 'messageOriginal': 'Exécution arrêtée', 'explication': \"L'exécution a été arrêtée : elle durait trop longtemps.\", 'conseil': \"Une boucle ne s'arrête probablement jamais : vérifiez sa condition. Python se recharge, patientez quelques secondes.\"}, 'nbActions': 0, 'tests': [], 'sortie': [], 'duree': 5.06374454498291}, {'etoiles': [True, True, True], 'erreur': None, 'nbActions': 6, 'tests': [['visible', True], ['visible', True], ['visible', True], ['bonus', True]], 'sortie': [], 'duree': 1.8760559558868408})"
+  },
+  {
+   "section": "fonctionnement",
+   "nom": "aucune erreur JavaScript pendant la session (0 relevée(s))",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, accueil, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, carte, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, mission sans 3D avec bilan, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « depart », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-reussie », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-refusee », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « ecran », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « rayons », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « chariot », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « cuves », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « bilan », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « erreur », qualité haute, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « depart », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-reussie », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-refusee », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « ecran », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « rayons », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « chariot », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « cuves », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « bilan », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « erreur », qualité basse, 1366x768",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture depart-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 61.6), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 61.6}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-reussie-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 61.7), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 61.7}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-refusee-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.7), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.7}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture ecran-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.5), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.5}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture rayons-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.4), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.4}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture chariot-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.5), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.5}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture cuves-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.5), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.5}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture bilan-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 24.05 % de blanc pur, luminosité moyenne 107.8), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 24.05, 'pixels_temoin': 0, 'luminosite_moyenne': 107.8}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture erreur-haute-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 61.4), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 61.4}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture depart-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-reussie-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 55.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 55.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-refusee-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 55.1), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 55.1}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture ecran-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture rayons-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture chariot-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture cuves-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 55.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 55.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture bilan-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 24.05 % de blanc pur, luminosité moyenne 102.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 24.05, 'pixels_temoin': 0, 'luminosite_moyenne': 102.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture erreur-basse-1366x768.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.8), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.8}"
+  },
+  {
+   "section": "rendu",
+   "nom": "aucune erreur JavaScript pendant la session (0 relevée(s))",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, accueil, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, carte, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, mission sans 3D avec bilan, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « depart », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-reussie », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-refusee », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « ecran », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « rayons », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « chariot », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « cuves », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « bilan », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « erreur », qualité haute, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « depart », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-reussie », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « livraison-refusee », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « ecran », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « rayons », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « chariot », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « cuves », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « bilan », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "interface, plan « erreur », qualité basse, 1920x1080",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture depart-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 60.7), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 60.7}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-reussie-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 61.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 61.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-refusee-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 61.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 61.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture ecran-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 60.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 60.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture rayons-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 60.8), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 60.8}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture chariot-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 60.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 60.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture cuves-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 61.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 61.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture bilan-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 10.63 % de blanc pur, luminosité moyenne 79.1), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 10.63, 'pixels_temoin': 0, 'luminosite_moyenne': 79.1}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture erreur-haute-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.02 % de blanc pur, luminosité moyenne 60.7), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.02, 'pixels_temoin': 0, 'luminosite_moyenne': 60.7}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture depart-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 53.9), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 53.9}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-reussie-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.0 % de blanc pur, luminosité moyenne 54.3), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.0, 'pixels_temoin': 0, 'luminosite_moyenne': 54.3}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture livraison-refusee-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 54.1), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 54.1}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture ecran-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 54.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 54.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture rayons-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 54.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 54.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture chariot-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 54.0), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 54.0}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture cuves-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 54.2), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 54.2}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture bilan-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 10.62 % de blanc pur, luminosité moyenne 73.4), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 10.62, 'pixels_temoin': 0, 'luminosite_moyenne': 73.4}"
+  },
+  {
+   "section": "rendu",
+   "nom": "capture erreur-basse-1920x1080.png : ni trop sombre ni brûlée (0.0 % de noir pur, 0.01 % de blanc pur, luminosité moyenne 53.8), aucun pixel témoin",
+   "ok": true,
+   "classe": "visible",
+   "detail": "{'noirs_%': 0.0, 'blancs_%': 0.01, 'pixels_temoin': 0, 'luminosite_moyenne': 53.8}"
+  },
+  {
+   "section": "rendu",
+   "nom": "aucune erreur JavaScript pendant la session (0 relevée(s))",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "textes",
+   "nom": "aucun émoji dans les textes affichés (74 fichiers lus)",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "textes",
+   "nom": "aucune formule interdite par CLAUDE.md",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "textes",
+   "nom": "lexique du formateur : « stagiaires », jamais « apprenants »",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "textes",
+   "nom": "vouvoiement : aucune forme de tutoiement repérée",
+   "ok": true,
+   "classe": "visible",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "aucun dossier ni fichier de solutions dans le site",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": ""
+  },
+  {
+   "section": "livraison",
+   "nom": "aucun fichier du site ne contient le corps d'une solution de référence",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "aucun secret ni adresse e-mail dans le code du site (hors vendor, bibliothèques tierces non modifiées)",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "aucun [À VÉRIFIER] dans le code livré",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "aucune page d'essai dans le site",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "poids du site : 16.28 Mo dont Pyodide 13.53 Mo ; hors Pyodide 2.75 Mo",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "{'total_Mo': 16.28, 'pyodide_Mo': 13.53, 'hors_pyodide_Mo': 2.75, 'three_Mo': 2.19, 'codemirror_Mo': 0.37, 'code_du_jeu_Mo': 0.19, 'nombre_de_fichiers': 90}"
+  },
+  {
+   "section": "livraison",
+   "nom": "assets/LICENCES.md cite chaque ressource importée et chaque bibliothèque de vendor/",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": "[]"
+  },
+  {
+   "section": "livraison",
+   "nom": "LISEZ-MOI.md et _headers présents à la racine du site",
+   "ok": true,
+   "classe": "bloquant",
+   "detail": ""
+  }
+ ],
+ "navigateur": "153.0.8010.12",
+ "duree_s": 2144,
+ "mesures": {
+  "depart-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.6
+  },
+  "livraison-reussie-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.7
+  },
+  "livraison-refusee-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.7
+  },
+  "ecran-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.5
+  },
+  "rayons-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.4
+  },
+  "chariot-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.5
+  },
+  "cuves-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.5
+  },
+  "bilan-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 24.05,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 107.8
+  },
+  "erreur-haute-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.4
+  },
+  "depart-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.9
+  },
+  "livraison-reussie-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 55.0
+  },
+  "livraison-refusee-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 55.1
+  },
+  "ecran-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.9
+  },
+  "rayons-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.9
+  },
+  "chariot-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.9
+  },
+  "cuves-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 55.0
+  },
+  "bilan-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 24.05,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 102.9
+  },
+  "erreur-basse-1366x768.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.8
+  },
+  "depart-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 60.7
+  },
+  "livraison-reussie-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.0
+  },
+  "livraison-refusee-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.0
+  },
+  "ecran-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 60.9
+  },
+  "rayons-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 60.8
+  },
+  "chariot-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 60.9
+  },
+  "cuves-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 61.0
+  },
+  "bilan-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 10.63,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 79.1
+  },
+  "erreur-haute-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.02,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 60.7
+  },
+  "depart-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 53.9
+  },
+  "livraison-reussie-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.0,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.3
+  },
+  "livraison-refusee-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.1
+  },
+  "ecran-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.0
+  },
+  "rayons-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.0
+  },
+  "chariot-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.0
+  },
+  "cuves-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 54.2
+  },
+  "bilan-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 10.62,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 73.4
+  },
+  "erreur-basse-1920x1080.png": {
+   "noirs_%": 0.0,
+   "blancs_%": 0.01,
+   "pixels_temoin": 0,
+   "luminosite_moyenne": 53.8
+  }
+ },
+ "textes": {
+  "fichiers": 74,
+  "tutoiement": []
+ },
+ "poids": {
+  "total_Mo": 16.28,
+  "pyodide_Mo": 13.53,
+  "hors_pyodide_Mo": 2.75,
+  "three_Mo": 2.19,
+  "codemirror_Mo": 0.37,
+  "code_du_jeu_Mo": 0.19,
+  "nombre_de_fichiers": 90
+ }
+}

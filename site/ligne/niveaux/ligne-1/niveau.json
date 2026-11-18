@@ -1,0 +1,318 @@
+{
+ "id": "ligne-1",
+ "numero": 1,
+ "titre": "Remplir, capsuler, expédier",
+ "notion": "L'ordre des instructions",
+ "enonce": "Les 12 bouteilles vides du brassin de La Coulée attendent dans la cuve C1. Posez une remplisseuse et une capsuleuse, puis tracez les tapis de la cuve jusqu'au quai Q1 (cafés). À droite, le Python de votre ligne s'écrit pendant que vous construisez.",
+ "reussiSi": "les 12 bouteilles arrivent au quai Q1, remplies et capsulées.",
+ "palette": [
+  "remplisseuse",
+  "capsuleuse"
+ ],
+ "fixes": [
+  {
+   "id": "cuve",
+   "type": "cuve",
+   "x": 0,
+   "z": 3,
+   "params": {
+    "cuve": "C1"
+   }
+  },
+  {
+   "id": "q1",
+   "type": "quai",
+   "x": 11,
+   "z": 3,
+   "params": {
+    "quai": "Q1"
+   }
+  }
+ ],
+ "depart": {
+  "pieces": [],
+  "tapis": []
+ },
+ "donnees": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 11,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 11,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 13,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 14,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 15,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 16,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 17,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 18,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 19,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 20,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "tapis",
+  "description1": "Les 12 bouteilles arrivent au quai, remplies et capsulées",
+  "description2": "Ligne compacte : 8 cases de tapis au plus",
+  "description3": "Le brassin du lendemain (20 bouteilles) passe aussi",
+  "max": 8
+ },
+ "indices": [
+  "Une bouteille se remplit avant d'être capsulée : l'ordre des machines sur le tapis est l'ordre des lignes du code.",
+  "Pour tracer un tapis : outil Tapis, appuyez sur la pièce de départ, glissez case par case, relâchez sur la pièce d'arrivée."
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

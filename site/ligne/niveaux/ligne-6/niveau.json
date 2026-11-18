@@ -1,0 +1,378 @@
+{
+ "id": "ligne-6",
+ "numero": 6,
+ "titre": "Une machine, deux lignes",
+ "notion": "Une fonction",
+ "enonce": "Deux brassins sont prêts : La Coulée dans la cuve C1, pour le quai Q1 (cafés), et La Braise dans la cuve C3, pour le quai Q2 (magasins). Chaque bouteille doit être remplie, capsulée et étiquetée. Créez une seule fois votre machine de conditionnement, puis posez-la sur les deux lignes.",
+ "reussiSi": "chaque quai reçoit ses bouteilles remplies, capsulées et étiquetées au nom de leur bière.",
+ "palette": [
+  "machine",
+  "remplisseuse",
+  "capsuleuse",
+  "etiqueteuse"
+ ],
+ "fixes": [
+  {
+   "id": "cuve1",
+   "type": "cuve",
+   "x": 0,
+   "z": 1,
+   "params": {
+    "cuve": "C1"
+   }
+  },
+  {
+   "id": "cuve3",
+   "type": "cuve",
+   "x": 0,
+   "z": 5,
+   "params": {
+    "cuve": "C3"
+   }
+  },
+  {
+   "id": "q1",
+   "type": "quai",
+   "x": 11,
+   "z": 1,
+   "params": {
+    "quai": "Q1"
+   }
+  },
+  {
+   "id": "q2",
+   "type": "quai",
+   "x": 11,
+   "z": 5,
+   "params": {
+    "quai": "Q2"
+   }
+  }
+ ],
+ "depart": {
+  "pieces": [],
+  "tapis": [],
+  "machine": {
+   "nom": "conditionner",
+   "etapes": []
+  }
+ },
+ "donnees": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ],
+  "C3": [
+   {
+    "numero": 1,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "C1": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Coulée",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ],
+  "C3": [
+   {
+    "numero": 1,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 2,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 3,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 4,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 5,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 6,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 7,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 8,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 9,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 10,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 11,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   },
+   {
+    "numero": 12,
+    "biere": "La Braise",
+    "volume_cl": 0,
+    "capsule": false,
+    "etiquette": null,
+    "_cible": 33
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "pieces",
+  "description1": "Les deux quais reçoivent des bouteilles prêtes et bien étiquetées",
+  "description2": "Une machine par ligne : 2 pièces posées au plus",
+  "description3": "Le lendemain (6 et 12 bouteilles), les deux lignes tournent aussi",
+  "max": 2
+ },
+ "indices": [
+  "Ouvrez « Créer la machine » : choisissez ses étapes dans l'ordre. Le code écrit un def, une seule fois, en haut.",
+  "Posez la même machine sur chaque ligne et choisissez sur chacune la bière à étiqueter : c'est l'argument passé à la fonction."
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

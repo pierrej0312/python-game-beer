@@ -1,0 +1,77 @@
+{
+ "id": "3.2-tarif",
+ "serie": 3,
+ "numero": 2,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 5,
+ "titre": "La remise dépend du client",
+ "notion": "if, calcul",
+ "enonce": "Un café a 10 % de remise sur les fûts. Les autres clients paient le plein tarif. Complétez prix_futs() pour qu'elle renvoie le prix de la commande.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "prix_futs",
+  "parametres": [
+   "type_client",
+   "nb_futs",
+   "prix_fut"
+  ],
+  "types": {
+   "type_client": "str",
+   "nb_futs": "int",
+   "prix_fut": "float"
+  },
+  "doc": "Renvoie le prix d'une commande de fûts, remise comprise."
+ },
+ "cas": [
+  {
+   "libelle": "4 fûts de La Coulée pour un café : 223,20 € au lieu de 248,00 €",
+   "args": [
+    "café",
+    4,
+    62.0
+   ],
+   "attendu": 223.2
+  },
+  {
+   "libelle": "Un particulier paie le plein tarif : 248,00 €",
+   "args": [
+    "particulier",
+    4,
+    62.0
+   ],
+   "attendu": 248.0
+  },
+  {
+   "libelle": "Un magasin n'a pas de remise sur les fûts",
+   "args": [
+    "magasin",
+    2,
+    58.0
+   ],
+   "attendu": 116.0,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description3": "Un magasin paie le plein tarif",
+  "max": 4
+ },
+ "indices": [
+  "Retirer 10 %, c'est garder 90 % : multipliez par 0.90.",
+  "Le test porte sur le type de client : if type_client == \"café\":"
+ ],
+ "depart": "def prix_futs(type_client, nb_futs, prix_fut):\n    \"\"\"Renvoie le prix d'une commande de fûts, remise comprise.\"\"\"\n    total = nb_futs * prix_fut\n    # À vous de jouer : 10 % de remise pour un café\n    return total\n"
+}

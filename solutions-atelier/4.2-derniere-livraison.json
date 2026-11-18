@@ -1,0 +1,43 @@
+{
+ "solution": "def derniere_livraison(livraisons):\n    \"\"\"Renvoie le dernier client livré.\"\"\"\n    if livraisons:\n        return livraisons[-1]\n    return \"Aucune livraison\"\n",
+ "variantes": [
+  {
+   "nom": "pop() retire la dernière livraison de la liste",
+   "remplacer": [
+    "return livraisons[-1]",
+    "return livraisons.pop()"
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     false
+    ]
+   }
+  },
+  {
+   "nom": "indice 0 : la première livraison",
+   "remplacer": [
+    "livraisons[-1]",
+    "livraisons[0]"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "sans le test de la liste vide : IndexError",
+   "remplacer": [
+    "    if livraisons:\n        return livraisons[-1]\n    return \"Aucune livraison\"",
+    "    return livraisons[-1]"
+   ],
+   "attendu": {
+    "erreurCas": "IndexError"
+   }
+  }
+ ]
+}

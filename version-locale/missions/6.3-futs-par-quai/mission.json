@@ -1,0 +1,104 @@
+{
+ "id": "6.3-futs-par-quai",
+ "serie": 6,
+ "numero": 3,
+ "bonus": true,
+ "surprise": false,
+ "dureeIndicativeMin": 8,
+ "titre": "Un dictionnaire compte les fûts par quai",
+ "notion": "dictionnaires, get, compteur",
+ "enonce": "Mission bonus. Chaque élément de la liste est le quai d'un fût. Complétez futs_par_quai() pour qu'elle renvoie un dictionnaire : le quai pour clé, le nombre de fûts pour valeur.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "futs_par_quai",
+  "parametres": [
+   "futs"
+  ],
+  "types": {
+   "futs": "list"
+  },
+  "doc": "Renvoie le nombre de fûts de chaque quai, dans un dictionnaire."
+ },
+ "cas": [
+  {
+   "libelle": "Sept fûts : 3 pour Q1, 1 pour Q3, 2 pour Q2, 1 pour Q4",
+   "args": [
+    [
+     "Q1",
+     "Q3",
+     "Q1",
+     "Q2",
+     "Q1",
+     "Q4",
+     "Q2"
+    ]
+   ],
+   "attendu": {
+    "Q1": 3,
+    "Q3": 1,
+    "Q2": 2,
+    "Q4": 1
+   }
+  },
+  {
+   "libelle": "Un seul fût pour Q2",
+   "args": [
+    [
+     "Q2"
+    ]
+   ],
+   "attendu": {
+    "Q2": 1
+   }
+  },
+  {
+   "libelle": "Sans fût, le dictionnaire est vide",
+   "args": [
+    []
+   ],
+   "attendu": {},
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description3": "Sans fût, le dictionnaire est vide",
+  "max": 4
+ },
+ "indices": [
+  "par_quai.get(quai, 0) renvoie le compte actuel, ou 0 si le quai n'est pas encore dans le dictionnaire.",
+  "À chaque tour : par_quai[quai] = par_quai.get(quai, 0) + 1."
+ ],
+ "depart": "def futs_par_quai(futs):\n    \"\"\"Renvoie le nombre de fûts de chaque quai, dans un dictionnaire.\"\"\"\n    par_quai = {}\n    # À vous de jouer\n    return par_quai\n"
+}

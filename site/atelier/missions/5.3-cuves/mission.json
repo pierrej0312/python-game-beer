@@ -1,0 +1,115 @@
+{
+ "id": "5.3-cuves",
+ "serie": 5,
+ "numero": 3,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 7,
+ "titre": "Une boucle contrôle chaque cuve",
+ "notion": "for, zip, if, or",
+ "enonce": "Le brasseur de la Fonderie veut ses cuves entre 18 et 22 °C, bornes incluses. Complétez cuves_hors_plage() pour qu'elle renvoie la liste des cuves hors de cette plage.",
+ "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "cuves_hors_plage",
+  "parametres": [
+   "cuves",
+   "temperatures"
+  ],
+  "types": {
+   "cuves": "list",
+   "temperatures": "list"
+  },
+  "doc": "Renvoie la liste des cuves dont la température sort de 18 à 22 °C."
+ },
+ "cas": [
+  {
+   "libelle": "C2 à 22,6 °C et C4 à 17,1 °C sont hors plage",
+   "args": [
+    [
+     "C1",
+     "C2",
+     "C3",
+     "C4"
+    ],
+    [
+     19.2,
+     22.6,
+     18.0,
+     17.1
+    ]
+   ],
+   "attendu": [
+    "C2",
+    "C4"
+   ]
+  },
+  {
+   "libelle": "Quatre cuves dans la plage : aucune alerte",
+   "args": [
+    [
+     "C1",
+     "C2",
+     "C3",
+     "C4"
+    ],
+    [
+     19.0,
+     20.5,
+     21.0,
+     19.8
+    ]
+   ],
+   "attendu": []
+  },
+  {
+   "libelle": "18 °C et 22 °C tout juste sont dans la plage",
+   "args": [
+    [
+     "C1",
+     "C2"
+    ],
+    [
+     18.0,
+     22.0
+    ]
+   ],
+   "attendu": [],
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 5 postes (instructions) au plus",
+  "description3": "18 °C et 22 °C tout juste sont dans la plage",
+  "max": 5
+ },
+ "indices": [
+  "zip(cuves, temperatures) donne une cuve et sa température à chaque tour.",
+  "Hors plage : plus petit que 18, ou plus grand que 22. Les bornes sont dans la plage."
+ ],
+ "depart": "def cuves_hors_plage(cuves, temperatures):\n    \"\"\"Renvoie la liste des cuves dont la température sort de 18 à 22 °C.\"\"\"\n    alertes = []\n    # À vous de jouer : parcourez les deux listes en même temps\n    return alertes\n"
+}

@@ -1,0 +1,33 @@
+{
+ "solution": "def clients_livres(livraisons):\n    \"\"\"Renvoie la liste triée des clients livrés, sans doublon.\"\"\"\n    return sorted(set(livraisons))\n",
+ "variantes": [
+  {
+   "nom": "sorted sans set : les doublons restent",
+   "remplacer": [
+    "sorted(set(livraisons))",
+    "sorted(livraisons)"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "set sans sorted : un set, pas une liste",
+   "remplacer": [
+    "sorted(set(livraisons))",
+    "set(livraisons)"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

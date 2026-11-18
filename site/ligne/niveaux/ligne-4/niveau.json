@@ -1,0 +1,240 @@
+{
+ "id": "ligne-4",
+ "numero": 4,
+ "titre": "Trier trois bières",
+ "notion": "Plusieurs conditions (elif)",
+ "enonce": "Les bouteilles de La Coulée, de La Braise et du Crassier arrivent mélangées de la zone de stock, remplies et capsulées, sans étiquette. Chaque bière a son étiqueteuse : triez les bouteilles avec des contrôles qualité, étiquetez-les, puis envoyez-les au quai Q2 (magasins).",
+ "reussiSi": "les 15 bouteilles arrivent au quai Q2, chacune avec l'étiquette de sa bière.",
+ "palette": [
+  "controle",
+  "etiqueteuse"
+ ],
+ "champs": [
+  "biere"
+ ],
+ "valeurs": {
+  "biere": [
+   "La Coulée",
+   "Le Laitier",
+   "La Braise",
+   "Le Crassier",
+   "L'Étincelle"
+  ]
+ },
+ "fixes": [
+  {
+   "id": "stock",
+   "type": "stock",
+   "x": 0,
+   "z": 3,
+   "params": {}
+  },
+  {
+   "id": "q2",
+   "type": "quai",
+   "x": 11,
+   "z": 3,
+   "params": {
+    "quai": "Q2"
+   }
+  },
+  {
+   "id": "rebut",
+   "type": "rebut",
+   "x": 11,
+   "z": 7,
+   "params": {}
+  }
+ ],
+ "depart": {
+  "pieces": [],
+  "tapis": []
+ },
+ "donnees": {
+  "stock": [
+   {
+    "numero": 1,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 2,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 3,
+    "biere": "Le Crassier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 4,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 6,
+    "biere": "Le Crassier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 7,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 9,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 10,
+    "biere": "Le Crassier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 11,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 12,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 13,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 14,
+    "biere": "Le Crassier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 15,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   }
+  ]
+ },
+ "donneesLendemain": {
+  "stock": [
+   {
+    "numero": 1,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 2,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 3,
+    "biere": "Le Laitier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 4,
+    "biere": "Le Crassier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 5,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 6,
+    "biere": "La Braise",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 7,
+    "biere": "Le Laitier",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   },
+   {
+    "numero": 8,
+    "biere": "La Coulée",
+    "volume_cl": 33,
+    "capsule": true,
+    "etiquette": null
+   }
+  ]
+ },
+ "etoiles": {
+  "critere": "tapis",
+  "description1": "Chaque bouteille porte l'étiquette de sa bière",
+  "description2": "Ligne compacte : 34 cases de tapis au plus",
+  "description3": "Le lendemain, une bière sans étiqueteuse (Le Laitier) part au rebut au lieu d'être mal étiquetée",
+  "max": 34
+ },
+ "indices": [
+  "Un contrôle qualité a deux sorties. Posez un deuxième contrôle sur la sortie « non » du premier : le code écrit alors elif.",
+  "La dernière sortie « non » reçoit toutes les bouteilles qu'aucun contrôle n'a reconnues : c'est le else. Où doit aller une bière inattendue ?"
+ ],
+ "bieres": [
+  "La Coulée",
+  "Le Laitier",
+  "La Braise",
+  "Le Crassier",
+  "L'Étincelle"
+ ]
+}

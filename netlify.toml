@@ -1,0 +1,4 @@
+# Netlify publie seulement le dossier site/ : les solutions, le contrôle qualité et les outils restent hors ligne.
+# Aucune commande de construction : le site est déjà prêt.
+[build]
+  publish = "site/"

@@ -1,0 +1,82 @@
+{
+ "id": "3.1-quai",
+ "serie": 3,
+ "numero": 1,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 5,
+ "titre": "Le type de client décide du quai",
+ "notion": "if, elif, else",
+ "enonce": "Chaque fût part au quai de son client : café au quai Q1, magasin au quai Q2, particulier au quai Q3, tout autre client au quai Q4. Complétez quai_du_client().",
+ "reussiSi": "les 3 cas de test renvoient le bon résultat.",
+ "fonction": {
+  "nom": "quai_du_client",
+  "parametres": [
+   "type_client"
+  ],
+  "types": {
+   "type_client": "str"
+  },
+  "doc": "Renvoie le quai d'un client : \"Q1\", \"Q2\", \"Q3\" ou \"Q4\"."
+ },
+ "cas": [
+  {
+   "libelle": "Un magasin est livré au quai Q2",
+   "args": [
+    "magasin"
+   ],
+   "attendu": "Q2"
+  },
+  {
+   "libelle": "Un café est livré au quai Q1",
+   "args": [
+    "café"
+   ],
+   "attendu": "Q1"
+  },
+  {
+   "libelle": "Un particulier est livré au quai Q3",
+   "args": [
+    "particulier"
+   ],
+   "attendu": "Q3"
+  },
+  {
+   "libelle": "Un événement part au quai Q4",
+   "args": [
+    "événement"
+   ],
+   "attendu": "Q4",
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Une association part au quai Q4",
+   "args": [
+    "association"
+   ],
+   "attendu": "Q4",
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer"
+ ],
+ "etoiles": {
+  "critere": "postes",
+  "description1": "Les cas de test renvoient le bon résultat",
+  "description2": "Fonction courte : 6 postes (instructions) au plus",
+  "description3": "Tout autre client, un événement ou une association, part au quai Q4",
+  "max": 6
+ },
+ "indices": [
+  "Python teste dans l'ordre et s'arrête au premier test vrai.",
+  "else, sans test, prend tous les cas qui restent : c'est le quai Q4."
+ ],
+ "depart": "def quai_du_client(type_client):\n    \"\"\"Renvoie le quai d'un client : \"Q1\", \"Q2\", \"Q3\" ou \"Q4\".\"\"\"\n    quai = \"\"\n    # À vous de jouer : if, elif, else\n    return quai\n"
+}

@@ -1,0 +1,5 @@
+# En-têtes Netlify : isolement de la page, nécessaire pour interrompre une boucle sans fin (SharedArrayBuffer).
+# Toutes les ressources du site sont servies par le site lui-même.
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp

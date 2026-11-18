@@ -1,0 +1,29 @@
+{
+ "solution": "def futs_par_quai(futs):\n    \"\"\"Renvoie le nombre de fûts de chaque quai, dans un dictionnaire.\"\"\"\n    par_quai = {}\n    for quai in futs:\n        par_quai[quai] = par_quai.get(quai, 0) + 1\n    return par_quai\n",
+ "variantes": [
+  {
+   "nom": "= 1 : le compte repart à 1",
+   "remplacer": [
+    "par_quai.get(quai, 0) + 1",
+    "1"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "+= 1 sur une clé absente : KeyError",
+   "remplacer": [
+    "par_quai[quai] = par_quai.get(quai, 0) + 1",
+    "par_quai[quai] += 1"
+   ],
+   "attendu": {
+    "erreurCas": "KeyError"
+   }
+  }
+ ]
+}

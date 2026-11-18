@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La ligne de production de la Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/ligne.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+
+<!-- Formulaire caché, lu par Netlify au moment de la mise en ligne : il déclare les champs envoyés par le jeu 2. -->
+<form name="resultat-ligne" data-netlify="true" hidden>
+  <input name="pseudo"><input name="date"><input name="niveau_max_atteint"><input name="niveaux_reussis">
+  <input name="etoiles_total"><input name="niveaux_a_revoir"><input name="mode"><input name="qualite">
+</form>
+
+<main class="carte" id="vue-carte" hidden>
+  <header class="carte-entete">
+    <div>
+      <div class="surtitre">Brasserie de la Fonderie · jeu 2</div>
+      <h1>Construisez la ligne, Python s'écrit tout seul</h1>
+    </div>
+    <div class="carte-outils">
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+      <a class="bouton sombre" href="missions.html" id="lien-missions">Jeu 1 : les missions</a>
+      <button class="bouton sombre" id="bouton-qualite" type="button"></button>
+      <button class="bouton sombre" id="bouton-sans3d" type="button"></button>
+      <button class="bouton principal" id="bouton-envoyer" type="button">Envoyer mes résultats</button>
+    </div>
+  </header>
+  <p class="intro-carte">Chaque niveau est un morceau de la ligne de production. Vous posez les machines, vous tracez les tapis ; à droite, le Python de votre ligne s'écrit au fur et à mesure. Lancez la ligne : les bouteilles suivent ce code, une par une.</p>
+  <div class="niveaux" id="niveaux"></div>
+  <p class="message-carte" id="message-carte" role="status"></p>
+</main>
+
+<main class="mission ligne" id="vue-niveau" hidden>
+  <section class="cote-scene" aria-label="Hall de production">
+    <div class="barre-scene">
+      <button class="bouton sombre" id="bouton-carte" type="button">Carte</button>
+      <span class="mission-id" id="niveau-id"></span>
+      <span class="etoiles" id="niveau-etoiles"></span>
+      <span class="espace"></span>
+      <span class="mesure" id="mesure" role="status"></span>
+    </div>
+    <div class="palette-zone">
+      <div class="palette" id="palette" role="toolbar" aria-label="Outils et pièces"></div>
+      <button class="bouton outil" id="bouton-depart" type="button" title="Remet le plateau du niveau dans son état de départ">Plateau de départ</button>
+    </div>
+    <div class="vue" id="vue">
+      <div class="legende-rejeu" id="legende" role="status" aria-live="polite"></div>
+    </div>
+    <div class="commandes">
+      <button class="bouton principal" id="bouton-lancer" type="button" title="Ctrl+Entrée">Lancer la ligne</button>
+      <button class="bouton sombre" id="bouton-rejouer" type="button">Rejouer</button>
+      <button class="bouton sombre" id="bouton-pas" type="button" title="F10">Pas à pas</button>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false" title="P">Pause</button>
+      <button class="bouton sombre" id="bouton-vitesse" type="button" aria-pressed="false">Rejeu rapide</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-son" type="button" aria-pressed="true" title="M">Son</button>
+    </div>
+  </section>
+  <section class="cote-code">
+    <header class="enonce">
+      <div class="surtitre" id="niveau-surtitre"></div>
+      <h1 id="niveau-titre"></h1>
+      <p id="niveau-enonce"></p>
+      <ul class="objectifs" id="niveau-objectifs"></ul>
+    </header>
+    <div class="zone-editeur">
+      <div class="barre-editeur">
+        <span class="nom-fichier">ligne.py</span>
+        <span class="info-code">écrit à partir du plateau, en lecture seule</span>
+        <span class="espace"></span>
+        <button class="bouton" id="bouton-agrandir" type="button" title="Agrandir le texte">A+</button>
+      </div>
+      <div id="editeur"></div>
+    </div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="piece" aria-selected="false" type="button">Pièce</button>
+        <button class="onglet" role="tab" data-onglet="tests" aria-selected="true" type="button">Tests</button>
+        <button class="onglet" role="tab" data-onglet="sortie" aria-selected="false" type="button">Tableau de bord</button>
+        <button class="onglet" role="tab" data-onglet="problemes" aria-selected="false" type="button">Problèmes</button>
+        <button class="onglet" role="tab" data-onglet="indice" aria-selected="false" type="button">Indice</button>
+        <span class="resume" id="resume-tests"></span>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+  <div class="dialogue" id="dialogue-machine" hidden>
+    <div class="dialogue-carte" role="dialog" aria-modal="true" aria-labelledby="titre-machine">
+      <h2 id="titre-machine">Créer votre machine</h2>
+      <p>Une machine est une fonction : vous la définissez une fois, avec ses étapes dans l'ordre, puis vous la posez sur autant de lignes que vous voulez.</p>
+      <label class="champ"><span>Nom de la machine (nom de fonction)</span><input type="text" id="machine-nom" maxlength="30" autocomplete="off"></label>
+      <div class="etapes-machine" id="machine-etapes"></div>
+      <p class="message-erreur" id="machine-erreur" role="alert"></p>
+      <div class="bilan-actions">
+        <button class="bouton" id="machine-annuler" type="button">Annuler</button>
+        <button class="bouton principal" id="machine-valider" type="button">Enregistrer la machine</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="js/ligne/ligne.js"></script>
+</body>
+</html>
