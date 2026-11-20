@@ -118,22 +118,23 @@ class _Analyse:
 
     def poste(self, instruction):
         if isinstance(instruction, ast.If):
-            conditions, branches, entetes, noeud = [], [], [], instruction
+            conditions, branches, entetes, corps, noeud = [], [], [], [], instruction
             while True:
                 conditions.append(self.texte(noeud.test)); branches.append(self.liste(noeud.body)); entetes.append(noeud.lineno)
+                corps.append(self.corps(noeud.body))
                 if len(noeud.orelse) == 1 and isinstance(noeud.orelse[0], ast.If):
                     noeud = noeud.orelse[0]; continue
                 break
             sinon = bool(noeud.orelse)
             if sinon:
-                branches.append(self.liste(noeud.orelse))
-            return {"type": "si", "params": {"conditions": conditions, "sinon": sinon}, "branches": branches, "entetes": entetes}
+                branches.append(self.liste(noeud.orelse)); corps.append(self.corps(noeud.orelse))
+            return {"type": "si", "params": {"conditions": conditions, "sinon": sinon}, "branches": branches, "entetes": entetes, "corps": corps}
         if isinstance(instruction, ast.For) and not instruction.orelse and (isinstance(instruction.target, ast.Name)
                 or isinstance(instruction.target, ast.Tuple) and all(isinstance(e, ast.Name) for e in instruction.target.elts)):
             cible = instruction.target.id if isinstance(instruction.target, ast.Name) else ", ".join(e.id for e in instruction.target.elts)
-            return {"type": "pour", "params": {"variable": cible, "source": self.texte(instruction.iter)}, "branches": [self.liste(instruction.body)], "entetes": [instruction.lineno]}
+            return {"type": "pour", "params": {"variable": cible, "source": self.texte(instruction.iter)}, "branches": [self.liste(instruction.body)], "entetes": [instruction.lineno], "corps": [self.corps(instruction.body)]}
         if isinstance(instruction, ast.While) and not instruction.orelse:
-            return {"type": "tantque", "params": {"condition": self.texte(instruction.test)}, "branches": [self.liste(instruction.body)], "entetes": [instruction.lineno]}
+            return {"type": "tantque", "params": {"condition": self.texte(instruction.test)}, "branches": [self.liste(instruction.body)], "entetes": [instruction.lineno], "corps": [self.corps(instruction.body)]}
         if isinstance(instruction, ast.Return):
             return {"type": "renvoyer", "params": {"expression": self.texte(instruction.value) if instruction.value is not None else ""}}
         if isinstance(instruction, ast.AugAssign) and isinstance(instruction.target, ast.Subscript) and self.nom(instruction.target.value) \
@@ -173,6 +174,15 @@ class _Analyse:
                 return {"type": "ajouter_set", "params": {"cible": cible, "valeur": self.valeur(appel.args[0])}}
         return None
 
+    @staticmethod
+    def corps(instructions, indent_defaut=0, fin_defaut=0):
+        """Où insérer dans une liste d'instructions : son retrait, la ligne après laquelle ajouter, la ligne d'un pass seul (à remplacer)."""
+        if not instructions:
+            return {"indent": indent_defaut, "fin": fin_defaut, "pass": None}
+        seul_pass = len(instructions) == 1 and isinstance(instructions[0], ast.Pass)
+        return {"indent": instructions[0].col_offset, "fin": instructions[-1].end_lineno,
+                "pass": instructions[0].lineno if seul_pass else None}
+
     def liste(self, instructions):
         postes = []
         for rang, instruction in enumerate(instructions):
@@ -199,7 +209,7 @@ def analyser(code, fonction=None):
     a = _Analyse(code)
     if not fonction:
         postes = a.liste(arbre.body)
-        return {"ok": True, "erreur": None, "postes": postes, "avertissements": a.avertissements}
+        return {"ok": True, "erreur": None, "postes": postes, "avertissements": a.avertissements, "corps": _Analyse.corps(arbre.body)}
     definition = next((n for n in arbre.body if isinstance(n, ast.FunctionDef) and n.name == fonction["nom"]), None)
     if definition is None:
         return {"ok": False, "erreur": {"ligne": 1, "message": f"la fonction {fonction['nom']} est absente : gardez la ligne def {fonction['nom']}(…)"}, "postes": []}
@@ -210,12 +220,15 @@ def analyser(code, fonction=None):
             return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True,
                     "message": f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre"}}
     corps = definition.body
+    entete_fin = definition.body[0].end_lineno if corps and isinstance(corps[0], ast.Expr) and isinstance(getattr(corps[0], "value", None), ast.Constant) and isinstance(corps[0].value.value, str) else definition.lineno
+    indent_corps = definition.body[0].col_offset if definition.body else definition.col_offset + 4
     # la docstring donnée par la mission reste dans l'en-tête de la fonction : elle ne devient pas un poste
     if corps and isinstance(corps[0], ast.Expr) and isinstance(corps[0].value, ast.Constant) and isinstance(corps[0].value.value, str):
         corps = corps[1:]
     postes = a.liste(corps)
     return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres),
-            "parametres": [p.arg for p in definition.args.args], "avertissements": a.avertissements}
+            "parametres": [p.arg for p in definition.args.args], "avertissements": a.avertissements,
+            "corps": _Analyse.corps(corps, indent_corps, entete_fin)}
 
 
 # ---------------------------------------------------------------- exécution suivie

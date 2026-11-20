@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'usine · Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/usine.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+<main class="usine">
+  <section class="cote-usine" aria-label="L'usine : le programme en ligne de production">
+    <div class="barre-haut">
+      <a class="bouton sombre" id="bouton-carte" href="missions.html">Carte</a>
+      <span class="mission-id" id="mission-id"></span>
+      <span class="etoiles" id="mission-etoiles"></span>
+      <button class="bouton sombre" id="bouton-annuler" type="button" title="Ctrl+Z" disabled>Annuler</button>
+      <button class="bouton sombre" id="bouton-retablir" type="button" title="Ctrl+Y" disabled>Rétablir</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-tourner" type="button" title="Q / E">Tourner la vue</button>
+      <button class="bouton sombre" id="bouton-cadrer" type="button" title="F">Tout voir</button>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="vue-usine" id="vue">
+      <div class="legende" id="legende" role="status" aria-live="polite"></div>
+      <div class="bandeau-erreur" id="bandeau" role="alert" hidden></div>
+      <div class="palette" id="palette" role="menu" hidden></div>
+      <div class="reglage" id="reglage" hidden>
+        <label for="champ-ligne" class="reglage-titre" id="reglage-titre">Réglez la machine</label>
+        <input id="champ-ligne" class="code" type="text" spellcheck="false" autocomplete="off">
+        <div class="reglage-aide" id="reglage-aide">Entrée : valider · Échap : fermer · Suppr (champ vide) : retirer la machine</div>
+      </div>
+    </div>
+    <div class="barre-construction" id="barre-construction" role="toolbar" aria-label="Machines à poser"></div>
+    <div class="commandes">
+      <button class="bouton principal" id="bouton-lancer" type="button" title="Ctrl+Entrée">Mettre en marche</button>
+      <button class="bouton sombre" id="bouton-vitesse" type="button" aria-pressed="false">Rapide</button>
+      <button class="bouton sombre" id="bouton-arret" type="button" disabled>Arrêter</button>
+      <select class="choix-cas" id="choix-cas" aria-label="Cas de test rejoué" hidden></select>
+      <span class="espace"></span>
+      <a class="lien-ancien" id="lien-atelier" href="atelier.html">Ouvrir dans l'ancien atelier</a>
+    </div>
+  </section>
+  <section class="cote-code">
+    <header class="enonce">
+      <div class="surtitre" id="mission-surtitre"></div>
+      <h1 id="mission-titre"></h1>
+      <p id="mission-enonce"></p>
+      <ul class="objectifs" id="mission-objectifs"></ul>
+    </header>
+    <div class="zone-editeur">
+      <div class="barre-editeur"><span class="nom-fichier" id="nom-fichier">programme.py</span><span class="info-code">l'usine et le code se suivent : modifiez l'un ou l'autre</span></div>
+      <div id="editeur"></div>
+    </div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="tests" aria-selected="true" type="button">Tests</button>
+        <button class="onglet" role="tab" data-onglet="donnees" aria-selected="false" type="button">Bacs</button>
+        <button class="onglet" role="tab" data-onglet="ecran" aria-selected="false" type="button">Écran</button>
+        <span class="resume" id="resume-tests"></span>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="js/usine/usine.js"></script>
+</body>
+</html>
