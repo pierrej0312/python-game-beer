@@ -23,7 +23,7 @@ const MAX_ETAPES_BOUCLE = 40;          // boucle sans fin : le rejeu montre les 
 
 const $ = (id) => document.getElementById(id);
 const etat = { mission: null, tests: "", plateau: new PlateauAtelier(), editeur: null, scene: null, barre: null, choix: { outil: "choisir" }, selection: null, ancre: null,
-  resultat: null, etoiles: null, etapes: [], curseur: 0, casCourant: 0, enCours: false, occupe: false, ignorer: false, glisse: null, onglet: "tests", apercu: {}, syntaxe: null };
+  resultat: null, etoiles: null, etapes: [], curseur: 0, casCourant: 0, enCours: false, occupe: false, ignorer: false, glisse: null, onglet: "tests", apercu: {}, syntaxe: null, avertissement: null };
 const pilote = new PilotePython((nom) => {
   const e = $("etat-python");
   if (nom === "pret") { e.textContent = "Python est prêt"; e.className = "etat-python pret"; planifierApercu(); }
@@ -155,7 +155,9 @@ function dessiner(fantome = null) {
 function apresChangementHall() {
   const code = etat.plateau.code();
   etat.ignorer = true; etat.editeur.ecrire(code); etat.ignorer = false;
-  $("bandeau-code").textContent = ""; etat.syntaxe = null;
+  const perdu = etat.plateau.apresRetour();
+  etat.avertissement = perdu ? `la ligne ${perdu.lignes[0]} ne sera jamais exécutée : elle vient après return, qui fait sortir de la fonction. Placez-la avant le return.` : null;
+  $("bandeau-code").textContent = texteAvertissement(); etat.syntaxe = null;
   etat.resultat = null; etat.etapes = [];
   dessiner(); sauver(); planifierApercu();
   if (etat.onglet === "piece") afficherOnglet("piece");
@@ -170,16 +172,22 @@ function planifierAnalyse(texte) {
     if (texte !== etat.editeur.lire()) return;
     if (!a.ok) {
       etat.syntaxe = a.erreur;
-      $("bandeau-code").textContent = `Ligne ${a.erreur.ligne} : Python ne comprend pas encore cette ligne (${a.erreur.message}). Le hall attend que le code soit corrigé.`;
+      $("bandeau-code").textContent = a.erreur.horsFonction
+        ? `Ligne ${a.erreur.ligne} : ${a.erreur.message}. Le hall attend que le code soit corrigé.`
+        : `Ligne ${a.erreur.ligne} : Python ne comprend pas encore cette ligne (${a.erreur.message}). Le hall attend que le code soit corrigé.`;
       return;
     }
-    etat.syntaxe = null; $("bandeau-code").textContent = "";
+    etat.avertissement = a.avertissements && a.avertissements.length ? a.avertissements[0].message : null;
+    etat.syntaxe = null; $("bandeau-code").textContent = texteAvertissement();
     etat.plateau.depuisAnalyse(a.postes);
     if (etat.selection && !etat.plateau.poste(etat.selection)) etat.selection = null;
     etat.resultat = null; etat.etapes = [];
     dessiner(); sauver(); planifierApercu();
   }, DELAI_ANALYSE_MS);
 }
+
+// Un avertissement sans erreur : une ligne qui ne sera jamais exécutée.
+function texteAvertissement() { return etat.avertissement ? `Attention, ${etat.avertissement}` : ""; }
 
 // Les données du mur : le programme est exécuté sans être rejoué, pour montrer ce qu'il construit.
 let minuterieApercu = null;
@@ -195,7 +203,7 @@ function planifierApercu() {
       etat.apercu = vue.etatFinal || {};
       etat.scene.construireDonnees(etat.apercu);
       // le programme s'arrête avant la fin : les données du mur sont celles du moment de l'arrêt
-      $("bandeau-code").textContent = vue.erreur && !etat.syntaxe ? `${r.mode === "fonction" ? "Avec le premier cas de test, le programme" : "Le programme"} s'arrête ligne ${vue.erreur.ligne} (${vue.erreur.type}) : le mur montre les données à ce moment-là. Lancez-le pour voir pourquoi.` : "";
+      $("bandeau-code").textContent = vue.erreur && !etat.syntaxe ? `${r.mode === "fonction" ? "Avec le premier cas de test, le programme" : "Le programme"} s'arrête ligne ${vue.erreur.ligne} (${vue.erreur.type}) : le mur montre les données à ce moment-là. Lancez-le pour voir pourquoi.` : texteAvertissement();
     } catch (e) { /* Python en cours de chargement : l'aperçu attendra */ }
   }, DELAI_APERCU_MS);
 }
@@ -234,6 +242,11 @@ function choisir(choix) {
 
 function interagir(type, x, z) {
   if (etat.enCours) return;
+  // le code ne s'analyse pas : modifier le hall réécrirait le code et effacerait la ligne en cours de correction
+  if (etat.syntaxe && type !== "survol") {
+    if (type === "appui") legende(`Corrigez d'abord la ligne ${etat.syntaxe.ligne} du code : le hall reprend dès que Python la comprend.`, true);
+    return;
+  }
   // une bulle ouverte : un clic ailleurs dans le hall la ferme sans enregistrer (et ne pose pas un poste neuf)
   const ouverte = document.querySelector(".bulle");
   if (ouverte) { if (type !== "appui") return; ouverte.querySelector(".actions .bouton:not(.principal)").click(); }
@@ -448,8 +461,10 @@ async function lancer({ pasAPas = false } = {}) {
   try {
     const a = await pilote.analyserAtelier(code, etat.mission.fonction);
     if (!a.ok) {
-      etat.resultat = { erreur: { type: "SyntaxError", ligne: a.erreur.ligne, messageOriginal: `SyntaxError: ${a.erreur.message}`, explication: "Python ne comprend pas cette ligne.", conseil: "Regardez la ligne indiquée et celle d'avant : guillemets, crochets, parenthèses, virgules." }, tests: [], sortie: [] };
-      afficherOnglet("problemes"); legende(`Ligne ${a.erreur.ligne} : Python ne comprend pas cette ligne. Le détail est dans l'onglet Problèmes.`, true); sons.jouer("alerte");
+      etat.resultat = a.erreur.horsFonction
+        ? { erreur: { type: "Retrait", ligne: a.erreur.ligne, messageOriginal: "Ligne hors de la fonction", explication: `La ligne ${a.erreur.ligne} n'est plus dans la fonction : elle commence au bord gauche.`, conseil: "Ajoutez 4 espaces au début de la ligne : en Python, c'est le retrait qui dit qu'une ligne appartient à la fonction." }, tests: [], sortie: [] }
+        : { erreur: { type: "SyntaxError", ligne: a.erreur.ligne, messageOriginal: `SyntaxError: ${a.erreur.message}`, explication: "Python ne comprend pas cette ligne.", conseil: "Regardez la ligne indiquée et celle d'avant : guillemets, crochets, parenthèses, virgules." }, tests: [], sortie: [] };
+      afficherOnglet("problemes"); legende(a.erreur.horsFonction ? `Ligne ${a.erreur.ligne} : la ligne est sortie de la fonction. Ajoutez 4 espaces au début de la ligne.` : `Ligne ${a.erreur.ligne} : Python ne comprend pas cette ligne. Le détail est dans l'onglet Problèmes.`, true); sons.jouer("alerte");
       return;
     }
     etat.plateau.depuisAnalyse(a.postes);

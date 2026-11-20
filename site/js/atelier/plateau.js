@@ -62,9 +62,20 @@ export class PlateauAtelier {
   }
 
   inserer(p, cible) {
-    if (cible && cible.dans) { const b = this.poste(cible.dans); if (b && b.branches[cible.branche]) { b.branches[cible.branche].push(p); return; } }
+    // « à la fin » d'un bloc qui se termine par return : le poste neuf va juste avant le return, sinon il ne serait jamais exécuté
+    const auBout = (liste) => {
+      const dernier = liste[liste.length - 1];
+      if (p.type !== "renvoyer" && dernier && dernier.type === "renvoyer") liste.splice(liste.length - 1, 0, p); else liste.push(p);
+    };
+    if (cible && cible.dans) { const b = this.poste(cible.dans); if (b && b.branches[cible.branche]) { auBout(b.branches[cible.branche]); return; } }
     if (cible && cible.apres) { const c = this.contexte(cible.apres); if (c) { c.liste.splice(c.index + 1, 0, p); return; } }
-    this.racine.push(p);
+    auBout(this.racine);
+  }
+
+  // Le premier poste placé après un return dans le même bloc : il ne sera jamais exécuté.
+  apresRetour() {
+    for (const { poste, liste, index } of this.parcourir()) if (index > 0 && liste[index - 1].type === "renvoyer") return poste;
+    return null;
   }
 
   supprimer(id) {

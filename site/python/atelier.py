@@ -34,6 +34,7 @@ OPERATEURS = {ast.Add: "+=", ast.Sub: "-=", ast.Mult: "*="}
 
 class _Analyse:
     def __init__(self, code):
+        self.avertissements = []
         self.code = code
 
     def texte(self, noeud):
@@ -174,7 +175,11 @@ class _Analyse:
 
     def liste(self, instructions):
         postes = []
-        for instruction in instructions:
+        for rang, instruction in enumerate(instructions):
+            # une instruction placée après un return du même bloc ne sera jamais exécutée
+            if rang and isinstance(instructions[rang - 1], ast.Return) and not isinstance(instruction, ast.Pass):
+                self.avertissements.append({"ligne": instruction.lineno,
+                    "message": f"la ligne {instruction.lineno} ne sera jamais exécutée : elle vient après return, qui fait sortir de la fonction. Placez-la avant le return."})
             if isinstance(instruction, ast.Pass):
                 continue                       # pass : un bloc vide, que le hall montre vide
             poste = self.poste(instruction)
@@ -193,17 +198,24 @@ def analyser(code, fonction=None):
         return {"ok": False, "erreur": {"ligne": e.lineno, "message": e.msg}, "postes": []}
     a = _Analyse(code)
     if not fonction:
-        return {"ok": True, "erreur": None, "postes": a.liste(arbre.body)}
+        postes = a.liste(arbre.body)
+        return {"ok": True, "erreur": None, "postes": postes, "avertissements": a.avertissements}
     definition = next((n for n in arbre.body if isinstance(n, ast.FunctionDef) and n.name == fonction["nom"]), None)
     if definition is None:
         return {"ok": False, "erreur": {"ligne": 1, "message": f"la fonction {fonction['nom']} est absente : gardez la ligne def {fonction['nom']}(…)"}, "postes": []}
     autres = [n for n in arbre.body if n is not definition]
+    # une ligne écrite sans retrait, après la fonction : Python l'exécuterait hors de la fonction, et le hall ne la verrait pas
+    for n in autres:
+        if not isinstance(n, (ast.FunctionDef, ast.Import, ast.ImportFrom)):
+            return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True,
+                    "message": f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre"}}
     corps = definition.body
     # la docstring donnée par la mission reste dans l'en-tête de la fonction : elle ne devient pas un poste
     if corps and isinstance(corps[0], ast.Expr) and isinstance(corps[0].value, ast.Constant) and isinstance(corps[0].value.value, str):
         corps = corps[1:]
-    return {"ok": True, "erreur": None, "postes": a.liste(corps), "horsFonction": len(autres),
-            "parametres": [p.arg for p in definition.args.args]}
+    postes = a.liste(corps)
+    return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres),
+            "parametres": [p.arg for p in definition.args.args], "avertissements": a.avertissements}
 
 
 # ---------------------------------------------------------------- exécution suivie
