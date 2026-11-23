@@ -1,0 +1,100 @@
+{
+ "id": "7.1-prix-renvoye",
+ "serie": 7,
+ "numero": 1,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 5,
+ "titre": "Une fonction renvoie le prix, elle ne l'affiche pas",
+ "notion": "def, return, print",
+ "enonce": "Le bureau calcule le prix des casiers de chaque commande, puis l'ajoute à la facture. La fonction prix_casiers() de départ affiche le prix au lieu de le renvoyer : le bureau ne reçoit rien. Corrigez-la : elle reçoit le nombre de casiers et le prix d'un casier, et renvoie le prix total.",
+ "exemple": "prix_casiers(12, 28.80)  →  345.6",
+ "reussiSi": "les 2 cas de test renvoient le bon prix.",
+ "fonction": {
+  "nom": "prix_casiers",
+  "parametres": [
+   "nb_casiers",
+   "prix_casier"
+  ],
+  "types": {
+   "nb_casiers": "int",
+   "prix_casier": "float"
+  },
+  "doc": "Renvoie le prix de nb_casiers casiers, consigne non comprise."
+ },
+ "cas": [
+  {
+   "libelle": "12 casiers de La Coulée à 28,80 € : 345,60 €",
+   "args": [
+    12,
+    28.8
+   ],
+   "attendu": 345.6
+  },
+  {
+   "libelle": "3 casiers de La Braise à 31,20 € : 93,60 €",
+   "args": [
+    3,
+    31.2
+   ],
+   "attendu": 93.6
+  },
+  {
+   "libelle": "Aucun casier : 0 €",
+   "args": [
+    0,
+    28.8
+   ],
+   "attendu": 0.0,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel"
+ ],
+ "etoiles": {
+  "description1": "Les 2 cas de test passent : la fonction renvoie le prix",
+  "description2": "Avec return",
+  "description3": "Aucun casier donne 0",
+  "notion": {
+   "exige": [
+    "return"
+   ],
+   "texte": "Avec return"
+  }
+ },
+ "indices": [
+  "print() montre une valeur à l'écran ; return la rend au programme qui a appelé la fonction.",
+  "Une fonction sans return renvoie None : c'est ce que reçoit le bureau avec la version de départ."
+ ],
+ "depart": "def prix_casiers(nb_casiers, prix_casier):\n    \"\"\"Renvoie le prix de nb_casiers casiers, consigne non comprise.\"\"\"\n    print(nb_casiers * prix_casier)\n",
+ "construire": "Dans le bâtiment prix_casiers, l'« Imprimante (print) » montre le prix à l'écran, mais rien ne sort du bâtiment. Remplacez-la par un « Retour (return) » : c'est le quai de sortie, ce qui y arrive revient au bureau."
+}

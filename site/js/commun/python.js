@@ -55,14 +55,15 @@ export class PilotePython {
   }
 
   // Atelier : découpe le code en postes. Rapide et sans exécution du code : pas de délai.
-  async analyserAtelier(code, fonction = null) {
+  // modules (l'usine) : chaque def d'un programme devient un module qui contient ses postes.
+  async analyserAtelier(code, fonction = null, modules = false) {
     await this.pret;
-    return this._envoyer({ type: "analyserAtelier", code, fonction });
+    return this._envoyer({ type: "analyserAtelier", code, fonction, modules });
   }
 
   // Atelier : exécute le code en suivant chaque ligne (état des variables avant chaque ligne).
   async executerAtelier(mission, code, tests) {
-    return this._executerAvecDelai({ type: "executerAtelier", jeu: "atelier", code, tests, mission: mission.fonction ? { fonction: mission.fonction, cas: mission.cas, inchange: mission.inchange || false } : null }, mission.id);
+    return this._executerAvecDelai({ type: "executerAtelier", jeu: "atelier", code, tests, mission: { fonction: mission.fonction || null, cas: mission.cas || [], inchange: mission.inchange || false, fichiers: mission.fichiers || null, etoiles: mission.etoiles || null } }, mission.id);
   }
 
   // Exécute le code du stagiaire sur une mission. Renvoie le résultat du runner.
@@ -70,17 +71,26 @@ export class PilotePython {
     return this._executerAvecDelai({ type: "executer", jeu: "missions", missionId: mission.id, mission, code, fichiers: { tests } }, mission.id);
   }
 
-  async _executerAvecDelai(message, ident) {
+  // Sumo : action de python/sumo_web.py (combat, bilan, tournoi, regles). Le tournoi peut durer : délai propre.
+  async sumo(action, args = [], delaiMs = DELAI_MAX_MS, module = "sumo") {
+    const r = await this._executerAvecDelai({ type: "sumo", module, action, args }, action, delaiMs);
+    return r.donnees || { erreur: r.erreur ? { type: r.erreur.type, message: r.erreur.explication } : { type: "Inconnu", message: "Pas de réponse." } };
+  }
+
+  // Championnat des robots : action de python/combat_web.py (combat, bilan, tournoi, regles).
+  combat(action, args = [], delaiMs = DELAI_MAX_MS) { return this.sumo(action, args, delaiMs, "combat"); }
+
+  async _executerAvecDelai(message, ident, delaiMs = DELAI_MAX_MS) {
     await this.pret;
     if (this.tampon) this.tampon[0] = 0;
     let arretForce = false;
     const requete = this._envoyer(message);
     // Page isolée : le minuteur, dans son propre fil, écrit le signal d'interruption dans le tampon partagé.
     // Sinon : on arrête le worker et on recharge Python.
-    if (this.tampon) this.minuteur.postMessage({ tampon: this.tampon, delaiMs: DELAI_MAX_MS });
+    if (this.tampon) this.minuteur.postMessage({ tampon: this.tampon, delaiMs });
     const minuterie = this.tampon ? null : setTimeout(() => {
       arretForce = true; this.worker.terminate(); this._echecGeneral("arret"); this._demarrer();
-    }, DELAI_MAX_MS);
+    }, delaiMs);
     try {
       return await requete;
     } catch (erreur) {

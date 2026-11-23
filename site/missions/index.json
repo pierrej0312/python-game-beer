@@ -13,22 +13,32 @@
     {
       "numero": 3,
       "titre": "Les conditions",
-      "outil": "Nouveau : l'atelier. Construisez la fonction dans le hall ou écrivez-la en Python ; le chariot suit le chemin que vos conditions choisissent."
+      "outil": "Nouveau : l'usine. Chaque ligne de code est une machine ; les trieurs envoient la bouteille sur la voie de la condition vraie."
     },
     {
       "numero": 4,
       "titre": "Les listes et les tuples",
-      "outil": "Nouveau : les rayonnages et les caisses plombées. La file des commandes arrive dans une liste."
+      "outil": "Les listes sont des rayonnages à cases numérotées, les tuples des vitrines cadenassées."
     },
     {
       "numero": 5,
       "titre": "Les boucles",
-      "outil": "Nouveau : le carrousel (for) et la boucle tant que (while). Le chariot refait le tour à chaque élément."
+      "outil": "Le distributeur (for) envoie les éléments un par un ; la cuve à boucle (while) refait un tour tant que la condition est vraie."
     },
     {
       "numero": 6,
       "titre": "Les dictionnaires et les sets",
-      "outil": "Nouveau : l'armoire à tiroirs et le bac de tri. Le stock de la brasserie tient dans un dictionnaire."
+      "outil": "Les dictionnaires sont des armoires à casiers étiquetés, les sets des cuves à capsules sans doublon."
+    },
+    {
+      "numero": 7,
+      "titre": "Les fonctions",
+      "outil": "Une fonction est un module : on l'appelle par un tube, on entre dedans pour voir sa ligne et ses variables."
+    },
+    {
+      "numero": 8,
+      "titre": "Les fichiers et les erreurs",
+      "outil": "Le fichier arrive par la livraison ; un bloc try met une commande illisible de côté au lieu d'arrêter l'usine."
     }
   ],
   "missions": [
@@ -81,7 +91,7 @@
       "id": "3.1-quai",
       "serie": 3,
       "numero": 1,
-      "titre": "Le type de client décide du quai",
+      "titre": "Chaque client a son quai de chargement",
       "surprise": false,
       "bonus": false,
       "dureeIndicativeMin": 5,
@@ -91,7 +101,7 @@
       "id": "3.2-tarif",
       "serie": 3,
       "numero": 2,
-      "titre": "La remise dépend du client",
+      "titre": "Les cafés ont 10 % de remise sur les fûts",
       "surprise": false,
       "bonus": false,
       "dureeIndicativeMin": 5,
@@ -101,7 +111,7 @@
       "id": "3.3-stock-bas",
       "serie": 3,
       "numero": 3,
-      "titre": "L'ordre des tests décide du résultat",
+      "titre": "L'ordre des tests décide de l'état du stock",
       "surprise": true,
       "bonus": false,
       "dureeIndicativeMin": 6,
@@ -111,7 +121,7 @@
       "id": "3.4-remise-magasin",
       "serie": 3,
       "numero": 4,
-      "titre": "L'ordre des elif décide de la remise",
+      "titre": "La remise d'un magasin dépend du nombre de casiers",
       "surprise": false,
       "bonus": true,
       "dureeIndicativeMin": 6,
@@ -121,7 +131,7 @@
       "id": "4.1-trois-premieres",
       "serie": 4,
       "numero": 1,
-      "titre": "Une tranche prend les trois premières commandes",
+      "titre": "Le premier camion prend les trois premières commandes",
       "surprise": false,
       "bonus": false,
       "dureeIndicativeMin": 4,
@@ -141,7 +151,7 @@
       "id": "4.3-fut-tuple",
       "serie": 4,
       "numero": 3,
-      "titre": "Un tuple se décompose en noms",
+      "titre": "Un fût se décrit par son numéro et sa bière",
       "surprise": false,
       "bonus": false,
       "dureeIndicativeMin": 4,
@@ -161,20 +171,20 @@
       "id": "5.1-tournee",
       "serie": 5,
       "numero": 1,
-      "titre": "Une boucle numérote toute la tournée",
+      "titre": "Une boucle numérote la tournée",
       "surprise": false,
       "bonus": false,
       "dureeIndicativeMin": 6,
       "atelier": true
     },
     {
-      "id": "5.2-chariot",
+      "id": "5.2-chargement",
       "serie": 5,
       "numero": 2,
-      "titre": "while charge le chariot tant qu'il reste de la place",
+      "titre": "Le chariot se charge tant que la commande suivante tient",
       "surprise": true,
       "bonus": false,
-      "dureeIndicativeMin": 8,
+      "dureeIndicativeMin": 7,
       "atelier": true
     },
     {
@@ -188,20 +198,20 @@
       "atelier": true
     },
     {
-      "id": "5.4-tournees-chariot",
+      "id": "5.4-tournees-file",
       "serie": 5,
       "numero": 4,
-      "titre": "Une boucle while tourne tant qu'il reste des casiers",
+      "titre": "Toute la file part, en autant de tournées qu'il faut",
       "surprise": false,
       "bonus": true,
-      "dureeIndicativeMin": 6,
+      "dureeIndicativeMin": 8,
       "atelier": true
     },
     {
       "id": "6.1-stock",
       "serie": 6,
       "numero": 1,
-      "titre": "Une clé met à jour le stock d'une bière",
+      "titre": "Le stock se met à jour bière par bière",
       "surprise": true,
       "bonus": false,
       "dureeIndicativeMin": 7,
@@ -222,6 +232,86 @@
       "serie": 6,
       "numero": 3,
       "titre": "Un dictionnaire compte les fûts par quai",
+      "surprise": false,
+      "bonus": true,
+      "dureeIndicativeMin": 8,
+      "atelier": true
+    },
+    {
+      "id": "7.1-prix-renvoye",
+      "serie": 7,
+      "numero": 1,
+      "titre": "Une fonction renvoie le prix, elle ne l'affiche pas",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 5,
+      "atelier": true
+    },
+    {
+      "id": "7.2-remise-par-defaut",
+      "serie": 7,
+      "numero": 2,
+      "titre": "Une valeur par défaut rend la remise facultative",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "7.3-facture",
+      "serie": 7,
+      "numero": 3,
+      "titre": "Une fonction en appelle une autre",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 7,
+      "atelier": true
+    },
+    {
+      "id": "7.4-file-intacte",
+      "serie": 7,
+      "numero": 4,
+      "titre": "La file du préparateur doit rester intacte",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 7,
+      "atelier": true
+    },
+    {
+      "id": "8.1-lignes-du-lot",
+      "serie": 8,
+      "numero": 1,
+      "titre": "Un fichier se lit ligne par ligne",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 6,
+      "atelier": true
+    },
+    {
+      "id": "8.2-quantite-lisible",
+      "serie": 8,
+      "numero": 2,
+      "titre": "try / except met une quantité illisible de côté",
+      "surprise": true,
+      "bonus": false,
+      "dureeIndicativeMin": 7,
+      "atelier": true
+    },
+    {
+      "id": "8.3-lot-trie",
+      "serie": 8,
+      "numero": 3,
+      "titre": "Les commandes fausses sont mises de côté",
+      "surprise": false,
+      "bonus": false,
+      "dureeIndicativeMin": 10,
+      "atelier": true
+    },
+    {
+      "id": "8.4-casiers-par-biere",
+      "serie": 8,
+      "numero": 4,
+      "titre": "Un dictionnaire totalise les casiers de chaque bière",
       "surprise": false,
       "bonus": true,
       "dureeIndicativeMin": 8,

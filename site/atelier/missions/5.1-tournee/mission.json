@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": false,
  "dureeIndicativeMin": 6,
- "titre": "Une boucle numérote toute la tournée",
+ "titre": "Une boucle numérote la tournée",
  "notion": "for, enumerate, append",
- "enonce": "Complétez feuille_de_route() : pour chaque arrêt de la tournée, elle ajoute à la liste une ligne comme \"Arrêt 1 : Café du Pont\", numérotée à partir de 1.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Le préparateur imprime une feuille de route : une ligne par arrêt, numérotée à partir de 1, par exemple \"Arrêt 1 : Café du Pont\". Complétez feuille_de_route() : elle reçoit la liste des arrêts, dans l'ordre de la tournée, et renvoie la liste des lignes.",
+ "reussiSi": "les 2 cas de test renvoient la bonne feuille de route.",
  "fonction": {
   "nom": "feuille_de_route",
   "parametres": [
@@ -79,15 +79,21 @@
   "tantque"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent : trois arrêts, puis un",
+  "description2": "Avec une boucle for",
   "description3": "Une tournée sans arrêt donne une liste vide",
-  "max": 4
+  "notion": {
+   "exige": [
+    "for|comprehension"
+   ],
+   "texte": "Avec une boucle for"
+  }
  },
  "indices": [
   "enumerate(arrets, start=1) donne le numéro et le client à chaque tour.",
   "Dans la boucle : lignes.append(f\"Arrêt {numero} : {client}\")."
  ],
- "depart": "def feuille_de_route(arrets):\n    \"\"\"Renvoie la liste des lignes de la feuille de route.\"\"\"\n    lignes = []\n    # À vous de jouer : une boucle, et lignes.append(...) à chaque tour\n    return lignes\n"
+ "depart": "def feuille_de_route(arrets):\n    \"\"\"Renvoie la liste des lignes de la feuille de route.\"\"\"\n    lignes = []\n    # À vous de jouer : une boucle, et lignes.append(...) à chaque tour\n    return lignes\n",
+ "construire": "Un « Rayonnage » vide pour les lignes. Un « Distributeur (for) » envoie les arrêts un par un, avec leur numéro. Dans la boucle, un « Chargeur » ajoute chaque ligne au rayonnage. Le « Retour (return) » renvoie le rayonnage.",
+ "exemple": "feuille_de_route([\"Café du Pont\", \"Marie Dumont\"])\n  →  [\"Arrêt 1 : Café du Pont\", \"Arrêt 2 : Marie Dumont\"]"
 }

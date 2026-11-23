@@ -25,7 +25,7 @@ from erreurs_fr import expliquer
 # ----- Réglages -----
 NOM_FICHIER = "<atelier>"
 MAX_EVENEMENTS = 5000          # lignes exécutées suivies au plus (par cas)
-MAX_REJEU = 400                # lignes gardées pour le rejeu (les suivantes sont comptées, pas gardées)
+MAX_REJEU = 3000               # lignes gardées pour le rejeu (les suivantes sont comptées, pas gardées) ; « jusqu'à cette ligne » saute vite au début
 MAX_ELEMENTS = 40              # éléments d'une liste envoyés à la scène (au-delà : tronqué)
 OPERATEURS = {ast.Add: "+=", ast.Sub: "-=", ast.Mult: "*="}
 
@@ -33,12 +33,27 @@ OPERATEURS = {ast.Add: "+=", ast.Sub: "-=", ast.Mult: "*="}
 # ---------------------------------------------------------------- analyse : Python -> postes
 
 class _Analyse:
-    def __init__(self, code):
+    def __init__(self, code, modules=False):
         self.avertissements = []
         self.code = code
+        self.modules = modules          # l'usine : une fonction (def) devient un module, avec ses postes à l'intérieur
 
     def texte(self, noeud):
-        return ast.get_source_segment(self.code, noeud) or ""
+        """Le texte source d'un nœud. Les lignes sont découpées une seule fois (get_source_segment les redécoupe à chaque appel :
+        trop lent pour un programme de 2000 lignes)."""
+        if getattr(noeud, "end_lineno", None) is None:
+            return ""
+        if not hasattr(self, "_lignes"):
+            self._lignes = self.code.splitlines(keepends=True)
+        l1, l2, c1, c2 = noeud.lineno - 1, noeud.end_lineno - 1, noeud.col_offset, noeud.end_col_offset
+        lignes = self._lignes
+        if l1 >= len(lignes):
+            return ""
+        if l1 == l2:
+            return lignes[l1].encode("utf-8")[c1:c2].decode("utf-8")
+        debut = lignes[l1].encode("utf-8")[c1:].decode("utf-8")
+        fin = lignes[l2].encode("utf-8")[:c2].decode("utf-8")
+        return debut + "".join(lignes[l1 + 1:l2]) + fin
 
     def valeur(self, noeud, libre=True):
         """Une valeur écrite dans le code : texte, nombre, nom de variable ; sinon une expression (texte brut) si libre."""
@@ -116,7 +131,67 @@ class _Analyse:
         # tout autre calcul : un poste de calcul, l'expression en texte
         return {"type": "calcul", "params": {"nom": dest, "op": "=", "expression": self.texte(valeur)}}
 
+    def ligne_avant(self, ligne, mot):
+        """La ligne d'un « else: » ou d'un « finally: » (l'arbre ne la garde pas) : on remonte depuis la première instruction."""
+        lignes = self.code.split("\n")
+        for n in range(ligne - 1, 0, -1):
+            if lignes[n - 1].strip().startswith(mot):
+                return n
+        return ligne
+
+    def bloc(self, instruction, genre, parties):
+        """Un bloc composé que l'usine montre en voies (try, with, match, class, for/while avec else…).
+        parties : [(ligne d'en-tête, instructions)], la première sur le rail principal."""
+        lignes = self.code.split("\n")
+        return {"type": "bloc", "params": {"genre": genre, "entetes": [lignes[l - 1].strip() for l, _ in parties]},
+                "branches": [self.liste(corps) for _, corps in parties], "entetes": [l for l, _ in parties],
+                "corps": [self.corps(corps) for _, corps in parties]}
+
+    def poste_usine(self, instruction):
+        """Ce que seule l'usine comprend (l'ancien atelier garde son code libre) : imports, print à plusieurs valeurs, blocs."""
+        if isinstance(instruction, (ast.Import, ast.ImportFrom)):
+            noms = [a.asname or a.name for a in instruction.names]
+            source = instruction.module if isinstance(instruction, ast.ImportFrom) else ", ".join(a.name for a in instruction.names)
+            return {"type": "importer", "params": {"source": source or "", "noms": noms}}
+        if isinstance(instruction, ast.Expr) and isinstance(instruction.value, ast.Call) and isinstance(instruction.value.func, ast.Name) \
+                and instruction.value.func.id == "print":
+            appel = instruction.value
+            morceaux = [self.texte(a) for a in appel.args] + [f"{k.arg}={self.texte(k.value)}" for k in appel.keywords]
+            return {"type": "afficher", "params": {"expression": ", ".join(morceaux)}}
+        if isinstance(instruction, ast.Try) or type(instruction).__name__ == "TryStar":
+            parties = [(instruction.lineno, instruction.body)] + [(h.lineno, h.body) for h in instruction.handlers]
+            if instruction.orelse:
+                parties.append((self.ligne_avant(instruction.orelse[0].lineno, "else"), instruction.orelse))
+            if instruction.finalbody:
+                parties.append((self.ligne_avant(instruction.finalbody[0].lineno, "finally"), instruction.finalbody))
+            return self.bloc(instruction, "try", parties)
+        if isinstance(instruction, ast.With):
+            return self.bloc(instruction, "with", [(instruction.lineno, instruction.body)])
+        if type(instruction).__name__ == "Match":
+            return self.bloc(instruction, "match", [(c.pattern.lineno, c.body) for c in instruction.cases])
+        if isinstance(instruction, (ast.For, ast.While)):
+            parties = [(instruction.lineno, instruction.body)]
+            if instruction.orelse:
+                parties.append((self.ligne_avant(instruction.orelse[0].lineno, "else"), instruction.orelse))
+            return self.bloc(instruction, "for" if isinstance(instruction, ast.For) else "while", parties)
+        if isinstance(instruction, ast.ClassDef):
+            return self.bloc(instruction, "class", [(instruction.lineno, instruction.body)])
+        return None
+
     def poste(self, instruction):
+        if self.modules and isinstance(instruction, (ast.Import, ast.ImportFrom, ast.Expr)):
+            p = self.poste_usine(instruction)
+            if p:
+                return p
+        if self.modules and isinstance(instruction, ast.FunctionDef) and not instruction.decorator_list:
+            corps = instruction.body
+            entete_fin = instruction.lineno
+            if corps and isinstance(corps[0], ast.Expr) and isinstance(corps[0].value, ast.Constant) and isinstance(corps[0].value.value, str):
+                entete_fin = corps[0].end_lineno           # la docstring reste dans l'en-tête du module
+                corps = corps[1:]
+            indent = instruction.body[0].col_offset
+            return {"type": "module", "params": {"nom": instruction.name, "parametres": [a.arg for a in instruction.args.args]},
+                    "branches": [self.liste(corps)], "entetes": [instruction.lineno], "corps": [self.corps(corps, indent, entete_fin)]}
         if isinstance(instruction, ast.If):
             conditions, branches, entetes, corps, noeud = [], [], [], [], instruction
             while True:
@@ -172,6 +247,8 @@ class _Analyse:
             cible = self.methode(appel, "add")
             if cible and len(appel.args) == 1 and not appel.keywords:
                 return {"type": "ajouter_set", "params": {"cible": cible, "valeur": self.valeur(appel.args[0])}}
+        if self.modules:
+            return self.poste_usine(instruction)
         return None
 
     @staticmethod
@@ -200,13 +277,14 @@ class _Analyse:
         return postes
 
 
-def analyser(code, fonction=None):
-    """Découpe le code en postes. Mission à fonction : seul le corps de la fonction devient des postes."""
+def analyser(code, fonction=None, modules=False):
+    """Découpe le code en postes. Mission à fonction : seul le corps de la fonction devient des postes.
+    modules (l'usine) : dans un programme, chaque fonction définie (def) devient un poste « module » qui contient ses postes."""
     try:
         arbre = ast.parse(code, NOM_FICHIER)
     except SyntaxError as e:
         return {"ok": False, "erreur": {"ligne": e.lineno, "message": e.msg}, "postes": []}
-    a = _Analyse(code)
+    a = _Analyse(code, modules=modules)
     if not fonction:
         postes = a.liste(arbre.body)
         return {"ok": True, "erreur": None, "postes": postes, "avertissements": a.avertissements, "corps": _Analyse.corps(arbre.body)}
@@ -226,7 +304,16 @@ def analyser(code, fonction=None):
     if corps and isinstance(corps[0], ast.Expr) and isinstance(corps[0].value, ast.Constant) and isinstance(corps[0].value.value, str):
         corps = corps[1:]
     postes = a.liste(corps)
-    return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres),
+    # l'usine : les autres fonctions du fichier sont des modules, que la fonction de la mission peut appeler
+    modules_ = []
+    if modules:
+        for n in autres:
+            if isinstance(n, ast.FunctionDef):
+                m = a.poste(n)
+                if m and m["type"] == "module":
+                    m["lignes"] = [n.lineno, n.end_lineno]
+                    modules_.append(m)
+    return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres), "modules": modules_,
             "parametres": [p.arg for p in definition.args.args], "avertissements": a.avertissements,
             "corps": _Analyse.corps(corps, indent_corps, entete_fin)}
 
@@ -270,7 +357,7 @@ def _erreur(e, ligne=None):
 
 
 def _boucle_sans_fin(ligne):
-    return {"type": "BoucleSansFin", "ligne": ligne, "messageOriginal": f"Plus de {MAX_EVENEMENTS} lignes exécutées",
+    return {"type": "BoucleSansFin", "ligne": ligne, "messageOriginal": f"La boucle ne s'arrête pas (plus de {MAX_EVENEMENTS} lignes exécutées)",
             "explication": "Une boucle tourne sans fin : sa condition ne devient jamais fausse.",
             "conseil": "Dans le corps de la boucle, la variable de la condition doit changer pour que la boucle s'arrête."}
 
@@ -285,23 +372,37 @@ def _ligne_erreur(exception):
 
 
 class _Suivi:
-    """Note chaque ligne exécutée du code du stagiaire et l'état des variables juste avant."""
+    """Note chaque ligne exécutée du code du stagiaire et l'état des variables juste avant.
+    principal : la fonction de la mission (mode fonction). Toute autre fonction du stagiaire est un module :
+    ses lignes portent « f » (son nom), ses variables sont ses variables locales, et sa dernière ligne la valeur renvoyée."""
 
-    def __init__(self, exclus, locales):
+    def __init__(self, exclus, locales, principal=None):
         self.trace, self.trop, self.exclus, self.locales, self.final, self.compte = [], False, exclus, locales, None, 0
+        self.principal = principal
 
     def __call__(self, cadre, evenement, argument):
         if cadre.f_code.co_filename != NOM_FICHIER:
             return None
-        espace = cadre.f_locals if self.locales else cadre.f_globals
+        nom = cadre.f_code.co_name
+        # une compréhension, un générateur, un lambda, le corps d'une classe : leurs lignes sont déjà notées dans
+        # l'instruction qui les contient ; on ne les suit pas à part (sinon le parc montrerait leurs variables internes)
+        if nom != "<module>" and (nom.startswith("<") or not cadre.f_code.co_flags & 0x1):
+            return self
+        autre = nom not in ("<module>", self.principal)
+        espace = cadre.f_locals if self.locales or autre else cadre.f_globals
+        if evenement == "return" and autre and self.trace and self.trace[-1].get("f") == nom:
+            self.trace[-1]["retour"] = _encoder(argument)
         if evenement == "line":
             self.compte += 1
             if self.compte > MAX_EVENEMENTS:
                 self.trop = True
                 raise RuntimeError(f"plus de {MAX_EVENEMENTS} lignes exécutées : une boucle ne s'arrête probablement jamais")
             if len(self.trace) < MAX_REJEU:
-                self.trace.append({"l": cadre.f_lineno, "etat": _photo(espace, self.exclus)})
-        elif evenement == "return" and self.locales and cadre.f_code.co_name != "<module>":
+                evenement_ = {"l": cadre.f_lineno, "etat": _photo(espace, self.exclus)}
+                if autre:
+                    evenement_["f"] = nom
+                self.trace.append(evenement_)
+        elif evenement == "return" and self.locales and nom == self.principal:
             self.final = _photo(espace, self.exclus)
         return self
 
@@ -342,6 +443,17 @@ def _compiler(code):
         return None, {"type": "SyntaxError", "ligne": e.lineno, "messageOriginal": f"SyntaxError: {e.msg}", "explication": explication, "conseil": conseil}
 
 
+def _copie(variables):
+    """Copie des variables pour les tests ; un objet qui ne se copie pas (un fichier ouvert ou fermé) est passé tel quel."""
+    copie = {}
+    for nom, valeur in variables.items():
+        try:
+            copie[nom] = copy.deepcopy(valeur)
+        except Exception:
+            copie[nom] = valeur
+    return copie
+
+
 def _executer_programme(code, tests_source):
     espace = {"__name__": "__atelier__", "__builtins__": __builtins__}
     initiales = set(espace)
@@ -360,7 +472,7 @@ def _executer_programme(code, tests_source):
             erreur = _boucle_sans_fin(_ligne_erreur(e)) if suivi.trop else _erreur(e, _ligne_erreur(e))
     sorties = tampon.getvalue().splitlines()
     finales = _visibles(espace, initiales)
-    tests = [] if erreur else _lancer_tests(tests_source, Resultat(copy.deepcopy(finales), sorties, erreur))
+    tests = [] if erreur else _lancer_tests(tests_source, Resultat(_copie(finales), sorties, erreur))
     return {"mode": "programme", "erreur": erreur, "sortie": sorties, "trace": suivi.trace, "traceTronquee": suivi.compte > MAX_REJEU,
             "etatFinal": _photo(espace, initiales), "tests": tests}
 
@@ -413,7 +525,7 @@ def _executer_fonction(code, mission):
         cas = dict(cas, args=_decoder(cas["args"]), attendu=_decoder(cas["attendu"]))
         args = copy.deepcopy(cas["args"])
         avant = copy.deepcopy(args)
-        suivi, tampon, erreur_cas, retour = _Suivi((), True), io.StringIO(), None, None
+        suivi, tampon, erreur_cas, retour = _Suivi((), True, fonction["nom"]), io.StringIO(), None, None
         try:
             with contextlib.redirect_stdout(tampon):
                 sys.settrace(suivi)
@@ -449,9 +561,96 @@ def _executer_fonction(code, mission):
     return resultat
 
 
+
+# ---------------------------------------------------------------- notions utilisées (étoile 2)
+def notions(code):
+    """Les notions Python présentes dans le code, sous forme d'étiquettes : while, for, comprehension, if, elif, tranche, indice,
+    decomposition, fstring, set, ecrire_cle, defaut, return, try, with, open, appel:<nom>, methode:<nom>, import:<module>.
+    L'étoile 2 d'une mission exige les étiquettes de sa notion : une solution juste qui contourne la notion garde l'étoile 1."""
+    try:
+        arbre = ast.parse(code)
+    except SyntaxError:
+        return []
+    vues = set()
+    for n in ast.walk(arbre):
+        if isinstance(n, ast.While):
+            vues.add("while")
+        elif isinstance(n, (ast.For, ast.AsyncFor)):
+            vues.add("for")
+        elif isinstance(n, (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)):
+            vues.add("comprehension")
+            if isinstance(n, ast.SetComp):
+                vues.add("set")
+        elif isinstance(n, ast.If):
+            vues.add("if")
+            if len(n.orelse) == 1 and isinstance(n.orelse[0], ast.If):
+                vues.add("elif")
+            elif n.orelse:
+                vues.add("else")
+        elif isinstance(n, ast.Subscript):
+            if isinstance(n.slice, ast.Slice):
+                vues.add("tranche")
+            else:
+                vues.add("indice")
+                if isinstance(n.ctx, ast.Store):
+                    vues.add("ecrire_cle")
+        elif isinstance(n, ast.JoinedStr):
+            vues.add("fstring")
+        elif isinstance(n, ast.Set):
+            vues.add("set")
+        elif isinstance(n, ast.Return):
+            vues.add("return")
+        elif isinstance(n, (ast.Try, getattr(ast, "TryStar", ast.Try))):
+            vues.add("try")
+        elif isinstance(n, ast.With):
+            vues.add("with")
+        elif isinstance(n, (ast.Import, ast.ImportFrom)):
+            for a in n.names:
+                vues.add("import:" + (n.module if isinstance(n, ast.ImportFrom) and n.module else a.name).split(".")[0])
+        elif isinstance(n, ast.FunctionDef):
+            if n.args.defaults or n.args.kw_defaults and any(d is not None for d in n.args.kw_defaults):
+                vues.add("defaut")
+        elif isinstance(n, ast.Call):
+            if isinstance(n.func, ast.Name):
+                vues.add("appel:" + n.func.id)
+                if n.func.id == "set":
+                    vues.add("set")
+                if n.func.id == "open":
+                    vues.add("open")
+            elif isinstance(n.func, ast.Attribute):
+                vues.add("methode:" + n.func.attr)
+        if isinstance(n, (ast.Assign, ast.For, ast.comprehension)):
+            cibles = n.targets if isinstance(n, ast.Assign) else [n.target]
+            if any(isinstance(c, (ast.Tuple, ast.List)) for c in cibles):
+                vues.add("decomposition")
+        if isinstance(n, ast.AugAssign) and isinstance(n.target, ast.Subscript):
+            vues.add("ecrire_cle")
+    return sorted(vues)
+
+
+def notion_ok(code, exigence):
+    """exigence : {"exige": ["while", "for|comprehension", ...], "texte": ...}. Chaque élément doit être présent ;
+    « a|b » : l'un ou l'autre suffit. Renvoie (ok, éléments manquants)."""
+    if not exigence:
+        return True, []
+    vues = set(notions(code))
+    manque = [e for e in exigence.get("exige", []) if not any(x in vues for x in e.split("|"))]
+    return not manque, manque
+
+
+def _poser_fichiers(fichiers):
+    """Les fichiers fournis par la mission (série 8) : écrits dans le dossier courant, à neuf avant chaque exécution."""
+    for nom, contenu in (fichiers or {}).items():
+        with open(nom, "w", encoding="utf-8", newline="") as f:
+            f.write(contenu)
+
+
 def executer_atelier(code, tests_source, mission=None):
     if isinstance(mission, str):
         mission = json.loads(mission) if mission else None
-    if mission and mission.get("fonction"):
-        return _executer_fonction(code, mission)
-    return _executer_programme(code, tests_source)
+    if mission:
+        _poser_fichiers(mission.get("fichiers"))
+    r = _executer_fonction(code, mission) if mission and mission.get("fonction") else _executer_programme(code, tests_source)
+    exigence = ((mission or {}).get("etoiles") or {}).get("notion")
+    r["notionOk"], r["notionManque"] = notion_ok(code, exigence)
+    return r

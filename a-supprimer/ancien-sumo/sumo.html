@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le sumo des robots · Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/sumo.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+<!-- Formulaire caché, lu par Netlify au moment de la mise en ligne : il déclare les champs envoyés au tournoi. -->
+<form name="strategie-sumo" data-netlify="true" hidden>
+  <input name="binome"><input name="generation"><textarea name="code"></textarea>
+</form>
+<main class="sumo">
+  <section class="cote-arene" aria-label="L'arène : le quai de chargement">
+    <div class="barre-haut">
+      <a class="bouton sombre" href="index.html">Accueil</a>
+      <span class="titre-arene">Le sumo des robots</span>
+      <span class="espace"></span>
+      <select class="choix-affichage" id="choix-affichage" aria-label="Affichage">
+        <option value="haute">Graphismes complets</option>
+        <option value="basse">Graphismes légers</option>
+        <option value="texte">Sans 3D (tableau des tours)</option>
+      </select>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="vue-arene" id="vue"></div>
+    <div class="commandes">
+      <label class="choix-adversaire">Adversaire
+        <select id="choix-adversaire">
+          <option value="foncer">foncer</option><option value="prudent">prudent</option><option value="hasard">hasard</option>
+          <option value="reactif">reactif</option><option value="econome">econome</option>
+        </select>
+      </label>
+      <label class="choix-adversaire">Votre robot en
+        <select id="choix-cote"><option value="a">A (à gauche)</option><option value="b">B (à droite)</option></select>
+      </label>
+      <button class="bouton principal" id="bouton-combat" type="button" title="Ctrl+Entrée">Combattre</button>
+      <button class="bouton sombre" id="bouton-bilan" type="button">Bilan contre les cinq</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-rejouer" type="button" disabled>Rejouer</button>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false" disabled>Pause</button>
+      <button class="bouton sombre" id="bouton-rapide" type="button" aria-pressed="false">Rapide</button>
+    </div>
+  </section>
+  <section class="cote-code">
+    <header class="enonce">
+      <div class="surtitre">Jeu 3 · le tournoi de sumo</div>
+      <h1>Programmez votre robot de manutention</h1>
+      <p>Deux robots s'affrontent sur le quai de chargement : celui qui sort du quai perd. Votre robot est la fonction <code>strategie(etat)</code> ; elle renvoie une action à chaque tour.</p>
+      <div class="ligne-generation">
+        <label>Génération
+          <select id="choix-generation">
+            <option value="1">1 · classique</option><option value="2">2 · machine learning</option><option value="3">3 · réseau de neurones</option>
+          </select>
+        </label>
+        <a class="lien-labo" href="labo.html" id="lien-labo" hidden>Ouvrir le labo des neurones</a>
+      </div>
+    </header>
+    <div class="zone-editeur">
+      <div class="barre-editeur"><span class="nom-fichier" id="nom-fichier">strategie.py</span><span class="espace"></span>
+        <button class="bouton" id="bouton-modele" type="button" title="Remet le code de départ de cette génération">Code de départ</button>
+      </div>
+      <div id="editeur"></div>
+    </div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="combat" aria-selected="true" type="button">Combat</button>
+        <button class="onglet" role="tab" data-onglet="bilan" aria-selected="false" type="button">Bilan</button>
+        <button class="onglet" role="tab" data-onglet="regles" aria-selected="false" type="button">Règles</button>
+        <button class="onglet" role="tab" data-onglet="envoyer" aria-selected="false" type="button">Envoyer au tournoi</button>
+        <span class="resume" id="resume"></span>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="js/sumo/sumo.js"></script>
+</body>
+</html>

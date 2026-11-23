@@ -1,0 +1,19 @@
+{
+ "solution": "import csv\n\nCLIENTS = [\"C01\", \"C02\", \"C03\", \"C04\", \"C05\", \"C06\", \"C07\", \"C08\"]\nacceptees = []\nwith open(\"lot_vendredi.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for ligne in csv.DictReader(f, delimiter=\";\"):\n        try:\n            quantite = int(ligne[\"quantite\"])\n        except ValueError:\n            continue\n        if quantite > 0 and ligne[\"client\"] in CLIENTS:\n            acceptees.append(ligne)\ncasiers = {}\nfuts = {}\nfor ligne in acceptees:\n    biere = ligne[\"biere\"]\n    if ligne[\"format\"] == \"casier\":\n        casiers[biere] = casiers.get(biere, 0) + int(ligne[\"quantite\"])\n    else:\n        futs[biere] = futs.get(biere, 0) + int(ligne[\"quantite\"])\n",
+ "variantes": [
+  {
+   "nom": "fûts comptés avec les casiers",
+   "remplacer": [
+    "    if ligne[\"format\"] == \"casier\":\n",
+    "    if True:\n"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

@@ -18,16 +18,12 @@ import atelier  # noqa: E402     missions des séries 3 à 6 (atelier) : la fonc
 
 
 def executer_atelier(code, tests, mission):
-    """Mêmes étoiles que l'atelier en ligne : cas visibles, nombre de postes (instructions), cas bonus."""
+    """Mêmes étoiles que l'atelier et l'usine en ligne : cas visibles, notion de la série utilisée, cas bonus."""
     r = atelier.executer_atelier(code, tests, mission)
-    analyse = atelier.analyser(code, mission.get("fonction"))
-    def compter(postes):
-        return sum(1 + sum(compter(b) for b in p.get("branches", [])) for p in postes)
-    postes = compter(analyse["postes"]) if analyse["ok"] else 99
     vis = [t for t in r["tests"] if t["groupe"] == "visible"]
     bon = [t for t in r["tests"] if t["groupe"] == "bonus"]
     e1 = not r["erreur"] and bool(vis) and all(t["ok"] for t in vis)
-    r["etoiles"] = [e1, e1 and postes <= mission["etoiles"]["max"], e1 and bool(bon) and all(t["ok"] for t in bon)]
+    r["etoiles"] = [e1, e1 and r["notionOk"], e1 and bool(bon) and all(t["ok"] for t in bon)]
     r["sortie"] = r.get("sortie") or []
     return r
 
@@ -50,7 +46,7 @@ def lancer(identifiant, fichier=None):
     chemin = pathlib.Path(fichier) if fichier else dossier / "depart.py"
     code = chemin.read_text(encoding="utf-8")
     tests = (dossier / "tests.py").read_text(encoding="utf-8")
-    r = executer_atelier(code, tests, mission) if "cas" in mission or mission.get("etoiles", {}).get("critere") == "postes" else runner.executer(code, tests, mission)
+    r = executer_atelier(code, tests, mission) if "cas" in mission or "notion" in mission.get("etoiles", {}) else runner.executer(code, tests, mission)
 
     print(f"Mission {mission['serie']}.{mission['numero']} : {mission['titre']}")
     print(mission["enonce"])
@@ -74,6 +70,8 @@ def lancer(identifiant, fichier=None):
     print(f"\nÉtoiles : {sum(r['etoiles'])} sur 3")
     for i, cle in enumerate(("description1", "description2", "description3")):
         print(("  gagnée   " if r["etoiles"][i] else "  à gagner ") + regle[cle])
+    if r["etoiles"][0] and not r["etoiles"][1]:
+        print("\nLa solution est juste, mais cette mission entraîne une notion précise :", regle["description2"].lower() + ".")
     return 0 if r["etoiles"][0] else 1
 
 

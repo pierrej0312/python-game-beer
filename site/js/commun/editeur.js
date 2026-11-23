@@ -35,7 +35,7 @@ const champLigne = StateField.define({
   provide: (champ) => EditorView.decorations.from(champ),
 });
 
-export function creerEditeur(parent, { texte = "", surChangement = () => {}, surExecuter = () => {}, lectureSeule = false, libelle = "Éditeur de code Python" } = {}) {
+export function creerEditeur(parent, { texte = "", surChangement = () => {}, surExecuter = () => {}, surCurseur = null, lectureSeule = false, libelle = "Éditeur de code Python" } = {}) {
   const taille = new Compartment();
   let indiceTaille = 0;
   const theme = (px) => EditorView.theme({
@@ -58,7 +58,12 @@ export function creerEditeur(parent, { texte = "", surChangement = () => {}, sur
         lineNumbers(), highlightActiveLine(), highlightActiveLineGutter(), drawSelection(), history(), indentOnInput(), bracketMatching(),
         python(), indentUnit.of("    "), EditorState.tabSize.of(4), syntaxHighlighting(styleCode), champLigne, taille.of(theme(TAILLES[0])),
         keymap.of([{ key: "Mod-Enter", run: () => { surExecuter(); return true; } }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
-        EditorView.updateListener.of((maj) => { if (maj.docChanged) surChangement(maj.state.doc.toString()); }),
+        EditorView.updateListener.of((maj) => {
+          if (maj.docChanged) surChangement(maj.state.doc.toString());
+          // la ligne du curseur (l'usine y amène la vue) ; seulement quand le stagiaire déplace le curseur lui-même
+          if (surCurseur && maj.selectionSet && !maj.docChanged && maj.transactions.some((t) => t.isUserEvent("select")))
+            surCurseur(maj.state.doc.lineAt(maj.state.selection.main.head).number);
+        }),
         EditorView.contentAttributes.of({ "aria-label": libelle, spellcheck: "false" }),
         ...(lectureSeule ? [EditorState.readOnly.of(true), EditorView.editable.of(false), EditorView.lineWrapping] : []),
       ],
@@ -70,6 +75,7 @@ export function creerEditeur(parent, { texte = "", surChangement = () => {}, sur
     lire: () => vue.state.doc.toString(),
     ecrire: (nouveau) => vue.dispatch({ changes: { from: 0, to: vue.state.doc.length, insert: nouveau }, effects: marquerLigne.of(null) }),
     surligner: (numero) => vue.dispatch({ effects: marquerLigne.of(numero || null) }),
+    ligneCurseur: () => vue.state.doc.lineAt(vue.state.selection.main.head).number,
     agrandir: () => { indiceTaille = (indiceTaille + 1) % TAILLES.length; vue.dispatch({ effects: taille.reconfigure(theme(TAILLES[indiceTaille])) }); return TAILLES[indiceTaille]; },
     focus: () => vue.focus(),
   };

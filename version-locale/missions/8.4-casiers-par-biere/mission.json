@@ -1,0 +1,70 @@
+{
+ "id": "8.4-casiers-par-biere",
+ "serie": 8,
+ "numero": 4,
+ "bonus": true,
+ "surprise": false,
+ "dureeIndicativeMin": 8,
+ "titre": "Un dictionnaire totalise les casiers de chaque bière",
+ "notion": "dictionnaire, get, fichier trié",
+ "enonce": "Le tri du lot est fait : le programme de départ range les commandes justes dans acceptees. Le préparateur veut maintenant savoir combien de casiers sortir pour chaque bière. Ajoutez un dictionnaire casiers : le code de la bière pour clé, le total des casiers acceptés pour valeur. Les commandes en fûts ne comptent pas.",
+ "exemple": "casiers  →  {\"B03\": 13, \"B01\": 14, \"B02\": 2, \"B04\": 4}",
+ "reussiSi": "casiers donne le bon total pour chaque bière.",
+ "fichiers": {
+  "lot_vendredi.csv": "date;client;biere;format;quantite\n2026-11-20;C02;B01;fut;5\n2026-11-20;C04;B03;casier;8\n2026-11-20;C05;B01;casier;10\n2026-11-20;C06;B02;casier;2\n2026-11-20;C01;B04;fut;3\n2026-11-20;C08;B05;casier;douze\n2026-11-20;C04;B01;casier;4\n2026-11-20;C11;B03;casier;6\n2026-11-20;C05;B05;casier;-2\n2026-11-31;C06;B04;casier;1\n2026-11-20;C07;B01;fut;10\n2026-11-20;C05;B03;casier;5\n2026-11-20;C03;B02;fut;2\n2026-11-20;C08;B02;casier;\n2026-11-20;C04;B04;casier;3\n2026-11-20;C02;B05;fut;4\n"
+ },
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel",
+  "importer",
+  "essayer",
+  "avec",
+  "suivant",
+  "sortir"
+ ],
+ "etoiles": {
+  "description1": "casiers donne le bon total pour chaque bière",
+  "description2": "En remplissant le dictionnaire clé par clé dans une boucle for",
+  "description3": "Totalisez aussi les fûts dans un dictionnaire futs",
+  "notion": {
+   "exige": [
+    "for",
+    "ecrire_cle"
+   ],
+   "texte": "En remplissant le dictionnaire clé par clé dans une boucle for"
+  }
+ },
+ "indices": [
+  "Parcourez acceptees et ne gardez que les commandes dont le format est \"casier\".",
+  "casiers[biere] = casiers.get(biere, 0) + int(ligne[\"quantite\"]) ajoute la quantité au total de la bière."
+ ],
+ "depart": "import csv\n\nCLIENTS = [\"C01\", \"C02\", \"C03\", \"C04\", \"C05\", \"C06\", \"C07\", \"C08\"]\nacceptees = []\nwith open(\"lot_vendredi.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for ligne in csv.DictReader(f, delimiter=\";\"):\n        try:\n            quantite = int(ligne[\"quantite\"])\n        except ValueError:\n            continue\n        if quantite > 0 and ligne[\"client\"] in CLIENTS:\n            acceptees.append(ligne)\n",
+ "construire": "Après le tri de départ, des « Casiers » vides pour casiers. Un « Distributeur (for) » envoie les commandes acceptées une par une. Dans la boucle, un « Trieur (if) » ne garde que les casiers, et sur sa voie un « Casiers : écrire » ajoute la quantité au total de la bière (lu sans risque avec get)."
+}

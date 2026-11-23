@@ -1,0 +1,19 @@
+{
+ "solution": "def quantite_valide(texte):\n    \"\"\"Renvoie la quantité lue dans le texte, ou None si elle est illisible, nulle ou négative.\"\"\"\n    try:\n        quantite = int(texte)\n    except ValueError:\n        return None\n    if quantite <= 0:\n        return None\n    return quantite\n",
+ "variantes": [
+  {
+   "nom": "< 0 au lieu de <= 0 : zéro passe (contrôle surprise)",
+   "remplacer": [
+    "quantite <= 0",
+    "quantite < 0"
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     true
+    ]
+   }
+  }
+ ]
+}

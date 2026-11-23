@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": true,
  "dureeIndicativeMin": 7,
- "titre": "Une clé met à jour le stock d'une bière",
+ "titre": "Le stock se met à jour bière par bière",
  "notion": "dictionnaires, for, in",
- "enonce": "Chaque sortie est un tuple : le code de la bière, puis le nombre de fûts sortis. Complétez sortir_du_stock() pour qu'elle retire chaque sortie du stock, puis renvoie le stock.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Le stock est un dictionnaire : le code de la bière pour clé, le nombre de fûts pour valeur, par exemple {\"B01\": 12}. Chaque sortie est un tuple : le code de la bière, puis le nombre de fûts sortis. Complétez sortir_du_stock() : elle retire chaque sortie du stock, puis renvoie le stock.",
+ "reussiSi": "les 2 cas de test renvoient le bon stock.",
  "fonction": {
   "nom": "sortir_du_stock",
   "parametres": [
@@ -90,7 +90,7 @@
    "groupe": "bonus"
   },
   {
-   "libelle": "Contrôle surprise : une bière absente du stock (B07) est ignorée, sans erreur",
+   "libelle": "Une bière absente du stock (B07) est ignorée, sans erreur",
    "args": [
     {
      "B01": 12,
@@ -150,15 +150,22 @@
   "ajouter_set"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent",
+  "description2": "Avec une boucle for qui met à jour le dictionnaire",
   "description3": "Sans sortie, le stock ne change pas",
-  "max": 4
+  "notion": {
+   "exige": [
+    "for",
+    "ecrire_cle"
+   ],
+   "texte": "Avec une boucle for qui met à jour le dictionnaire"
+  }
  },
  "indices": [
   "stock[code] -= nb retire nb fûts de la bière dont le code est la clé.",
-  "Pour le contrôle surprise : le mot in teste si une clé existe dans un dictionnaire, avant d'y toucher."
+  "Le mot in teste si une clé existe dans un dictionnaire, avant d'y toucher."
  ],
- "depart": "def sortir_du_stock(stock, sorties):\n    \"\"\"Retire les sorties du stock. Renvoie le stock mis à jour.\"\"\"\n    for code, nb in sorties:\n        # À vous de jouer : retirez nb fûts de la bière code\n        pass\n    return stock\n"
+ "depart": "def sortir_du_stock(stock, sorties):\n    \"\"\"Retire les sorties du stock. Renvoie le stock mis à jour.\"\"\"\n    for code, nb in sorties:\n        # À vous de jouer : retirez nb fûts de la bière code\n        pass\n    return stock\n",
+ "construire": "Un « Distributeur (for) » envoie les sorties une par une (le code, puis le nombre). Dans la boucle, un « Trieur (if) » vérifie que le code est dans les casiers du stock ; sur sa voie, un « Casiers : écrire » retire les fûts. Le « Retour (return) » renvoie le stock.",
+ "exemple": "sortir_du_stock({\"B01\": 12, \"B03\": 8}, [(\"B01\", 4)])  →  {\"B01\": 8, \"B03\": 8}"
 }

@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": false,
  "dureeIndicativeMin": 4,
- "titre": "Une tranche prend les trois premières commandes",
+ "titre": "Le premier camion prend les trois premières commandes",
  "notion": "listes, tranches",
- "enonce": "Les commandes du jour arrivent dans une liste, dans l'ordre. Complétez premieres_commandes() pour qu'elle renvoie les trois premières.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Les commandes du jour arrivent dans une liste, dans l'ordre où le standard les a notées. Le premier camion part avec les trois premières. Complétez premieres_commandes() : elle reçoit la file des commandes et renvoie la liste des trois premières, dans l'ordre. S'il y en a moins de trois, elle les renvoie toutes.",
+ "reussiSi": "les 2 cas de test renvoient les bonnes commandes.",
  "fonction": {
   "nom": "premieres_commandes",
   "parametres": [
@@ -81,15 +81,21 @@
   "decomposer"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 1 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent : cinq commandes, puis deux",
+  "description2": "Avec une tranche",
   "description3": "Une file vide donne une liste vide",
-  "max": 1
+  "notion": {
+   "exige": [
+    "tranche"
+   ],
+   "texte": "Avec une tranche"
+  }
  },
  "indices": [
   "Le premier élément d'une liste est à l'indice 0.",
   "Une tranche file[debut:fin] s'arrête juste avant fin : file[0:3] donne les indices 0, 1 et 2."
  ],
- "depart": "def premieres_commandes(file):\n    \"\"\"Renvoie les trois premières commandes de la file.\"\"\"\n    # À vous de jouer\n    return []\n"
+ "depart": "def premieres_commandes(file):\n    \"\"\"Renvoie les trois premières commandes de la file.\"\"\"\n    # À vous de jouer\n    return []\n",
+ "construire": "Dans le bâtiment premieres_commandes, un « Scanner : une tranche » copie les premières cases du rayonnage file. Le « Retour (return) » renvoie cette tranche.",
+ "exemple": "premieres_commandes([\"Café du Pont\", \"Cave aux Bulles\", \"Marie Dumont\", \"Lucas Bertrand\"])\n  →  [\"Café du Pont\", \"Cave aux Bulles\", \"Marie Dumont\"]"
 }

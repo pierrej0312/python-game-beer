@@ -23,10 +23,12 @@ d = textwrap.dedent
 SERIES = {
     1: {"titre": "Les variables et les calculs", "outil": "Révision de jeudi : des nombres, des opérateurs, une conversion."},
     2: {"titre": "Le texte", "outil": "Révision de jeudi : les méthodes de texte et les f-strings."},
-    3: {"titre": "Les conditions", "outil": "Nouveau : l'atelier. Construisez la fonction dans le hall ou écrivez-la en Python ; le chariot suit le chemin que vos conditions choisissent."},
-    4: {"titre": "Les listes et les tuples", "outil": "Nouveau : les rayonnages et les caisses plombées. La file des commandes arrive dans une liste."},
-    5: {"titre": "Les boucles", "outil": "Nouveau : le carrousel (for) et la boucle tant que (while). Le chariot refait le tour à chaque élément."},
-    6: {"titre": "Les dictionnaires et les sets", "outil": "Nouveau : l'armoire à tiroirs et le bac de tri. Le stock de la brasserie tient dans un dictionnaire."},
+    3: {"titre": "Les conditions", "outil": "Nouveau : l'usine. Chaque ligne de code est une machine ; les trieurs envoient la bouteille sur la voie de la condition vraie."},
+    4: {"titre": "Les listes et les tuples", "outil": "Les listes sont des rayonnages à cases numérotées, les tuples des vitrines cadenassées."},
+    5: {"titre": "Les boucles", "outil": "Le distributeur (for) envoie les éléments un par un ; la cuve à boucle (while) refait un tour tant que la condition est vraie."},
+    6: {"titre": "Les dictionnaires et les sets", "outil": "Les dictionnaires sont des armoires à casiers étiquetés, les sets des cuves à capsules sans doublon."},
+    7: {"titre": "Les fonctions", "outil": "Une fonction est un module : on l'appelle par un tube, on entre dedans pour voir sa ligne et ses variables."},
+    8: {"titre": "Les fichiers et les erreurs", "outil": "Le fichier arrive par la livraison ; un bloc try met une commande illisible de côté au lieu d'arrêter l'usine."},
 }
 
 M = []
@@ -840,7 +842,7 @@ mission(
 
 # Séries 3 à 6 : jouées dans l'atelier de construction (atelier.html), à partir des textes, départs et solutions ci-dessus.
 # faire_atelier.py les convertit (cas de test, palette) ; ce script n'écrit plus leurs fichiers du jeu 1.
-SERIES_ATELIER = {3, 4, 5, 6}
+SERIES_ATELIER = {3, 4, 5, 6, 7, 8}
 
 
 def ecrire_index():

@@ -7,8 +7,8 @@ import { creerVueTexte, decrire } from "./commun/sans3d.js";
 import * as sons from "./commun/sons.js";
 import { envoyer } from "./commun/resultat.js";
 
-// Les missions marquées « atelier » dans l'index (séries 3 à 6) se jouent dans atelier.html : hall ou Python au choix.
-const lienAtelier = (id) => "atelier.html" + location.search + "#mission=" + id;
+// Les missions marquées « atelier » dans l'index (séries 3 à 8) se jouent dans l'usine (usine.html) : en 3D, ou en code seul (réglage « sans3d »).
+const lienAtelier = (id) => "usine.html" + location.search + "#mission=" + id;
 
 // ----- Réglages (modifiables par le formateur) -----
 const ECHECS_AVANT_INDICE = [2, 4];        // exécutions en échec avant l'indice 1, puis l'indice 2

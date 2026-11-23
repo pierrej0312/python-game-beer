@@ -7,8 +7,8 @@
  "dureeIndicativeMin": 8,
  "titre": "Une liste garde les commandes dans l'ordre",
  "notion": "Les listes : indices, tranches, append, remove",
- "enonce": "Le standard a noté les commandes du jour, dans l'ordre : Café du Pont, Cave aux Bulles, Marie Dumont, Taverne Saint-Jean. Rangez-les dans un rayonnage nommé commandes. Lucas Bertrand commande à son tour ; Marie Dumont annule. Le premier camion emporte les deux premières commandes : rangez-les dans camion, puis affichez camion et le nombre de commandes au tableau de bord.",
- "reussiSi": "commandes contient les 4 commandes à préparer, camion les deux premières, et le tableau de bord affiche camion puis 4.",
+ "enonce": "Le standard a noté quatre commandes, dans cet ordre : Café du Pont, Cave aux Bulles, Marie Dumont, Taverne Saint-Jean. Rangez-les dans une liste nommée commandes. Ensuite, Lucas Bertrand commande à son tour et Marie Dumont annule. Le premier camion emporte les deux premières commandes : mettez-les dans une liste nommée camion. Pour finir, affichez camion, puis le nombre de commandes.",
+ "reussiSi": "commandes contient les 4 commandes à préparer, camion les deux premières, et l'affichage montre camion puis 4.",
  "palette": [
   "creer_liste",
   "creer_tuple",
@@ -26,15 +26,23 @@
   "afficher"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "commandes, camion et le tableau de bord sont justes",
-  "description2": "Programme court : 7 postes au plus",
-  "description3": "Le tableau de bord affiche aussi les commandes par ordre alphabétique, sans changer l'ordre de commandes",
-  "max": 7
+  "description1": "commandes, camion et l'affichage sont justes",
+  "description2": "Avec append, remove et une tranche",
+  "description3": "Affichez aussi les commandes par ordre alphabétique, sans changer l'ordre de commandes",
+  "notion": {
+   "exige": [
+    "methode:append",
+    "methode:remove",
+    "tranche"
+   ],
+   "texte": "Avec append, remove et une tranche"
+  }
  },
  "indices": [
   "Une tranche s'arrête juste avant la case de fin : [0:2] prend les cases 0 et 1.",
-  "Pour trier sans toucher au rayonnage, sorted() en fait une copie triée ; .sort() range le rayonnage lui-même et ne renvoie rien (None)."
+  "Pour trier sans toucher à la liste, sorted() en fait une copie triée ; .sort() trie la liste elle-même et renvoie None."
  ],
- "depart": ""
+ "depart": "",
+ "construire": "Un « Rayonnage » pour commandes, un « Chargeur » pour la nouvelle commande, un « Extracteur » pour l'annulation, un « Scanner : une tranche » pour camion, puis deux « Imprimante (print) ».",
+ "exemple": "Affichage attendu : ['Café du Pont', 'Cave aux Bulles'], puis 4"
 }

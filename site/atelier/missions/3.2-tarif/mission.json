@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": false,
  "dureeIndicativeMin": 5,
- "titre": "La remise dépend du client",
+ "titre": "Les cafés ont 10 % de remise sur les fûts",
  "notion": "if, calcul",
- "enonce": "Un café a 10 % de remise sur les fûts. Les autres clients paient le plein tarif. Complétez prix_futs() pour qu'elle renvoie le prix de la commande.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Le prix d'une commande de fûts, c'est le nombre de fûts multiplié par le prix d'un fût. Les cafés ont 10 % de remise ; les autres clients paient le plein tarif. La fonction calcule déjà le plein tarif dans total : ajoutez la remise des cafés.",
+ "reussiSi": "les 2 cas de test renvoient le bon prix.",
  "fonction": {
   "nom": "prix_futs",
   "parametres": [
@@ -63,15 +63,21 @@
   "renvoyer"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent : un café, un particulier",
+  "description2": "Avec un if",
   "description3": "Un magasin paie le plein tarif",
-  "max": 4
+  "notion": {
+   "exige": [
+    "if"
+   ],
+   "texte": "Avec un if"
+  }
  },
  "indices": [
   "Retirer 10 %, c'est garder 90 % : multipliez par 0.90.",
   "Le test porte sur le type de client : if type_client == \"café\":"
  ],
- "depart": "def prix_futs(type_client, nb_futs, prix_fut):\n    \"\"\"Renvoie le prix d'une commande de fûts, remise comprise.\"\"\"\n    total = nb_futs * prix_fut\n    # À vous de jouer : 10 % de remise pour un café\n    return total\n"
+ "depart": "def prix_futs(type_client, nb_futs, prix_fut):\n    \"\"\"Renvoie le prix d'une commande de fûts, remise comprise.\"\"\"\n    total = nb_futs * prix_fut\n    # À vous de jouer : 10 % de remise pour un café\n    return total\n",
+ "construire": "La « Calculatrice » de départ calcule total. Posez après elle un « Trieur (if) » pour les cafés : sur sa voie, une « Calculatrice » applique la remise à total. Le « Retour (return) » reste au bout de la ligne.",
+ "exemple": "prix_futs(\"café\", 4, 62.0)  →  223.2"
 }

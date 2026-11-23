@@ -1,0 +1,69 @@
+/* Le sumo des robots (atelier de stratégie, tournoi, labo des neurones). Couleurs et boutons : jeux.css. */
+.sumo, .tournoi, .labo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(400px, 38%); height: 100%; overflow: hidden; }
+.cote-arene { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: var(--scene); min-width: 0; min-height: 0; color: #eef0f5; }
+.barre-haut { display: flex; align-items: center; gap: 10px; padding: 10px 12px; flex-wrap: wrap; }
+.barre-haut .espace, .commandes .espace { flex: 1; }
+.titre-arene { font-family: var(--police-titre); font-weight: 700; color: #f5b82e; letter-spacing: 0.04em; }
+.choix-affichage, .commandes select { min-height: 38px; padding: 4px 8px; border-radius: 10px; border: 1px solid #4a4e5c; background: #2a2c35; color: #eef0f5; font-size: 14px; }
+.choix-adversaire { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: #cfd3dc; }
+.vue-arene { position: relative; min-height: 0; overflow: hidden; }
+.vue-arene canvas { display: block; width: 100%; height: 100%; }
+.vue-arene.sans-3d { display: grid; place-items: center; color: #cfd3dc; }
+.arene-hud { position: absolute; inset: 0; pointer-events: none; }
+.arene-tour { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); padding: 6px 14px; border-radius: 999px; background: rgba(19,20,25,0.82); font-weight: 700; }
+.arene-carte { position: absolute; top: 10px; width: min(300px, 32%); padding: 8px 12px; border-radius: 10px; background: rgba(19,20,25,0.82); }
+.arene-carte.a { left: 12px; border-left: 5px solid #d9822b; }
+.arene-carte.b { right: 12px; border-right: 5px solid #3f7fb8; text-align: right; }
+.arene-carte .nom { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.arene-carte .jauge { height: 8px; margin: 6px 0; border-radius: 4px; background: #3a3d48; overflow: hidden; }
+.arene-carte .jauge span { display: block; height: 100%; background: #35d0ff; transition: width 0.3s; }
+.arene-carte.b .jauge span { margin-left: auto; }
+.arene-carte .action { font-size: 14px; color: #f5d9a8; min-height: 18px; }
+.arene-carte .action.refus { color: #ff8a80; }
+.arene-fin { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); padding: 10px 20px; border-radius: 12px; background: rgba(23,130,76,0.92); font-size: 18px; font-weight: 700; }
+.ligne-generation { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 15px; }
+.ligne-generation select { min-height: 34px; border-radius: 8px; border: 2px solid var(--bord); padding: 2px 8px; }
+.lien-labo { font-weight: 600; color: var(--vert-fonce); }
+.cote-code .zone-tests .panneau { overflow: auto; padding: 8px 12px; }
+table.tours { border-collapse: collapse; width: 100%; font-size: 14px; }
+table.tours th, table.tours td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--bord); }
+table.tours th { color: var(--violet); position: sticky; top: 0; background: var(--blanc); }
+table.tours tr { cursor: pointer; }
+table.tours tr:hover td { background: var(--violet-clair); }
+table.tours td.code { font-family: var(--police-code); white-space: pre; }
+table.tours td.refus, table.tours td.perdu { color: #b3261e; font-weight: 600; }
+table.tours td.gagne { color: var(--vert-fonce); font-weight: 600; }
+.panneau .erreur { color: #a3262d; background: var(--rouge-clair); padding: 8px 10px; border-radius: 8px; }
+.panneau .vide { color: var(--gris); }
+.panneau .fin-combat { font-weight: 700; color: var(--violet); }
+pre.regles { white-space: pre-wrap; font-family: var(--police-code); font-size: 13px; margin: 0; }
+.envoi .rangee { display: flex; gap: 10px; flex-wrap: wrap; }
+.envoi .champ input { width: 100%; padding: 8px 10px; border: 2px solid var(--bord); border-radius: 8px; }
+.envoi .statut { min-height: 22px; }
+.cote-tournoi { grid-template-rows: auto minmax(0, 1fr) minmax(0, 1.4fr); }
+.imports { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+.imports .bouton { min-height: 34px; padding: 4px 10px; font-size: 14px; }
+.imports .case { font-size: 14px; display: inline-flex; gap: 6px; align-items: center; }
+.coller { display: grid; grid-template-columns: 1fr auto; gap: 6px; margin-top: 8px; }
+.coller textarea { grid-column: 1 / -1; font-family: var(--police-code); font-size: 13px; padding: 6px; border: 2px solid var(--bord); border-radius: 8px; }
+.coller input, .coller select { padding: 6px 8px; border: 2px solid var(--bord); border-radius: 8px; }
+.coller .bouton { grid-column: 1 / -1; }
+.liste-robots { overflow: auto; padding: 6px 12px; background: var(--blanc); border-bottom: 1px solid var(--bord); }
+.liste-robots .robot { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 3px 0; border-bottom: 1px dashed var(--bord); font-size: 14px; }
+.liste-robots .robot select { padding: 2px 6px; border-radius: 6px; border: 1px solid var(--bord); }
+.liste-robots .robot button { border: 0; background: transparent; color: var(--rouge); cursor: pointer; font-weight: 700; }
+.liste-robots .robot.ecarte { color: #a3262d; }
+.onglets .espace { flex: 1; }
+.onglets .bouton { min-height: 34px; padding: 4px 12px; margin-bottom: 4px; }
+table.matrice td, table.matrice th { text-align: center; }
+.vue-reseau { position: relative; min-height: 0; }
+.vue-reseau canvas { display: block; width: 100%; height: 100%; cursor: pointer; }
+.legende-reseau { position: absolute; left: 12px; top: 8px; font-size: 13px; color: #b9bdc8; }
+.cote-labo { grid-template-rows: auto minmax(160px, 0.8fr) minmax(0, 1fr); }
+.suivi { display: grid; grid-template-columns: 1fr 200px; gap: 8px; padding: 8px 12px; background: var(--blanc); border-bottom: 1px solid var(--bord); min-height: 0; }
+.suivi canvas { width: 100%; height: 100%; min-height: 0; }
+.chiffres { font-size: 14px; line-height: 1.5; }
+.chiffres strong { color: var(--violet); }
+textarea.cerveau { width: 100%; height: 120px; font-family: var(--police-code); font-size: 12px; border: 2px solid var(--bord); border-radius: 8px; padding: 6px; }
+canvas.prevision { display: block; width: 100%; height: 210px; }
+.texte-prevision p { margin: 4px 0; font-size: 14px; }

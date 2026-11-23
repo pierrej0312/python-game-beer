@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": true,
  "dureeIndicativeMin": 6,
- "titre": "L'ordre des tests décide du résultat",
+ "titre": "L'ordre des tests décide de l'état du stock",
  "notion": "elif, ordre des tests",
- "enonce": "Complétez etat_stock() : pour 0 casier, elle renvoie \"Rupture de stock\" ; sous 10 casiers, \"Stock bas\" ; sinon, \"Stock suffisant\".",
- "reussiSi": "les 3 cas de test renvoient le bon résultat.",
+ "enonce": "Le préparateur veut savoir d'un coup d'œil où en est le stock d'une bière. À 0 casier, c'est une rupture de stock ; sous 10 casiers, le stock est bas ; à partir de 10 casiers, il est suffisant. Complétez etat_stock() : elle reçoit le nombre de casiers en stock et renvoie \"Rupture de stock\", \"Stock bas\" ou \"Stock suffisant\".",
+ "reussiSi": "les 3 cas de test renvoient le bon état.",
  "fonction": {
   "nom": "etat_stock",
   "parametres": [
@@ -50,7 +50,7 @@
    "groupe": "bonus"
   },
   {
-   "libelle": "Contrôle surprise : 1 casier, c'est un stock bas, pas une rupture",
+   "libelle": "1 casier : c'est un stock bas, pas une rupture",
    "args": [
     1
    ],
@@ -68,15 +68,23 @@
   "renvoyer"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 5 postes (instructions) au plus",
+  "description1": "Les 3 cas de test passent : 40, 9 et 0 casiers",
+  "description2": "Avec if, elif et else",
   "description3": "10 casiers tout juste donnent un stock suffisant",
-  "max": 5
+  "notion": {
+   "exige": [
+    "if",
+    "elif",
+    "else"
+   ],
+   "texte": "Avec if, elif et else"
+  }
  },
  "indices": [
-  "Testez le cas le plus exigeant en premier.",
-  "0 est aussi plus petit que 10 : le test de la rupture doit passer avant celui du stock bas."
+  "0 est aussi plus petit que 10 : quel test doit passer en premier ?",
+  "Testez la rupture (casiers == 0) avant le stock bas (casiers < 10)."
  ],
- "depart": "def etat_stock(casiers):\n    \"\"\"Renvoie l'état du stock d'une bière.\"\"\"\n    etat = \"Stock suffisant\"\n    # À vous de jouer\n    return etat\n"
+ "depart": "def etat_stock(casiers):\n    \"\"\"Renvoie l'état du stock d'une bière.\"\"\"\n    etat = \"Stock suffisant\"\n    # À vous de jouer\n    return etat\n",
+ "construire": "Posez un « Trieur (if) » à trois voies : if, une voie elif, puis la voie sinon. Sur chaque voie, une « Étiqueteuse » range l'état dans etat. Le « Retour (return) » renvoie etat.",
+ "exemple": "etat_stock(9)  →  \"Stock bas\""
 }

@@ -1,0 +1,128 @@
+{
+ "id": "7.4-file-intacte",
+ "serie": 7,
+ "numero": 4,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 7,
+ "titre": "La file du préparateur doit rester intacte",
+ "notion": "paramètres, une liste passée à une fonction",
+ "enonce": "Le chariot part avec les premières commandes de la file, autant qu'il a de place. Complétez prochaine_tournee() : elle reçoit la file des commandes et le nombre de places du chariot, et renvoie la liste des commandes de la tournée. La file appartient au préparateur : il s'en sert encore après l'appel.",
+ "exemple": "prochaine_tournee([\"Café du Pont\", \"Cave aux Bulles\", \"Marie Dumont\"], 2)\n  →  [\"Café du Pont\", \"Cave aux Bulles\"]",
+ "reussiSi": "les 2 cas de test renvoient la bonne tournée.",
+ "fonction": {
+  "nom": "prochaine_tournee",
+  "parametres": [
+   "file",
+   "places"
+  ],
+  "types": {
+   "file": "list",
+   "places": "int"
+  },
+  "doc": "Renvoie les commandes de la prochaine tournée : les premières de la file, autant que le chariot a de places."
+ },
+ "cas": [
+  {
+   "libelle": "Trois commandes, deux places : les deux premières partent",
+   "args": [
+    [
+     "Café du Pont",
+     "Cave aux Bulles",
+     "Marie Dumont"
+    ],
+    2
+   ],
+   "attendu": [
+    "Café du Pont",
+    "Cave aux Bulles"
+   ]
+  },
+  {
+   "libelle": "Une commande, quatre places : elle part seule",
+   "args": [
+    [
+     "Taverne Saint-Jean"
+    ],
+    4
+   ],
+   "attendu": [
+    "Taverne Saint-Jean"
+   ]
+  },
+  {
+   "libelle": "File vide : la tournée est vide",
+   "args": [
+    [],
+    4
+   ],
+   "attendu": [],
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Après l'appel, la file du préparateur est intacte",
+   "args": [
+    [
+     "Café du Pont",
+     "Cave aux Bulles",
+     "Marie Dumont"
+    ],
+    2
+   ],
+   "attendu": [
+    "Café du Pont",
+    "Cave aux Bulles"
+   ],
+   "groupe": "cache",
+   "inchange": true
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel"
+ ],
+ "etoiles": {
+  "description1": "Les 2 cas de test passent",
+  "description2": "Avec une tranche, qui ne touche pas à la file",
+  "description3": "Une file vide donne une tournée vide",
+  "notion": {
+   "exige": [
+    "tranche"
+   ],
+   "texte": "Avec une tranche, qui ne touche pas à la file"
+  }
+ },
+ "indices": [
+  "file est la liste du préparateur, pas une copie : ce que la fonction lui retire, il ne l'a plus.",
+  "Une tranche, file[:places], crée une nouvelle liste sans toucher à file."
+ ],
+ "depart": "def prochaine_tournee(file, places):\n    \"\"\"Renvoie les commandes de la prochaine tournée : les premières de la file, autant que le chariot a de places.\"\"\"\n    pass\n",
+ "construire": "Dans le bâtiment prochaine_tournee, un « Scanner : une tranche » copie les premières cases du rayonnage file, autant que de places. Le « Retour (return) » renvoie la tranche. Ni « Extracteur » ni « Trieur de rayon » : la file doit ressortir intacte."
+}

@@ -1,6 +1,6 @@
 # L'usine de la Fonderie : refonte de l'atelier (proposition du 19/11/2026)
 
-> Demande du formateur (19/11) : un jeu aussi agréable que Satisfactory, en vue isométrique (pas à la première personne), qui apprend le Python des séries 3 à 8 (série 3 ajoutée le 20/11), avec la 3D et le code synchronisés dans les deux sens, dans l'univers de la brasserie. Constat : avec l'atelier actuel, construire en 3D est plus pénible que taper le Python.
+> Demande du formateur (19/11) : un jeu aussi agréable que Satisfactory, en vue isométrique (pas à la première personne), qui apprend le Python des séries 4 à 8, avec la 3D et le code synchronisés dans les deux sens, dans l'univers de la brasserie. Constat : avec l'atelier actuel, construire en 3D est plus pénible que taper le Python.
 > Décisions du 19/11 : la refonte avance en parallèle du J3, un prototype est soumis au formateur avant d'aller plus loin ; chaque stagiaire construit à la souris ou tape le code, au choix, les deux restant synchronisés.
 
 ## 1. Pourquoi l'atelier actuel frustre
@@ -53,8 +53,13 @@ Missions (énoncés, cas de test, étoiles), analyse Python → postes (`site/py
 
 - **Deux missions** : 4.4 « la file des commandes » (liste, programme) et une mission de la série 7 (une fonction devient un plan, avec son quai de sortie).
 - **À juger** : est-ce plus agréable que l'atelier actuel ? Construire à la souris est-il aussi rapide que taper ? Les analogies (répartiteur, boucle de convoyeur, plan) aident-elles à comprendre le Python ?
-- **Hors prototype** : les séries 3, 5, 6 et 8, les sons, les décors, le mode sans 3D.
-- **Calendrier (20/11)** : la refonte ne sert pas la session en cours. Les séries 3 à 6 restent dans l'atelier corrigé ; les séries 7 et 8 sont écrites pour le J3 (missions, cas de test, version VS Code) et tournent dans le jeu retenu le lundi 23/11. Après validation du prototype, les séries 3 à 8 passent dans l'usine, pour le self study et les groupes suivants.
+- **Hors prototype** : les séries 5, 6 et 8, les sons, les décors, le mode sans 3D.
+
+## 5 bis. Validation et généralisation (23/11/2026)
+
+- Le formateur valide l'usine sur la mission 4.4 (« la file des commandes »). Décisions : retirer l'ancien atelier ; amener toutes les missions des séries 3 à 8 au niveau de la 4.4 ; des consignes qui parlent de construire ; corriger ce que l'audit trouve.
+- Audit automatique (`qa/audit_usine.py`) : chaque mission construite avec sa solution, mise en marche, captures dans `qa/captures-usine-audit/`.
+- Plan de construction : champ `construire` des missions (`outils-construction/consignes_atelier.py`, `CONSTRUIRE`), affiché replié sous la consigne, masqué en mode code seul. Il dit quelles machines poser, pas quoi régler.
 
 ## 6. Points ouverts
 

@@ -5,10 +5,10 @@
  "bonus": true,
  "surprise": false,
  "dureeIndicativeMin": 6,
- "titre": "L'ordre des elif décide de la remise",
+ "titre": "La remise d'un magasin dépend du nombre de casiers",
  "notion": "if, elif, else dans une fonction",
- "enonce": "Les magasins ont une remise sur les casiers : 2 % à partir de 5 casiers, 5 % à partir de 10 casiers, rien en dessous. Complétez la fonction : elle reçoit le nombre de casiers commandés et renvoie le taux de remise en pour cent (0, 2 ou 5).",
- "reussiSi": "les trois cas de test renvoient la bonne remise.",
+ "enonce": "Les magasins (Épicerie Vrac & Fils, Cave aux Bulles) ont une remise sur les casiers : 2 % à partir de 5 casiers, 5 % à partir de 10 casiers, rien en dessous de 5. Complétez remise_magasin() : elle reçoit le nombre de casiers commandés et renvoie le taux de remise en pour cent : 0, 2 ou 5.",
+ "reussiSi": "3, 7 et 12 casiers donnent 0, 2 et 5.",
  "fonction": {
   "nom": "remise_magasin",
   "parametres": [
@@ -16,54 +16,62 @@
   ],
   "types": {
    "nb_casiers": "int"
-  }
+  },
+  "doc": "Renvoie le taux de remise d'un magasin, en pour cent : 0, 2 ou 5."
  },
  "cas": [
   {
    "args": [
     3
    ],
-   "attendu": 0
+   "attendu": 0,
+   "libelle": "3 casiers : pas de remise"
   },
   {
    "args": [
     7
    ],
-   "attendu": 2
+   "attendu": 2,
+   "libelle": "7 casiers : 2 % de remise"
   },
   {
    "args": [
     12
    ],
-   "attendu": 5
+   "attendu": 5,
+   "libelle": "12 casiers : 5 % de remise"
   },
   {
    "args": [
     5
    ],
    "attendu": 2,
-   "groupe": "bonus"
+   "groupe": "bonus",
+   "libelle": "5 casiers tout juste : 2 %"
   },
   {
    "args": [
     10
    ],
    "attendu": 5,
-   "groupe": "bonus"
+   "groupe": "bonus",
+   "libelle": "10 casiers tout juste : 5 %"
   },
   {
    "args": [
     4
    ],
    "attendu": 0,
-   "groupe": "bonus"
+   "groupe": "bonus",
+   "libelle": "4 casiers : pas encore de remise"
   },
   {
    "args": [
     9
    ],
    "attendu": 2,
-   "groupe": "bonus"
+   "groupe": "bonus",
+   "libelle": "9 casiers : toujours 2 %"
   }
  ],
  "palette": [
@@ -76,15 +84,23 @@
   "renvoyer"
  ],
  "etoiles": {
-  "critere": "postes",
   "description1": "Les cas 3, 7 et 12 casiers renvoient la bonne remise",
-  "description2": "Fonction courte : 4 postes (instructions) au plus",
-  "description3": "Les cas aux limites (4, 5, 9 et 10 casiers) aussi",
-  "max": 4
+  "description2": "Avec if, elif et else",
+  "description3": "Les limites aussi : 4, 5, 9 et 10 casiers",
+  "notion": {
+   "exige": [
+    "if",
+    "elif",
+    "else"
+   ],
+   "texte": "Avec if, elif et else"
+  }
  },
  "indices": [
-  "Python teste les conditions dans l'ordre et s'arrête à la première vraie : 12 casiers, c'est aussi « au moins 5 ». Quelle condition faut-il tester d'abord ?",
+  "12 casiers, c'est aussi « au moins 5 ». Quelle condition faut-il tester d'abord ?",
   "« À partir de 10 » : 10 compte. Comparez avec >= plutôt qu'avec >."
  ],
- "depart": "def remise_magasin(nb_casiers):\n    pass\n"
+ "depart": "def remise_magasin(nb_casiers):\n    \"\"\"Renvoie le taux de remise d'un magasin, en pour cent : 0, 2 ou 5.\"\"\"\n    pass\n",
+ "construire": "Posez un « Trieur (if) » à trois voies : if, une voie elif, puis la voie sinon. L'ordre des voies compte : la bouteille prend la première voie dont la condition est vraie. Sur chaque voie, un « Retour (return) » renvoie le taux.",
+ "exemple": "remise_magasin(7)  →  2"
 }

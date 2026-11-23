@@ -1,0 +1,19 @@
+{
+ "solution": "with open(\"lot_vendredi.csv\", encoding=\"utf-8\") as f:\n    lignes = f.read().splitlines()\nnb_commandes = len(lignes) - 1\nprint(nb_commandes)\nnb_futs = 0\nfor ligne in lignes:\n    if \";fut;\" in ligne:\n        nb_futs += 1\n",
+ "variantes": [
+  {
+   "nom": "l'en-tête compté",
+   "remplacer": [
+    "nb_commandes = len(lignes) - 1",
+    "nb_commandes = len(lignes)"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

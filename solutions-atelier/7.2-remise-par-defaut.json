@@ -1,0 +1,29 @@
+{
+ "solution": "def prix_casiers(nb_casiers, prix_casier, remise=0):\n    \"\"\"Renvoie le prix de nb_casiers casiers, remise déduite (0.05 pour 5 %), consigne non comprise.\"\"\"\n    total = nb_casiers * prix_casier\n    return total - total * remise\n",
+ "variantes": [
+  {
+   "nom": "sans valeur par défaut : l'appel à deux valeurs plante",
+   "remplacer": [
+    "remise=0)",
+    "remise)"
+   ],
+   "attendu": {
+    "erreurCas": "TypeError"
+   }
+  },
+  {
+   "nom": "total * remise : le client paie la remise",
+   "remplacer": [
+    "total - total * remise",
+    "total * remise"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

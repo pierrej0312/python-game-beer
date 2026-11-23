@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "a_lire": "Les robots du championnat. animations : 'integrees' (celles du fichier du robot) ou le nom d'un jeu partagé (animations). Une animation : son nom dans le fichier, ou { nom, vitesse, boucle, tenir, impact (seconde où le coup touche), debut, fin }. Fichiers produits par outils-construction/faire_robots.py.",
+  "animations": {
+    "mixamo": {
+      "fichier": "robots/animations/mixamo.glb",
+      "credit": "Animations Mixamo (Adobe)",
+      "clips": {
+        "garde": {
+          "nom": "Center Block",
+          "boucle": false,
+          "tenir": true
+        },
+        "defaite": {
+          "nom": "Defeat"
+        },
+        "sonne": {
+          "nom": "Dizzy Idle"
+        },
+        "esquive": {
+          "nom": "Dodging"
+        },
+        "entree": {
+          "nom": "Entry"
+        },
+        "projete": {
+          "nom": "Getting Thrown"
+        },
+        "projection": {
+          "nom": "Grab And Slam",
+          "impact": 0.93
+        },
+        "touche": {
+          "nom": "Head Hit"
+        },
+        "crochet": {
+          "nom": "Hook",
+          "impact": 0.5
+        },
+        "special": {
+          "nom": "Hurricane Kick",
+          "impact": 1.37
+        },
+        "base": {
+          "nom": "Idle"
+        },
+        "ko": {
+          "nom": "Knocked Out"
+        },
+        "direct": {
+          "nom": "Lead Jab",
+          "impact": 0.4
+        },
+        "coup_bas": {
+          "nom": "Mma Kick",
+          "impact": 0.6
+        },
+        "touche_fort": {
+          "nom": "Receiving A Big Uppercut"
+        },
+        "bloque": {
+          "nom": "Right Block"
+        },
+        "victoire": {
+          "nom": "Victory"
+        },
+        "reculer": {
+          "nom": "Walking Backwards"
+        },
+        "avancer": {
+          "nom": "Walking"
+        }
+      }
+    }
+  },
+  "robots": [
+    {
+      "id": "retro",
+      "nom": "Rétro",
+      "fichier": "robots/modeles/robot-retro.glb",
+      "credit": "RobotExpressive, Tomás Laulhé (Quaternius), CC0 1.0 ; version glTF de Don McCurdy (exemples three.js)",
+      "provisoire": "Robot d'essai : ses 14 animations ne sont pas des animations de combat (un seul coup de poing).",
+      "hauteur": 2.2,
+      "orientation": 90,
+      "teinte": [
+        "Main"
+      ],
+      "animations": "integrees",
+      "clips": {
+        "base": "Idle",
+        "garde": {
+          "nom": "Idle",
+          "vitesse": 1.6
+        },
+        "garde_basse": {
+          "nom": "Sitting",
+          "tenir": true
+        },
+        "avancer": "Walking",
+        "reculer": {
+          "nom": "Walking",
+          "vitesse": -1
+        },
+        "direct": {
+          "nom": "Punch",
+          "impact": 0.35
+        },
+        "crochet": {
+          "nom": "Punch",
+          "impact": 0.35
+        },
+        "coup_bas": {
+          "nom": "Punch",
+          "impact": 0.35
+        },
+        "projection": {
+          "nom": "Punch",
+          "impact": 0.35
+        },
+        "special": {
+          "nom": "Jump",
+          "impact": 0.4
+        },
+        "esquive": "Jump",
+        "touche": "No",
+        "bloque": {
+          "nom": "No",
+          "fin": 0.6
+        },
+        "sonne": "No",
+        "ko": "Death",
+        "victoire": "Dance",
+        "entree": "Wave"
+      },
+      "portrait": "robots/portraits/retro.jpg"
+    },
+    {
+      "id": "c3po",
+      "nom": "C-3PO",
+      "fichier": "robots/modeles/c3po.glb",
+      "credit": "Rig Mixamo (Adobe) ; modèle : source à noter",
+      "hauteur": 2.3,
+      "orientation": 90,
+      "teinte": [],
+      "animations": "mixamo",
+      "portrait": "robots/portraits/c3po.jpg"
+    },
+    {
+      "id": "mechagodzilla",
+      "nom": "Mechagodzilla",
+      "fichier": "robots/modeles/mechagodzilla.glb",
+      "credit": "Rig Mixamo (Adobe) ; modèle : source à noter",
+      "hauteur": 2.3,
+      "orientation": 90,
+      "teinte": [],
+      "animations": "mixamo",
+      "portrait": "robots/portraits/mechagodzilla.jpg"
+    },
+    {
+      "id": "optimus",
+      "nom": "Optimus Prime",
+      "fichier": "robots/modeles/optimus.glb",
+      "credit": "Rig Mixamo (Adobe) ; modèle : source à noter",
+      "hauteur": 2.3,
+      "orientation": 90,
+      "teinte": [],
+      "animations": "mixamo",
+      "portrait": "robots/portraits/optimus.jpg"
+    },
+    {
+      "id": "t800",
+      "nom": "T-800",
+      "fichier": "robots/modeles/t800.glb",
+      "credit": "Rig Mixamo (Adobe) ; modèle : source à noter",
+      "hauteur": 2.3,
+      "orientation": 90,
+      "teinte": [],
+      "animations": "mixamo",
+      "portrait": "robots/portraits/t800.jpg"
+    }
+  ],
+  "portrait_simple": "robots/portraits/simple.jpg"
+}

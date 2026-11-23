@@ -1,0 +1,110 @@
+{
+ "id": "7.3-facture",
+ "serie": 7,
+ "numero": 3,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 7,
+ "titre": "Une fonction en appelle une autre",
+ "notion": "appel de fonction, return",
+ "enonce": "La facture d'un client, c'est le prix des boissons plus la consigne des casiers et des fûts. La fonction consigne() est déjà écrite : 3,00 € par casier, 30,00 € par fût. Complétez facture() : elle calcule le prix des boissons et y ajoute la consigne en appelant consigne(), sans recopier son calcul.",
+ "exemple": "facture(10, 28.80, 2, 62.00)  →  502.0",
+ "reussiSi": "les 2 cas de test renvoient le bon montant.",
+ "fonction": {
+  "nom": "facture",
+  "parametres": [
+   "nb_casiers",
+   "prix_casier",
+   "nb_futs",
+   "prix_fut"
+  ],
+  "types": {
+   "nb_casiers": "int",
+   "prix_casier": "float",
+   "nb_futs": "int",
+   "prix_fut": "float"
+  },
+  "doc": "Renvoie le montant de la facture : les boissons, plus la consigne."
+ },
+ "cas": [
+  {
+   "libelle": "Café du Pont : 10 casiers et 2 fûts de La Coulée, 502,00 €",
+   "args": [
+    10,
+    28.8,
+    2,
+    62.0
+   ],
+   "attendu": 502.0
+  },
+  {
+   "libelle": "Marie Dumont : 4 casiers de La Braise, 136,80 €",
+   "args": [
+    4,
+    31.2,
+    0,
+    68.0
+   ],
+   "attendu": 136.8
+  },
+  {
+   "libelle": "Un fût seul de L'Étincelle : 96,00 €",
+   "args": [
+    0,
+    30.0,
+    1,
+    66.0
+   ],
+   "attendu": 96.0,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel"
+ ],
+ "etoiles": {
+  "description1": "Les 2 cas de test passent : consigne comprise",
+  "description2": "En appelant consigne()",
+  "description3": "Un fût seul est facturé avec sa consigne",
+  "notion": {
+   "exige": [
+    "appel:consigne"
+   ],
+   "texte": "En appelant consigne()"
+  }
+ },
+ "indices": [
+  "consigne(nb_casiers, nb_futs) renvoie un nombre : vous pouvez l'additionner au prix des boissons.",
+  "Les boissons : nb_casiers * prix_casier + nb_futs * prix_fut."
+ ],
+ "depart": "def consigne(nb_casiers, nb_futs):\n    \"\"\"Renvoie la consigne : 3,00 € par casier, 30,00 € par fût.\"\"\"\n    return nb_casiers * 3.00 + nb_futs * 30.00\n\n\ndef facture(nb_casiers, prix_casier, nb_futs, prix_fut):\n    \"\"\"Renvoie le montant de la facture : les boissons, plus la consigne.\"\"\"\n    pass\n",
+ "construire": "Le bâtiment consigne est déjà construit. Dans le bâtiment facture, une « Calculatrice » calcule le prix des boissons. Le « Retour (return) » renvoie ce prix plus le résultat de consigne() : appelez le bâtiment consigne, ne recopiez pas son calcul."
+}

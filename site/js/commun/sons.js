@@ -43,3 +43,21 @@ export function jouer(nom) {
     t += duree * 0.8;
   }
 }
+
+// Les coups du championnat des robots : un bruit filtré (l'impact) et un son grave (le poids du coup).
+// force : 0.6 (direct) à 1.6 (spécial) ; metal : un coup bloqué sonne clair, comme sur une plaque.
+export function impact(force = 1, metal = false) {
+  if (!actif || !contexte || contexte.state !== "running") return;
+  const t = contexte.currentTime, duree = 0.12 + 0.12 * force;
+  const tampon = contexte.createBuffer(1, Math.floor(contexte.sampleRate * duree), contexte.sampleRate);
+  const d = tampon.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) ** 2;
+  const bruit = contexte.createBufferSource(); bruit.buffer = tampon;
+  const filtre = contexte.createBiquadFilter(); filtre.type = metal ? "bandpass" : "lowpass"; filtre.frequency.value = metal ? 3200 : 900 + 600 * force;
+  const g = contexte.createGain(); g.gain.setValueAtTime(VOLUME * 2.2 * Math.min(1.4, force), t); g.gain.exponentialRampToValueAtTime(0.0001, t + duree);
+  bruit.connect(filtre).connect(g).connect(contexte.destination); bruit.start(t);
+  const o = contexte.createOscillator(), go = contexte.createGain();
+  o.type = metal ? "triangle" : "sine"; o.frequency.setValueAtTime(metal ? 1400 : 140 / force, t); o.frequency.exponentialRampToValueAtTime(metal ? 900 : 50, t + duree);
+  go.gain.setValueAtTime(VOLUME * 1.8, t); go.gain.exponentialRampToValueAtTime(0.0001, t + duree);
+  o.connect(go).connect(contexte.destination); o.start(t); o.stop(t + duree);
+}

@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": false,
  "dureeIndicativeMin": 4,
- "titre": "Un tuple se décompose en noms",
+ "titre": "Un fût se décrit par son numéro et sa bière",
  "notion": "tuples, décomposition",
- "enonce": "Un fût arrive sous la forme d'un tuple : son numéro, puis sa bière. Complétez description_fut() pour qu'elle renvoie, par exemple, \"Fût 23 : Le Crassier\".",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Chaque fût porte une étiquette : son numéro et le nom de sa bière, rangés dans un tuple, par exemple (23, \"Le Crassier\"). Complétez description_fut() : elle reçoit ce tuple et renvoie le texte de l'étiquette.",
+ "reussiSi": "les 2 cas de test renvoient la bonne description.",
  "fonction": {
   "nom": "description_fut",
   "parametres": [
@@ -45,7 +45,7 @@
    "attendu": "Fût 8 : L'Étincelle"
   },
   {
-   "libelle": "Le tuple reçu n'est pas transformé en autre chose",
+   "libelle": "Le fût (17, \"La Braise\") est décrit sans que le tuple change",
    "args": [
     {
      "__tuple__": [
@@ -81,15 +81,22 @@
   "decomposer"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 2 postes (instructions) au plus",
-  "description3": "Le tuple reçu n'est pas transformé",
-  "max": 2
+  "description1": "Les 2 cas de test passent : le fût 23, puis le fût 8",
+  "description2": "En décomposant le tuple (numero, biere = fut) et avec une f-string",
+  "description3": "Le tuple reçu reste intact",
+  "notion": {
+   "exige": [
+    "decomposition",
+    "fstring"
+   ],
+   "texte": "En décomposant le tuple (numero, biere = fut) et avec une f-string"
+  }
  },
  "indices": [
   "numero, biere = fut range les deux valeurs du tuple dans deux noms.",
-  "Composez ensuite le texte avec une f-string."
+  "Composez ensuite le texte avec une f-string : f\"Fût {numero} : {biere}\"."
  ],
- "depart": "def description_fut(fut):\n    \"\"\"Renvoie la description d'un fût, par exemple \"Fût 23 : Le Crassier\".\"\"\"\n    # À vous de jouer : décomposez le tuple en deux noms.\n    return \"\"\n"
+ "depart": "def description_fut(fut):\n    \"\"\"Renvoie la description d'un fût, par exemple \"Fût 23 : Le Crassier\".\"\"\"\n    # À vous de jouer : décomposez le tuple en deux noms.\n    return \"\"\n",
+ "construire": "Une « Vitrine ouverte » range le numéro et la bière du tuple fut sous deux noms. Le « Retour (return) » renvoie le texte de l'étiquette.",
+ "exemple": "description_fut((23, \"Le Crassier\"))  →  \"Fût 23 : Le Crassier\""
 }

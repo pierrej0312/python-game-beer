@@ -7,8 +7,8 @@
  "dureeIndicativeMin": 4,
  "titre": "Un set retire les doublons",
  "notion": "set, sorted",
- "enonce": "La liste des livraisons du jour contient plusieurs fois les mêmes clients. Complétez clients_livres() pour qu'elle renvoie la liste des clients, sans doublon, triée par ordre alphabétique.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "La liste des livraisons du jour cite un client à chaque passage du camion : certains clients y sont plusieurs fois. Complétez clients_livres() : elle renvoie la liste des clients livrés, chacun une seule fois, par ordre alphabétique.",
+ "reussiSi": "les 2 cas de test renvoient la bonne liste.",
  "fonction": {
   "nom": "clients_livres",
   "parametres": [
@@ -88,15 +88,21 @@
   "ajouter_set"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 1 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent",
+  "description2": "Avec un set",
   "description3": "Sans livraison, la liste est vide",
-  "max": 1
+  "notion": {
+   "exige": [
+    "set"
+   ],
+   "texte": "Avec un set"
+  }
  },
  "indices": [
   "set(livraisons) ne garde qu'un exemplaire de chaque client.",
-  "Un set n'a pas d'ordre : sorted() renvoie une liste triée."
+  "Un set n'a pas d'ordre : sorted() en fait une liste triée."
  ],
- "depart": "def clients_livres(livraisons):\n    \"\"\"Renvoie la liste triée des clients livrés, sans doublon.\"\"\"\n    # À vous de jouer\n    return []\n"
+ "depart": "def clients_livres(livraisons):\n    \"\"\"Renvoie la liste triée des clients livrés, sans doublon.\"\"\"\n    # À vous de jouer\n    return []\n",
+ "construire": "Une « Cuve à capsules » (set) rejette les doublons. Un « Copieur trié » (sorted) en fait une liste par ordre alphabétique. Le « Retour (return) » la renvoie.",
+ "exemple": "clients_livres([\"Café du Pont\", \"Cave aux Bulles\", \"Café du Pont\"])  →  [\"Café du Pont\", \"Cave aux Bulles\"]"
 }

@@ -1,0 +1,33 @@
+{
+ "solution": "def consigne(nb_casiers, nb_futs):\n    \"\"\"Renvoie la consigne : 3,00 € par casier, 30,00 € par fût.\"\"\"\n    return nb_casiers * 3.00 + nb_futs * 30.00\n\n\ndef facture(nb_casiers, prix_casier, nb_futs, prix_fut):\n    \"\"\"Renvoie le montant de la facture : les boissons, plus la consigne.\"\"\"\n    boissons = nb_casiers * prix_casier + nb_futs * prix_fut\n    return boissons + consigne(nb_casiers, nb_futs)\n",
+ "variantes": [
+  {
+   "nom": "sans la consigne",
+   "remplacer": [
+    "return boissons + consigne(nb_casiers, nb_futs)",
+    "return boissons"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "casiers et fûts inversés dans l'appel",
+   "remplacer": [
+    "consigne(nb_casiers, nb_futs)\n",
+    "consigne(nb_futs, nb_casiers)\n"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

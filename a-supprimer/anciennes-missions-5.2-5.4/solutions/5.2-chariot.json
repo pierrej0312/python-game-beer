@@ -1,0 +1,43 @@
+{
+ "solution": "def charger_chariot(commandes):\n    \"\"\"Renvoie le nombre de commandes chargées dans le chariot de 6 casiers, dans l'ordre de la file.\"\"\"\n    chargees = 0\n    place = 6\n    while chargees < len(commandes) and commandes[chargees] <= place:\n        place -= commandes[chargees]\n        chargees += 1\n    return chargees\n",
+ "variantes": [
+  {
+   "nom": "< au lieu de <= : un chariot plein tout juste refuse la dernière commande",
+   "remplacer": [
+    "commandes[chargees] <= place",
+    "commandes[chargees] < place"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "sans le test de fin de file : IndexError",
+   "remplacer": [
+    "chargees < len(commandes) and ",
+    ""
+   ],
+   "attendu": {
+    "erreurCas": "IndexError"
+   }
+  },
+  {
+   "nom": "place ne diminue pas : tout est chargé",
+   "remplacer": [
+    "        place -= commandes[chargees]\n",
+    ""
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

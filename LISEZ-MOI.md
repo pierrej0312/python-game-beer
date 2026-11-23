@@ -1,6 +1,6 @@
 # Les jeux Python de la Brasserie de la Fonderie : mise en ligne et réglages
 
-Ce dépôt contient les missions (séries 1 et 2 dans l'entrepôt, séries 3 à 6 dans l'atelier de construction), l'ancienne ligne de production (sans lien) et tout ce qui sert à les construire et à les vérifier. Seul le dossier `site/` est mis en ligne : il ne contient ni solution ni secret. Les solutions sont dans `solutions/`, `solutions-atelier/` et `solutions-ligne/`, qui ne sont jamais publiés. Garde le dépôt GitHub **privé** : il contient les solutions.
+Ce dépôt contient les missions (séries 1 et 2 dans l'entrepôt, séries 3 à 8 dans l'usine), l'ancienne ligne de production (sans lien) et tout ce qui sert à les construire et à les vérifier. Seul le dossier `site/` est mis en ligne : il ne contient ni solution ni secret. Les solutions sont dans `solutions/`, `solutions-atelier/` et `solutions-ligne/`, qui ne sont jamais publiés. Garde le dépôt GitHub **privé** : il contient les solutions.
 
 ## 1. Mettre en ligne sur Netlify
 
@@ -14,7 +14,7 @@ Ensuite, dans les deux cas :
 1. Le fichier `_headers` doit rester dans `site/`, le dossier publié (source 85).
 2. Dans l'interface Netlify, ouvre **Forms** et choisis **Enable form detection**. La détection ne prend effet qu'au dépôt suivant : redéploie une fois après l'avoir activée (source 79).
 3. Pour recevoir chaque envoi par e-mail : **Forms > Submission notifications** (source 79). Ton adresse se règle là, jamais dans le code.
-4. Le formulaire `resultat-missions` : `pseudo`, `date`, `serie_max_atteinte`, `missions_reussies`, `etoiles_total`, `missions_a_revoir`, `mode`, `qualite`. Il compte toutes les missions de la carte, celles de l'atelier comprises. Aucun code ni plateau de stagiaire n'est envoyé.
+4. Le formulaire `resultat-missions` : `pseudo`, `date`, `serie_max_atteinte`, `missions_reussies`, `etoiles_total`, `missions_a_revoir`, `mode`, `qualite`. Il compte toutes les missions de la carte, celles de l'usine comprises. Aucun code ni plateau de stagiaire n'est envoyé.
    Le formulaire `resultat-ligne` (ancien jeu 2) reste déclaré dans `ligne.html` ; plus aucun stagiaire n'y arrive par un lien.
 
 ## 2. Tester avant de donner le lien
@@ -32,8 +32,8 @@ Un double-clic sur `site/index.html` ne marche pas : le navigateur refuse de cha
 ## 3. Pendant la séance
 
 - Adresse à donner : celle de ton site Netlify. La page d'accueil demande un pseudo, la qualité de la 3D et propose le mode sans 3D.
-- `missions.html?formateur=1` ouvre toutes les séries, dans l'entrepôt comme dans l'atelier, pour ta démonstration. Ce n'est pas une sécurité : un stagiaire qui connaît l'adresse peut l'utiliser.
-- Raccourcis : Ctrl+Entrée exécute, F10 rejoue une action à la fois, P met le rejeu en pause, M coupe le son. Le bouton A+ agrandit le texte de l'éditeur (16, 19 puis 23 px). Dans l'atelier, hors de l'éditeur : Ctrl+Z annule la dernière modification du hall et du code, Ctrl+Y la rétablit, Suppr détruit le poste choisi, Échap repose l'outil.
+- `missions.html?formateur=1` ouvre toutes les séries, dans l'entrepôt comme dans l'usine, pour ta démonstration. Ce n'est pas une sécurité : un stagiaire qui connaît l'adresse peut l'utiliser.
+- Raccourcis : Ctrl+Entrée exécute, F10 rejoue une action à la fois, P met le rejeu en pause, M coupe le son. Le bouton A+ agrandit le texte de l'éditeur (16, 19 puis 23 px). Dans l'usine : Ctrl+Entrée met en marche, F8 exécute jusqu'à la ligne du curseur ; hors de l'éditeur, Ctrl+Z annule la dernière modification de l'usine et du code, Ctrl+Y la rétablit, 1 à 8 ouvrent une catégorie de machines (puis 1 à 9 choisissent la machine), Maj+A ouvre le menu sous la souris, Q et E tournent la vue, F cadre toute l'usine, Échap repose l'outil ; dans le réglage d'une machine, Entrée valide et Suppr la détruit.
 - Poste lent : bouton « Qualité » sur la carte, ou mode sans 3D. Le jeu propose lui-même la qualité basse quand l'affichage reste sous 25 images par seconde pendant 5 secondes.
 - La progression est gardée dans le navigateur du poste (clé `jeux-python.progression.v1`). Si le stockage est vidé à la fermeture, la progression est perdue : c'est à vérifier sur un poste de la salle.
 
@@ -52,20 +52,20 @@ Un double-clic sur `site/index.html` ne marche pas : le navigateur refuse de cha
 | Énoncé, indices, seuil de l'étoile 2 d'une mission | `site/missions/<mission>/mission.json` | |
 | Tests d'une mission | `site/missions/<mission>/tests.py` | |
 
-### Atelier (séries 3 à 6)
+### Usine (séries 3 à 8)
+
+L'ancien atelier (`atelier.html`, `js/atelier/`) est retiré le 23/11/2026 : ses fichiers sont dans `a-supprimer/maj-23-11/`. Les missions gardent leur dossier `site/atelier/missions/`.
 
 | Réglage | Fichier | Constante |
 |---|---|---|
-| Lancements sans étoile 1 avant chaque indice (2 puis 4) | `site/js/atelier/atelier.js` | `ECHECS_AVANT_INDICE` |
-| Délai avant que le hall suive le code tapé (0,5 s), vitesse du rejeu rapide (2,5) | `site/js/atelier/atelier.js` | `DELAI_ANALYSE_MS`, `VITESSE_RAPIDE` |
-| Tours de boucle montrés avant l'arrêt d'une boucle sans fin (40) | `site/js/atelier/atelier.js` | `MAX_ETAPES_BOUCLE` |
+| Délai avant que l'usine suive le code tapé (0,4 s) | `site/js/usine/usine.js` | `DELAI_ANALYSE_MS` |
+| Lignes rejouées pas à pas au plus (250 ; au-delà, le rejeu passe d'un coup) | `site/js/usine/usine.js` | `LIMITE_ANIMEE` |
 | Lignes exécutées suivies au plus (5 000) | `site/python/atelier.py` | `MAX_EVENEMENTS` |
-| Durée d'un pas du rejeu (0,7 s en 3D, 0,55 s sans 3D) | `site/js/atelier/scene-atelier.js`, `site/js/atelier/vue2d-atelier.js` | `DUREE_PAS` |
-| Taille des cases sans 3D (78 × 48 px) | `site/js/atelier/vue2d-atelier.js` | `LARGEUR_CASE`, `HAUTEUR_CASE` |
-| Taille du hall (14 × 11, dont 3 rangées de données) | `site/js/atelier/catalogue.js` | `GRILLE` |
-| Énoncé, cas de test, pièces de la barre, indices d'une mission | produits par `outils-construction/faire_atelier.py` | |
+| Taille des machines (× 1,4) | `site/js/usine/scene-usine.js` | `ECHELLE` |
+| Noms et aides des machines de la barre | `site/js/usine/code.js` | `GABARITS`, `CATEGORIES` |
+| Énoncé, cas de test, machines de la barre, indices, plan de construction d'une mission | produits par `outils-construction/faire_atelier.py` (textes : `consignes_atelier.py`) | |
 
-Les missions de l'atelier sont produites par `outils-construction/faire_atelier.py` (textes, départs et solutions repris de `faire_missions.py` ; il écrit `site/atelier/missions/`, `solutions-atelier/` et l'index de la carte). Après une modification : `python outils-construction/faire_atelier.py` (chaque solution doit obtenir 3 étoiles, chaque piège échouer), `python outils-construction/faire_version_locale.py`, puis `python qa/controle_atelier.py`.
+Les missions sont produites par `outils-construction/faire_atelier.py` (il écrit `site/atelier/missions/`, `solutions-atelier/` et l'index de la carte). Après une modification : `python outils-construction/faire_atelier.py` (chaque solution doit obtenir 3 étoiles, chaque piège échouer), `python outils-construction/faire_version_locale.py`, puis `python qa/audit_usine.py` (chaque mission construite avec sa solution et mise en marche dans l'usine ; `python qa/audit_usine.py 7. 8.` pour quelques séries).
 
 ### Ligne de production (ancien jeu 2, sans lien)
 

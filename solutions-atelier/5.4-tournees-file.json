@@ -1,0 +1,33 @@
+{
+ "solution": "def nombre_de_tournees(commandes):\n    \"\"\"Renvoie le nombre de tournées du chariot de 6 casiers pour sortir toute la file, une commande ne se coupe pas.\"\"\"\n    tournees = 0\n    place = 0\n    for casiers in commandes:\n        if casiers > place:\n            tournees += 1\n            place = 6\n        place -= casiers\n    return tournees\n",
+ "variantes": [
+  {
+   "nom": ">= au lieu de > : un chariot plein tout juste repart à vide",
+   "remplacer": [
+    "casiers > place",
+    "casiers >= place"
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "nom": "place jamais remise à 6 : une tournée par commande",
+   "remplacer": [
+    "            place = 6\n",
+    ""
+   ],
+   "attendu": {
+    "etoiles": [
+     false,
+     null,
+     null
+    ]
+   }
+  }
+ ]
+}

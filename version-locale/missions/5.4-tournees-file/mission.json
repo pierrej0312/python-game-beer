@@ -1,0 +1,136 @@
+{
+ "id": "5.4-tournees-file",
+ "serie": 5,
+ "numero": 4,
+ "bonus": true,
+ "surprise": false,
+ "dureeIndicativeMin": 8,
+ "titre": "Toute la file part, en autant de tournées qu'il faut",
+ "notion": "boucle, compteur, if",
+ "enonce": "Même chariot, même règle : 6 casiers, et une commande ne se coupe pas. Quand la commande suivante ne tient plus, le chariot part en tournée et revient vide. Complétez nombre_de_tournees() : elle reçoit les casiers de chaque commande de la file, dans l'ordre, et renvoie le nombre de tournées pour tout sortir. Aucune commande ne dépasse 6 casiers.",
+ "exemple": "nombre_de_tournees([2, 3, 4, 1, 5])  →  3\n(2 + 3, puis 4 + 1, puis 5)",
+ "reussiSi": "les 3 cas de test renvoient le bon nombre de tournées.",
+ "fonction": {
+  "nom": "nombre_de_tournees",
+  "parametres": [
+   "commandes"
+  ],
+  "types": {
+   "commandes": "list"
+  },
+  "doc": "Renvoie le nombre de tournées du chariot de 6 casiers pour sortir toute la file, une commande ne se coupe pas."
+ },
+ "cas": [
+  {
+   "libelle": "2, 3, 4, 1 et 5 casiers : 3 tournées",
+   "args": [
+    [
+     2,
+     3,
+     4,
+     1,
+     5
+    ]
+   ],
+   "attendu": 3
+  },
+  {
+   "libelle": "Deux commandes de 6 casiers : 2 tournées",
+   "args": [
+    [
+     6,
+     6
+    ]
+   ],
+   "attendu": 2
+  },
+  {
+   "libelle": "3 et 3 casiers : 1 tournée, le chariot est plein tout juste",
+   "args": [
+    [
+     3,
+     3
+    ]
+   ],
+   "attendu": 1
+  },
+  {
+   "libelle": "File vide : aucune tournée",
+   "args": [
+    []
+   ],
+   "attendu": 0,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Sept commandes d'un casier : 2 tournées",
+   "args": [
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ],
+   "attendu": 2,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "5, 2, 5 et 2 casiers : 4 tournées, car une commande ne se coupe pas",
+   "args": [
+    [
+     5,
+     2,
+     5,
+     2
+    ]
+   ],
+   "attendu": 4,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque"
+ ],
+ "etoiles": {
+  "description1": "Les 3 cas de test passent",
+  "description3": "La file vide, sept commandes d'un casier, et 5, 2, 5, 2 casiers",
+  "notion": {
+   "exige": [
+    "for|while",
+    "if"
+   ],
+   "texte": "Avec une boucle et un if"
+  },
+  "description2": "Avec une boucle et un if"
+ },
+ "indices": [
+  "Une tournée de plus quand la commande ne tient pas dans la place qui reste : le chariot revient vide, avec 6 places.",
+  "Au départ, place = 0 : la première commande ne tient pas, ce qui compte la première tournée."
+ ],
+ "depart": "def nombre_de_tournees(commandes):\n    \"\"\"Renvoie le nombre de tournées du chariot de 6 casiers pour sortir toute la file, une commande ne se coupe pas.\"\"\"\n    pass\n",
+ "construire": "Deux « Étiqueteuse » : les tournées et la place dans le chariot. Un « Distributeur (for) » envoie les commandes une par une. Dans la boucle, un « Trieur (if) » : si la commande ne tient pas, une tournée de plus et le chariot revient vide. Après le trieur, une « Calculatrice » retire les casiers de la place."
+}

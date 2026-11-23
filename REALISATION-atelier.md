@@ -1,5 +1,7 @@
 # L'atelier de construction : missions des séries 3 à 6 (18/11/2026)
 
+> **Historique (23/11/2026).** L'atelier est remplacé par l'usine (`usine.html`, `CONCEPTION-usine.md`), validée par le formateur sur la mission 4.4. `atelier.html` et `js/atelier/` sont rangés dans `a-supprimer/maj-23-11/`. Les missions (`site/atelier/missions/`), leur analyse Python (`site/python/atelier.py`) et `outils-construction/faire_atelier.py` restent : l'usine les utilise.
+
 > Remplace `PROTOTYPE-atelier.md` (ce fichier peut être supprimé). Décisions du formateur dans `journal.md` du cours, 18/11/2026.
 
 ## Où le trouver

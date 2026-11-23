@@ -5,8 +5,8 @@ ATTENDU = ["Café du Pont", "Cave aux Bulles", "Taverne Saint-Jean", "Lucas Bert
 def test_commandes(r):
     """commandes contient les 4 commandes à préparer, dans l'ordre"""
     c = r.variables.get("commandes")
-    assert c is not None, "Aucune variable commandes : posez un rayonnage (Liste, Créer) et nommez-le commandes."
-    assert isinstance(c, list), f"commandes est un {type(c).__name__}, pas une liste : un rayonnage s'écrit entre crochets."
+    assert c is not None, "Aucune variable commandes : créez une liste nommée commandes."
+    assert isinstance(c, list), f"commandes est un {type(c).__name__}, pas une liste : une liste s'écrit entre crochets."
     assert c == ATTENDU, f"Attendu : {ATTENDU}. Obtenu : {c}."
 
 def test_camion(r):
@@ -16,15 +16,15 @@ def test_camion(r):
     assert camion == ATTENDU[:2], f"Attendu dans camion : {ATTENDU[:2]}. Obtenu : {camion}."
 
 def test_tableau(r):
-    """Le tableau de bord affiche camion, puis le nombre de commandes : 4"""
+    """L'affichage montre camion, puis le nombre de commandes : 4"""
     attendu = [str(ATTENDU[:2]), "4"]
     reste = list(r.sorties)
     for ligne in attendu:
-        assert ligne in reste, f"Le tableau de bord n'affiche pas {ligne}. Il affiche : {r.sorties or 'rien'}."
+        assert ligne in reste, f"L'affichage ne montre pas {ligne}. Il montre : {r.sorties or 'rien'}."
         reste = reste[reste.index(ligne) + 1:]
 
 def bonus_tri(r):
-    """Le tableau de bord affiche aussi les commandes par ordre alphabétique, et commandes garde son ordre"""
-    assert "None" not in r.sorties, "Le tableau de bord affiche None : .sort() trie le rayonnage lui-même et ne renvoie rien. Essayez sorted()."
-    assert str(sorted(ATTENDU)) in r.sorties, f"Attendu au tableau de bord : {sorted(ATTENDU)}."
-    assert r.variables.get("commandes") == ATTENDU, "commandes a changé d'ordre : .sort() trie le rayonnage lui-même. sorted() en fait une copie triée."
+    """L'affichage montre aussi les commandes par ordre alphabétique, et commandes garde son ordre"""
+    assert "None" not in r.sorties, "L'affichage montre None : .sort() trie la liste elle-même et renvoie None. Essayez sorted()."
+    assert str(sorted(ATTENDU)) in r.sorties, f"Attendu à l'affichage : {sorted(ATTENDU)}."
+    assert r.variables.get("commandes") == ATTENDU, "commandes a changé d'ordre : .sort() trie la liste elle-même. sorted() en fait une copie triée."

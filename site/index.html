@@ -12,7 +12,7 @@
   <form class="accueil-carte" id="formulaire" autocomplete="off">
     <div class="surtitre">Python de base · Data Analyst 2026</div>
     <h1>Votre code fait tourner la brasserie</h1>
-    <p>Des missions autour de la Brasserie de la Fonderie. Dans les séries 1 et 2, vous écrivez quelques lignes de Python et le préparateur rejoue votre code dans l'entrepôt. À partir de la série 3, l'atelier : vous construisez la fonction dans le hall avec des postes et des tapis, ou vous l'écrivez en Python, et le chariot rejoue chaque cas de test. Le hall et le code se suivent.</p>
+    <p>Des missions autour de la Brasserie de la Fonderie. Dans les séries 1 et 2, vous écrivez quelques lignes de Python et le préparateur rejoue votre code dans l'entrepôt. À partir de la série 3, l'usine : chaque ligne de votre code devient une machine de la ligne de production, et la bouteille la parcourt quand vous la mettez en marche. Vous pouvez aussi jouer en code seul, sans 3D.</p>
     <label class="champ">
       <span>Prénom ou pseudo</span>
       <input type="text" id="pseudo" name="pseudo" maxlength="30">
@@ -23,11 +23,12 @@
       <label><input type="radio" name="qualite" value="haute" checked> Haute</label>
       <label><input type="radio" name="qualite" value="basse"> Basse (poste lent)</label>
     </fieldset>
-    <label class="champ"><input type="checkbox" id="sans3d"> Jouer sans la 3D : un plateau en cases et un journal en texte remplacent la scène.</label>
+    <label class="champ"><input type="checkbox" id="sans3d"> Jouer sans la 3D : séries 1 et 2, un plateau en cases et un journal en texte ; à partir de la série 3, le code seul, avec les tests et les variables.</label>
     <div class="accueil-actions">
       <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
       <button class="bouton principal" type="submit" data-cible="missions.html">Ouvrir la carte des missions</button>
     </div>
+    <p class="autres-jeux">Le championnat des robots : <a href="robots.html">jouer et programmer votre robot</a> · <a href="labo.html">le labo des neurones</a> (<a href="labo.html?mode=ventes">mode ventes</a>) · <a href="tournoi.html">le tournoi toutes rondes</a> et <a href="championnat.html">le championnat de la classe</a> (poste du formateur)</p>
   </form>
 </main>
 <script type="module" src="js/accueil.js"></script>

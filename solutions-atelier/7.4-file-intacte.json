@@ -1,0 +1,19 @@
+{
+ "solution": "def prochaine_tournee(file, places):\n    \"\"\"Renvoie les commandes de la prochaine tournée : les premières de la file, autant que le chariot a de places.\"\"\"\n    return file[:places]\n",
+ "variantes": [
+  {
+   "nom": "pop(0) dans une boucle : la file est vidée (test caché)",
+   "remplacer": [
+    "    return file[:places]\n",
+    "    tournee = []\n    while file and len(tournee) < places:\n        tournee.append(file.pop(0))\n    return tournee\n"
+   ],
+   "attendu": {
+    "etoiles": [
+     true,
+     null,
+     true
+    ]
+   }
+  }
+ ]
+}

@@ -21,6 +21,11 @@
       <span class="espace"></span>
       <button class="bouton sombre" id="bouton-tourner" type="button" title="Q / E">Tourner la vue</button>
       <button class="bouton sombre" id="bouton-cadrer" type="button" title="F">Tout voir</button>
+      <select class="choix-affichage" id="choix-affichage" aria-label="Affichage" title="Sur un poste lent : graphismes légers, ou le code seul, sans 3D">
+        <option value="haute">Usine · graphismes complets</option>
+        <option value="basse">Usine · graphismes légers</option>
+        <option value="code">Code seul, sans 3D</option>
+      </select>
       <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
     </div>
     <div class="vue-usine" id="vue">
@@ -37,10 +42,10 @@
     <div class="commandes">
       <button class="bouton principal" id="bouton-lancer" type="button" title="Ctrl+Entrée">Mettre en marche</button>
       <button class="bouton sombre" id="bouton-vitesse" type="button" aria-pressed="false">Rapide</button>
+      <button class="bouton sombre" id="bouton-curseur" type="button" title="Exécute le programme et s'arrête à la ligne du curseur (F8)">Jusqu'au curseur</button>
       <button class="bouton sombre" id="bouton-arret" type="button" disabled>Arrêter</button>
       <select class="choix-cas" id="choix-cas" aria-label="Cas de test rejoué" hidden></select>
       <span class="espace"></span>
-      <a class="lien-ancien" id="lien-atelier" href="atelier.html">Ouvrir dans l'ancien atelier</a>
     </div>
   </section>
   <section class="cote-code">
@@ -48,6 +53,8 @@
       <div class="surtitre" id="mission-surtitre"></div>
       <h1 id="mission-titre"></h1>
       <p id="mission-enonce"></p>
+      <p class="exemple" id="mission-exemple" hidden></p>
+      <details class="plan-construction" id="mission-plan" hidden><summary>Plan de construction : les machines à poser</summary><p id="mission-plan-texte"></p></details>
       <ul class="objectifs" id="mission-objectifs"></ul>
     </header>
     <div class="zone-editeur">

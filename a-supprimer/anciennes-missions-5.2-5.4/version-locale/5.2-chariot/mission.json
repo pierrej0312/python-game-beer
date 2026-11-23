@@ -1,0 +1,118 @@
+{
+ "id": "5.2-chariot",
+ "serie": 5,
+ "numero": 2,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 7,
+ "titre": "Le chariot se charge tant que la commande suivante tient",
+ "notion": "while, deux conditions avec and",
+ "enonce": "Le chariot du préparateur porte 6 casiers. Les commandes attendent sur le quai, dans l'ordre, et une commande ne se coupe pas : elle part entière ou elle attend. Le préparateur charge les commandes dans l'ordre, tant que la suivante tient dans la place qui reste. Complétez charger_chariot() avec une boucle while : elle reçoit la liste des casiers de chaque commande et renvoie le nombre de commandes chargées.",
+ "exemple": "charger_chariot([2, 3, 4, 1])  →  2\n(2 + 3 = 5 casiers ; la commande de 4 ne tient plus)",
+ "reussiSi": "les 2 cas de test renvoient le bon nombre de commandes.",
+ "fonction": {
+  "nom": "charger_chariot",
+  "parametres": [
+   "commandes"
+  ],
+  "types": {
+   "commandes": "list"
+  },
+  "doc": "Renvoie le nombre de commandes chargées dans le chariot de 6 casiers, dans l'ordre de la file."
+ },
+ "cas": [
+  {
+   "libelle": "2, 3, 4 et 1 casiers : les deux premières commandes partent (5 casiers)",
+   "args": [
+    [
+     2,
+     3,
+     4,
+     1
+    ]
+   ],
+   "attendu": 2
+  },
+  {
+   "libelle": "1, 2 et 3 casiers : tout part, le chariot est plein tout juste",
+   "args": [
+    [
+     1,
+     2,
+     3
+    ]
+   ],
+   "attendu": 3
+  },
+  {
+   "libelle": "Quai vide : aucune commande",
+   "args": [
+    []
+   ],
+   "attendu": 0,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "Une commande de 6 casiers remplit le chariot : la suivante attend",
+   "args": [
+    [
+     6,
+     1
+    ]
+   ],
+   "attendu": 1,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "4, puis 3 casiers : la commande de 3 ne tient pas, le préparateur s'arrête même si la suivante (2) tiendrait",
+   "args": [
+    [
+     4,
+     3,
+     2
+    ]
+   ],
+   "attendu": 1,
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque"
+ ],
+ "etoiles": {
+  "description1": "Les 2 cas de test passent",
+  "description3": "Le quai vide, et une commande de 6 casiers tout juste",
+  "notion": {
+   "exige": [
+    "while"
+   ],
+   "texte": "Avec une boucle while"
+  },
+  "description2": "Avec une boucle while"
+ },
+ "indices": [
+  "La boucle continue tant que deux conditions sont vraies : il reste une commande sur le quai, et elle tient dans la place qui reste. Elles se combinent avec and.",
+  "chargees sert aussi d'indice : commandes[chargees] est la prochaine commande. À chaque tour : place -= commandes[chargees], puis chargees += 1."
+ ],
+ "depart": "def charger_chariot(commandes):\n    \"\"\"Renvoie le nombre de commandes chargées dans le chariot de 6 casiers, dans l'ordre de la file.\"\"\"\n    chargees = 0\n    place = 6\n    # À vous : une boucle while\n    return chargees\n"
+}

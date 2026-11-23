@@ -5,10 +5,10 @@
  "bonus": false,
  "surprise": false,
  "dureeIndicativeMin": 5,
- "titre": "Le type de client décide du quai",
+ "titre": "Chaque client a son quai de chargement",
  "notion": "if, elif, else",
- "enonce": "Chaque fût part au quai de son client : café au quai Q1, magasin au quai Q2, particulier au quai Q3, tout autre client au quai Q4. Complétez quai_du_client().",
- "reussiSi": "les 3 cas de test renvoient le bon résultat.",
+ "enonce": "Au quai d'expédition, les fûts sont rangés par type de client : les cafés au quai Q1, les magasins au quai Q2, les particuliers au quai Q3. Tous les autres clients (un comité des fêtes, une association) partent du quai Q4. Complétez quai_du_client() : elle reçoit le type de client et renvoie le code de son quai.",
+ "reussiSi": "les 3 cas de test renvoient le bon quai.",
  "fonction": {
   "nom": "quai_du_client",
   "parametres": [
@@ -68,15 +68,23 @@
   "renvoyer"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 6 postes (instructions) au plus",
-  "description3": "Tout autre client, un événement ou une association, part au quai Q4",
-  "max": 6
+  "description1": "Les 3 cas de test passent : un café, un magasin, un particulier",
+  "description2": "Avec if, elif et else",
+  "description3": "Un événement et une association partent du quai Q4",
+  "notion": {
+   "exige": [
+    "if",
+    "elif",
+    "else"
+   ],
+   "texte": "Avec if, elif et else"
+  }
  },
  "indices": [
-  "Python teste dans l'ordre et s'arrête au premier test vrai.",
-  "else, sans test, prend tous les cas qui restent : c'est le quai Q4."
+  "Python teste les conditions dans l'ordre et s'arrête à la première qui est vraie.",
+  "else n'a pas de condition : il prend tous les clients qui restent. C'est le quai Q4."
  ],
- "depart": "def quai_du_client(type_client):\n    \"\"\"Renvoie le quai d'un client : \"Q1\", \"Q2\", \"Q3\" ou \"Q4\".\"\"\"\n    quai = \"\"\n    # À vous de jouer : if, elif, else\n    return quai\n"
+ "depart": "def quai_du_client(type_client):\n    \"\"\"Renvoie le quai d'un client : \"Q1\", \"Q2\", \"Q3\" ou \"Q4\".\"\"\"\n    quai = \"\"\n    # À vous de jouer : if, elif, else\n    return quai\n",
+ "construire": "Dans le bâtiment quai_du_client, posez un « Trieur (if) ». Dans son réglage, ajoutez une voie elif par type de client, puis la voie sinon. Sur chaque voie, une « Étiqueteuse » range le quai dans quai. Le « Retour (return) », au bout de la ligne, renvoie quai.",
+ "exemple": "quai_du_client(\"magasin\")  →  \"Q2\""
 }

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le tournoi du championnat · poste du formateur</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/combat.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+<main class="tournoi-robots">
+  <section class="cote-ring" aria-label="Le ring : rejeu des combats du tournoi">
+    <div class="barre-haut">
+      <a class="bouton sombre" href="index.html">Accueil</a>
+      <span class="titre-ring">Le tournoi du championnat</span>
+      <span class="espace"></span>
+      <select class="choix-affichage" id="choix-affichage" aria-label="Affichage">
+        <option value="haute">Graphismes complets</option>
+        <option value="basse">Graphismes légers</option>
+      </select>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="vue-ring" id="vue"></div>
+    <div class="commandes">
+      <label class="choix-adversaire">Combat <select id="choix-rencontre" disabled><option>Lancez d'abord le tournoi</option></select></label>
+      <button class="bouton sombre" id="bouton-precedent" type="button" disabled>Précédent</button>
+      <button class="bouton principal" id="bouton-rejouer" type="button" disabled>Rejouer</button>
+      <button class="bouton sombre" id="bouton-suivant" type="button" disabled>Suivant</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false">Pause</button>
+      <button class="bouton sombre" id="bouton-rapide" type="button" aria-pressed="false">Rapide</button>
+    </div>
+  </section>
+  <section class="cote-panneau cote-tournoi">
+    <header class="enonce">
+      <div class="surtitre">Poste du formateur</div>
+      <h1>Les robots du tournoi</h1>
+      <p>Chaque robot rencontre tous les autres, deux combats par rencontre (côtés inversés) : victoire 3 points, égalité 1 ; à égalité de points, le plus de victoires, puis le plus de K.-O.</p>
+      <div class="imports">
+        <label class="bouton">Export Netlify (.csv)<input type="file" id="fichier-csv" accept=".csv,text/csv" hidden></label>
+        <label class="bouton">Fichiers .py<input type="file" id="fichier-py" accept=".py" multiple hidden></label>
+        <button class="bouton" id="bouton-coller" type="button">Coller un robot</button>
+        <label class="case"><input type="checkbox" id="case-references"> Robots d'entraînement</label>
+      </div>
+      <div class="coller" id="zone-coller" hidden>
+        <input type="text" id="coller-nom" placeholder="Nom du binôme" maxlength="40">
+        <select id="coller-generation"><option value="1">Génération 1</option><option value="2">Génération 2</option><option value="3">Génération 3</option></select>
+        <textarea id="coller-code" rows="6" spellcheck="false" placeholder="def strategie(etat): ..."></textarea>
+        <button class="bouton principal" id="bouton-ajouter" type="button">Ajouter ce robot</button>
+      </div>
+    </header>
+    <div class="liste-robots" id="liste-robots"></div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="classement" aria-selected="true" type="button">Classement</button>
+        <button class="onglet" role="tab" data-onglet="generations" aria-selected="false" type="button">Générations</button>
+        <button class="onglet" role="tab" data-onglet="exports" aria-selected="false" type="button">Journaux</button>
+        <span class="espace"></span>
+        <button class="bouton principal" id="bouton-tournoi" type="button">Lancer le tournoi</button>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="js/combat/tournoi.js"></script>
+</body>
+</html>

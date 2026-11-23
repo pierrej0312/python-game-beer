@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le labo des neurones · Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/sumo.css">
+</head>
+<body>
+<main class="labo">
+  <section class="cote-arene" aria-label="Le réseau de neurones">
+    <div class="barre-haut">
+      <a class="bouton sombre" href="index.html">Accueil</a>
+      <span class="titre-arene">Le labo des neurones</span>
+      <span class="espace"></span>
+      <select class="choix-affichage" id="choix-mode" aria-label="Mode du labo">
+        <option value="combat">Robot 3 : apprendre à combattre</option>
+        <option value="ventes">Ventes : les fûts de la semaine</option>
+      </select>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="vue-reseau">
+      <canvas id="dessin-reseau" aria-label="Le réseau : les neurones en colonnes, les poids en couleur et en épaisseur"></canvas>
+      <div class="legende-reseau" id="legende-reseau">Poids positif : orange · poids négatif : bleu · épaisseur : force du poids. Entrées divisées par 10.</div>
+    </div>
+    <div class="commandes">
+      <span class="choix-adversaire">Couches cachées</span>
+      <button class="bouton sombre" id="couche-moins" type="button" title="Retirer la dernière couche cachée">− couche</button>
+      <button class="bouton sombre" id="couche-plus" type="button" title="Ajouter une couche cachée">+ couche</button>
+      <span class="choix-adversaire" title="Cliquez sur une couche cachée du dessin : un neurone de plus ; Maj + clic : un de moins">Clic sur une couche : + 1 neurone (Maj : − 1)</span>
+      <span class="espace"></span>
+      <label class="choix-adversaire">Taux d'apprentissage <select id="choix-taux"><option value="0.03">0,03</option><option value="0.01" selected>0,01</option><option value="0.003">0,003</option></select></label>
+    </div>
+  </section>
+  <section class="cote-code cote-labo">
+    <header class="enonce">
+      <div class="surtitre" id="surtitre">Robot 3 · réseau de neurones</div>
+      <h1 id="titre">Entraînez le cerveau de votre robot</h1>
+      <p id="texte-donnees">Les données : ce qu'ont fait les robots gagnants, situation par situation (six nombres en entrée, l'action en sortie).</p>
+      <div class="imports">
+        <button class="bouton principal" id="bouton-entrainer" type="button">Entraîner</button>
+        <button class="bouton" id="bouton-pause" type="button" disabled>Pause</button>
+        <button class="bouton" id="bouton-zero" type="button" title="Nouveau réseau, poids au hasard">Repartir de zéro</button>
+        <label class="case">Époques <select id="choix-epoques"><option>20</option><option selected>100</option><option>300</option></select></label>
+        <label class="bouton" id="ajout-decisions">Ajouter les décisions d'un tournoi (.csv)<input type="file" id="fichier-decisions" accept=".csv" hidden></label>
+      </div>
+    </header>
+    <div class="suivi">
+      <canvas id="courbe" aria-label="Courbe d'apprentissage : l'erreur à chaque époque"></canvas>
+      <div class="chiffres" id="chiffres"></div>
+    </div>
+    <div class="zone-tests">
+      <div class="onglets" role="tablist">
+        <button class="onglet" role="tab" data-onglet="essai" aria-selected="true" type="button">Essayer le robot</button>
+        <button class="onglet" role="tab" data-onglet="cerveau" aria-selected="false" type="button">Exporter le cerveau</button>
+        <button class="onglet" role="tab" data-onglet="prevision" aria-selected="false" type="button" hidden>Prévision</button>
+      </div>
+      <div class="panneau" id="panneau" role="tabpanel"></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="js/sumo/labo.js"></script>
+</body>
+</html>

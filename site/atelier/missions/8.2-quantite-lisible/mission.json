@@ -1,0 +1,115 @@
+{
+ "id": "8.2-quantite-lisible",
+ "serie": 8,
+ "numero": 2,
+ "bonus": false,
+ "surprise": true,
+ "dureeIndicativeMin": 7,
+ "titre": "try / except met une quantité illisible de côté",
+ "notion": "try, except ValueError, None",
+ "enonce": "Dans le lot du vendredi, la quantité de chaque commande est un texte : \"5\", mais aussi \"douze\", \"-2\" ou rien du tout. Complétez quantite_valide() : elle reçoit ce texte et renvoie la quantité en nombre entier. Si le texte n'est pas un nombre, ou si la quantité n'est pas positive, elle renvoie None, sans planter.",
+ "exemple": "quantite_valide(\"5\")      →  5\nquantite_valide(\"douze\")  →  None",
+ "reussiSi": "les 3 cas de test renvoient la bonne valeur.",
+ "fonction": {
+  "nom": "quantite_valide",
+  "parametres": [
+   "texte"
+  ],
+  "types": {
+   "texte": "str"
+  },
+  "doc": "Renvoie la quantité lue dans le texte, ou None si elle est illisible, nulle ou négative."
+ },
+ "cas": [
+  {
+   "libelle": "« 5 » : 5 casiers",
+   "args": [
+    "5"
+   ],
+   "attendu": 5
+  },
+  {
+   "libelle": "« douze » est illisible : None",
+   "args": [
+    "douze"
+   ],
+   "attendu": null
+  },
+  {
+   "libelle": "« -2 » : une quantité négative est refusée, None",
+   "args": [
+    "-2"
+   ],
+   "attendu": null
+  },
+  {
+   "libelle": "Une quantité vide : None",
+   "args": [
+    ""
+   ],
+   "attendu": null,
+   "groupe": "bonus"
+  },
+  {
+   "libelle": "« 0 » : zéro casier n'est pas une commande, None",
+   "args": [
+    "0"
+   ],
+   "attendu": null,
+   "groupe": "cache"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel",
+  "importer",
+  "essayer",
+  "avec",
+  "suivant",
+  "sortir"
+ ],
+ "etoiles": {
+  "description1": "Les 3 cas de test passent : 5, douze, -2",
+  "description2": "Avec try et except",
+  "description3": "Une quantité vide renvoie aussi None",
+  "notion": {
+   "exige": [
+    "try"
+   ],
+   "texte": "Avec try et except"
+  }
+ },
+ "indices": [
+  "int(\"douze\") lève une erreur ValueError : placez la conversion dans un try, et renvoyez None dans le except.",
+  "Une quantité de 0 ou moins n'est pas une commande."
+ ],
+ "depart": "def quantite_valide(texte):\n    \"\"\"Renvoie la quantité lue dans le texte, ou None si elle est illisible, nulle ou négative.\"\"\"\n    return int(texte)\n",
+ "construire": "Un « Sas de sécurité (try / except) » : dans la voie try, une « Calculatrice » convertit le texte avec int() ; dans la voie except ValueError, un « Retour (return) » renvoie None. Après le sas, un « Trieur (if) » écarte les quantités qui ne sont pas positives, puis le « Retour (return) » renvoie la quantité."
+}

@@ -2,7 +2,9 @@
 // Protocole : voir 02-moteur-python.md § 3 (messages { type, id, ... }).
 import { loadPyodide } from "../vendor/pyodide/pyodide.mjs";
 
-const FICHIERS_MOTEUR = ["erreurs_fr.py", "api_robot.py", "runner.py", "ligne.py", "atelier.py"];
+const FICHIERS_MOTEUR = ["erreurs_fr.py", "api_robot.py", "runner.py", "ligne.py", "atelier.py", "combat_web.py"];
+const FICHIERS_COMBAT = ["regles.py", "moteur.py", "robots_entrainement.py", "apprentissage.py"];  // le championnat des robots, le même moteur que dans VS Code
+// (le sumo, remplacé le 21/11/2026 par le championnat des robots, n'est plus chargé : ses modules portaient les mêmes noms)
 let pyodide = null;
 
 async function charger(message) {
@@ -14,7 +16,13 @@ async function charger(message) {
     if (!reponse.ok) throw new Error("Fichier du moteur introuvable : " + nom);
     pyodide.FS.writeFile("/moteur/" + nom, await reponse.text());
   }
-  pyodide.runPython("import sys\nsys.path.insert(0, '/moteur')\nimport json, runner, ligne, atelier");
+  pyodide.FS.mkdirTree("/moteur/combat");
+  for (const nom of FICHIERS_COMBAT) {
+    const reponse = await fetch(new URL("../python/combat/" + nom, import.meta.url));
+    if (!reponse.ok) throw new Error("Fichier du championnat introuvable : " + nom);
+    pyodide.FS.writeFile("/moteur/combat/" + nom, await reponse.text());
+  }
+  pyodide.runPython("import sys\nsys.path.insert(0, '/moteur')\nimport json, runner, ligne, atelier, combat_web");
   if (message.tamponInterruption) pyodide.setInterruptBuffer(message.tamponInterruption);
   const version = pyodide.runPython("sys.version.split()[0]");
   self.postMessage({ type: "pret", id: message.id, dureeMs: Math.round(performance.now() - debut), versionPython: version });
@@ -73,7 +81,8 @@ function executerLigne(message) {
 function analyserAtelier(message) {
   pyodide.globals.set("_code", message.code);
   pyodide.globals.set("_fonction", message.fonction ? JSON.stringify(message.fonction) : "");
-  const resultat = JSON.parse(pyodide.runPython("json.dumps(atelier.analyser(_code, json.loads(_fonction) if _fonction else None), ensure_ascii=False)"));
+  pyodide.globals.set("_modules", !!message.modules);
+  const resultat = JSON.parse(pyodide.runPython("json.dumps(atelier.analyser(_code, json.loads(_fonction) if _fonction else None, modules=_modules), ensure_ascii=False)"));
   self.postMessage({ ...resultat, type: "resultat", id: message.id });
 }
 
@@ -97,6 +106,23 @@ function executerAtelier(message) {
   self.postMessage(resultat);
 }
 
+// Sumo : combat, bilan contre les robots d'entraînement, tournoi (python/sumo_web.py).
+function sumo(message) {
+  const debut = performance.now();
+  pyodide.globals.set("_action", message.action);
+  pyodide.globals.set("_args", JSON.stringify(message.args || []));
+  let resultat;
+  try {
+    pyodide.globals.set("_module", "combat_web");
+    resultat = JSON.parse(pyodide.runPython("json.dumps(getattr(sys.modules[_module], _action)(*json.loads(_args)), ensure_ascii=False)"));
+  } catch (erreur) {
+    const texte = String(erreur && erreur.message ? erreur.message : erreur);
+    if (!texte.includes("KeyboardInterrupt")) { self.postMessage({ type: "erreurInterne", id: message.id, message: texte }); return; }
+    resultat = { erreur: { type: "KeyboardInterrupt", ligne: null, message: "Le calcul a été arrêté : il durait trop longtemps." } };
+  }
+  self.postMessage({ type: "resultat", id: message.id, dureeMs: Math.round(performance.now() - debut), donnees: resultat });
+}
+
 self.onmessage = async (evenement) => {
   const message = evenement.data;
   try {
@@ -105,6 +131,7 @@ self.onmessage = async (evenement) => {
     else if (message.type === "executerLigne") executerLigne(message);
     else if (message.type === "analyserAtelier") analyserAtelier(message);
     else if (message.type === "executerAtelier") executerAtelier(message);
+    else if (message.type === "sumo") sumo(message);
   } catch (erreur) {
     self.postMessage({ type: "erreurInterne", id: message.id, message: String(erreur && erreur.message ? erreur.message : erreur) });
   }

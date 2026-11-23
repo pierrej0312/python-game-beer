@@ -1,0 +1,70 @@
+{
+ "id": "8.1-lignes-du-lot",
+ "serie": 8,
+ "numero": 1,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 6,
+ "titre": "Un fichier se lit ligne par ligne",
+ "notion": "with open, encoding, lignes d'un fichier",
+ "enonce": "Le lot de commandes du vendredi soir est arrivé dans le fichier lot_vendredi.csv : une ligne d'en-tête, puis une commande par ligne. Ouvrez le fichier avec with open, rangez le nombre de commandes (l'en-tête ne compte pas) dans nb_commandes, puis affichez-le.",
+ "exemple": "Affichage attendu : 16",
+ "reussiSi": "nb_commandes vaut 16 et l'affichage le montre.",
+ "fichiers": {
+  "lot_vendredi.csv": "date;client;biere;format;quantite\n2026-11-20;C02;B01;fut;5\n2026-11-20;C04;B03;casier;8\n2026-11-20;C05;B01;casier;10\n2026-11-20;C06;B02;casier;2\n2026-11-20;C01;B04;fut;3\n2026-11-20;C08;B05;casier;douze\n2026-11-20;C04;B01;casier;4\n2026-11-20;C11;B03;casier;6\n2026-11-20;C05;B05;casier;-2\n2026-11-31;C06;B04;casier;1\n2026-11-20;C07;B01;fut;10\n2026-11-20;C05;B03;casier;5\n2026-11-20;C03;B02;fut;2\n2026-11-20;C08;B02;casier;\n2026-11-20;C04;B04;casier;3\n2026-11-20;C02;B05;fut;4\n"
+ },
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel",
+  "importer",
+  "essayer",
+  "avec",
+  "suivant",
+  "sortir"
+ ],
+ "etoiles": {
+  "description1": "nb_commandes vaut 16 et l'affichage le montre",
+  "description2": "Avec with open",
+  "description3": "Comptez aussi les commandes en fûts dans nb_futs",
+  "notion": {
+   "exige": [
+    "with",
+    "open"
+   ],
+   "texte": "Avec with open"
+  }
+ },
+ "indices": [
+  "with open(\"lot_vendredi.csv\", encoding=\"utf-8\") as f: ouvre le fichier et le referme à la fin du bloc.",
+  "f.read().splitlines() donne la liste des lignes ; la première est l'en-tête."
+ ],
+ "depart": "",
+ "construire": "Un « Sas de fichier (with open) » ouvre lot_vendredi.csv. Dans le sas, une « Étiqueteuse » range ses lignes. Après le sas, une « Calculatrice » compte les commandes, sans l'en-tête, et une « Imprimante (print) » affiche le nombre."
+}

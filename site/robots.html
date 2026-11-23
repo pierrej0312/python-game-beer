@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le championnat des robots · Brasserie de la Fonderie</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/combat.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+<!-- Formulaire caché, lu par Netlify au moment de la mise en ligne : il déclare les champs envoyés au tournoi. -->
+<form name="robot-championnat" data-netlify="true" hidden>
+  <input name="binome"><input name="generation"><input name="modele"><textarea name="code"></textarea>
+</form>
+<main class="championnat">
+  <section class="cote-ring" aria-label="Le ring">
+    <div class="barre-haut">
+      <a class="bouton sombre" href="index.html">Accueil</a>
+      <span class="titre-ring">Le championnat des robots</span>
+      <span class="espace"></span>
+      <button class="bouton sombre choix-style" id="bouton-selection" type="button" aria-haspopup="dialog">Votre robot : <strong id="nom-style">…</strong></button>
+      <select id="choix-style" aria-label="Le modèle 3D de votre robot" hidden></select>
+      <select class="choix-affichage" id="choix-affichage" aria-label="Affichage">
+        <option value="haute">Graphismes complets</option>
+        <option value="basse">Graphismes légers</option>
+      </select>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="vue-ring" id="vue" tabindex="0" aria-label="Le ring : cliquez ici, puis jouez au clavier"></div>
+    <div class="commandes">
+      <button class="bouton sombre" id="bouton-rejouer" type="button" disabled>Revoir</button>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false">Pause</button>
+      <button class="bouton sombre" id="bouton-vitesse" type="button" aria-pressed="false">Vitesse x 2</button>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="bouton-camera" type="button">Recentrer la caméra</button>
+    </div>
+  </section>
+  <section class="cote-panneau">
+    <div class="onglets grands" role="tablist">
+      <button class="onglet" role="tab" data-onglet="jouer" aria-selected="true" type="button">Jouer</button>
+      <button class="onglet" role="tab" data-onglet="programmer" aria-selected="false" type="button">Programmer</button>
+      <button class="onglet" role="tab" data-onglet="revoir" aria-selected="false" type="button">Revoir</button>
+      <button class="onglet" role="tab" data-onglet="envoyer" aria-selected="false" type="button">Envoyer</button>
+    </div>
+    <!-- Jouer -->
+    <div class="vue-onglet" data-vue="jouer">
+      <h1>Pilotez un robot</h1>
+      <p>Vous êtes le robot cuivre, à gauche. Battez les robots d'entraînement : chacun a son style. Vos combats sont enregistrés : votre robot de machine learning apprendra aussi de vous.</p>
+      <div class="ligne-choix">
+        <label>Adversaire <select id="choix-adversaire-jeu"></select></label>
+        <button class="bouton principal grand" id="bouton-jouer" type="button">Combattre !</button>
+      </div>
+      <table class="touches">
+        <tr><td><kbd>→</kbd> <kbd>D</kbd></td><td>avancer</td><td><kbd>J</kbd></td><td>direct : rapide, petits dégâts</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>Q</kbd></td><td>reculer</td><td><kbd>K</kbd></td><td>crochet : lent, gros dégâts</td></tr>
+        <tr><td><kbd>↑</kbd> <kbd>Z</kbd></td><td>garde haute (maintenir) : bloque direct, crochet, spécial</td><td><kbd>L</kbd></td><td>coup bas : balaie une garde haute</td></tr>
+        <tr><td><kbd>↓</kbd> <kbd>S</kbd></td><td>garde basse (maintenir) : bloque coup bas et projection</td><td><kbd>M</kbd></td><td>projection : attrape une garde haute</td></tr>
+        <tr><td><kbd>Espace</kbd></td><td>esquive : évite tout, coûte 12 d'énergie</td><td><kbd>I</kbd></td><td>spécial : 60 d'énergie</td></tr>
+      </table>
+      <p class="astuce">Un coup se prépare avant de frapper : frappez un robot qui prépare son coup ou qui récupère, c'est un contre (dégâts x 1,5).</p>
+      <div id="resultat-jeu"></div>
+    </div>
+    <!-- Programmer -->
+    <div class="vue-onglet" data-vue="programmer" hidden>
+      <div class="ligne-choix">
+        <label>Génération <select id="choix-generation"><option value="1">1 · règles à la main</option><option value="2">2 · machine learning</option><option value="3">3 · réseau de neurones</option></select></label>
+        <a class="lien-labo" href="labo.html" id="lien-labo" hidden>Labo des neurones</a>
+        <span class="espace"></span>
+        <button class="bouton" id="bouton-modele" type="button" title="Remet le code de départ de cette génération">Code de départ</button>
+      </div>
+      <div class="zone-editeur"><div id="editeur"></div></div>
+      <div class="ligne-choix">
+        <label>Contre <select id="choix-adversaire-code"></select></label>
+        <button class="bouton principal" id="bouton-combat-code" type="button" title="Ctrl+Entrée">Combattre</button>
+        <button class="bouton" id="bouton-bilan" type="button">Bilan contre les six</button>
+      </div>
+      <div class="panneau" id="panneau-code"></div>
+    </div>
+    <!-- Revoir -->
+    <div class="vue-onglet" data-vue="revoir" hidden>
+      <h1>Revoir un combat</h1>
+      <p>Un combat lancé dans VS Code (<code>python combat.py mur</code>) est enregistré dans <code>combat.json</code>. Choisissez ce fichier : le combat se rejoue sur le ring.</p>
+      <label class="bouton principal">Choisir un fichier combat.json<input type="file" id="fichier-rejeu" accept=".json,application/json" hidden></label>
+      <div id="infos-rejeu"></div>
+    </div>
+    <!-- Envoyer -->
+    <div class="vue-onglet" data-vue="envoyer" hidden>
+      <h1>Inscrire votre robot au championnat</h1>
+      <p>Le robot envoyé est celui de l'onglet Programmer, pour la génération choisie. Vous pouvez le renvoyer : le formateur garde le dernier envoi.</p>
+      <label class="champ"><span>Votre prénom ou un pseudo (chacun inscrit son robot à son nom)</span><input type="text" id="champ-binome" maxlength="40"></label>
+      <div class="ligne-choix">
+        <button class="bouton principal" id="bouton-envoyer" type="button">Envoyer au championnat</button>
+        <button class="bouton" id="bouton-telecharger" type="button">Télécharger le fichier .py</button>
+      </div>
+      <p class="statut" id="statut-envoi"></p>
+    </div>
+  </section>
+</main>
+<div class="selection-robot" id="selection-robot" role="dialog" aria-modal="true" aria-labelledby="titre-selection" hidden>
+  <div class="selection-cadre">
+    <h2 id="titre-selection">Choisissez votre robot</h2>
+    <div class="selection-corps">
+      <figure class="selection-vedette">
+        <span class="badge-joueur">J1</span>
+        <img id="vedette-image" alt="">
+        <figcaption><span class="vedette-nom" id="vedette-nom"></span><span class="vedette-credit" id="vedette-credit"></span></figcaption>
+      </figure>
+      <div class="selection-grille" id="selection-grille" role="listbox" aria-label="Les robots"></div>
+    </div>
+    <div class="selection-pied">
+      <span class="astuce">Flèches pour parcourir, Entrée pour choisir, Échap pour fermer. Le robot ne change rien au combat : seulement son apparence.</span>
+      <span class="espace"></span>
+      <button class="bouton sombre" id="selection-fermer" type="button">Fermer</button>
+      <button class="bouton principal" id="selection-valider" type="button">Combattre avec ce robot</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/combat/combat.js"></script>
+</body>
+</html>

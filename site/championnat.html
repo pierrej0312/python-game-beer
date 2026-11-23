@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le championnat de la classe · poste du formateur</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/jeux.css">
+<link rel="stylesheet" href="css/combat.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/environments/RoomEnvironment.js":"./vendor/three/addons/RoomEnvironment.js"}}</script>
+</head>
+<body>
+<main class="tournoi-robots championnat-classe">
+  <section class="cote-ring" aria-label="L'arbre du championnat et le ring">
+    <div class="barre-haut">
+      <a class="bouton sombre" href="index.html">Accueil</a>
+      <span class="titre-ring">Le championnat de la classe</span>
+      <span class="espace"></span>
+      <div class="bascule" role="group" aria-label="Vue">
+        <button class="bouton sombre" id="voir-arbre" type="button" aria-pressed="true">Arbre</button>
+        <button class="bouton sombre" id="voir-ring" type="button" aria-pressed="false">Ring</button>
+      </div>
+      <select class="choix-affichage" id="choix-affichage" aria-label="Affichage">
+        <option value="haute">Graphismes complets</option>
+        <option value="basse">Graphismes légers</option>
+      </select>
+      <span class="etat-python" id="etat-python" role="status">Préparation de Python…</span>
+    </div>
+    <div class="zone-vues">
+      <div class="vue-ring" id="vue" hidden></div>
+      <div class="vue-arbre" id="arbre" aria-live="polite"></div>
+    </div>
+    <div class="commandes">
+      <span class="info-match" id="info-match">Inscrivez les étudiants, puis tirez au sort.</span>
+      <span class="espace"></span>
+      <button class="bouton principal" id="bouton-prochain" type="button" disabled>Lancer le prochain match</button>
+      <button class="bouton sombre" id="bouton-pause" type="button" aria-pressed="false">Pause</button>
+      <button class="bouton sombre" id="bouton-rapide" type="button" aria-pressed="false">Rapide</button>
+    </div>
+  </section>
+  <section class="cote-panneau cote-inscriptions">
+    <header class="enonce">
+      <div class="surtitre">Poste du formateur</div>
+      <h1>Les inscriptions</h1>
+      <p>Un étudiant = un participant. On garde ses robots 1, 2 et 3 (fichiers .py, notebook, cerveau) et le modèle 3D choisi ; il désigne le robot qui concourt. Tirage au sort, puis élimination directe : un combat par match, côté tiré au sort, le gagnant passe au tour suivant jusqu'à la finale. Égalité : tirage au sort. Un code qui plante (au chargement ou pendant le combat) perd par forfait.</p>
+      <form class="ajout-etudiant" id="form-etudiant">
+        <input type="text" id="nom-etudiant" placeholder="Prénom ou pseudo" maxlength="40" required aria-label="Prénom ou pseudo de l'étudiant">
+        <button class="bouton principal" type="submit">Inscrire</button>
+      </form>
+      <div class="imports">
+        <label class="bouton">Envois Netlify (.csv)<input type="file" id="fichier-csv" accept=".csv,text/csv" hidden></label>
+        <button class="bouton" id="bouton-exporter" type="button">Sauvegarder (.json)</button>
+        <label class="bouton">Reprendre (.json)<input type="file" id="fichier-json" accept=".json,application/json" hidden></label>
+        <button class="bouton" id="bouton-verifier" type="button">Vérifier tous les robots</button>
+      </div>
+    </header>
+    <div class="liste-etudiants" id="liste-etudiants"></div>
+    <footer class="pied-tirage">
+      <span id="compte-inscrits">0 inscrit</span>
+      <span class="espace"></span>
+      <button class="bouton" id="bouton-annuler" type="button" hidden>Recommencer le tirage</button>
+      <button class="bouton principal" id="bouton-tirage" type="button" disabled>Tirer au sort</button>
+    </footer>
+  </section>
+</main>
+<script type="module" src="js/combat/championnat.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+ "id": "7.2-remise-par-defaut",
+ "serie": 7,
+ "numero": 2,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 6,
+ "titre": "Une valeur par défaut rend la remise facultative",
+ "notion": "paramètres, valeur par défaut",
+ "enonce": "La plupart des commandes n'ont pas de remise ; celles des magasins en ont une. Ajoutez à prix_casiers() un troisième paramètre, remise, qui vaut 0 quand l'appel ne le donne pas. La remise s'écrit en décimal : 0.05 pour 5 %. La fonction renvoie le prix, remise déduite.",
+ "exemple": "prix_casiers(12, 26.40)        →  316.8\nprix_casiers(12, 26.40, 0.05)  →  300.96",
+ "reussiSi": "le prix est juste sans remise et avec 5 % de remise.",
+ "fonction": {
+  "nom": "prix_casiers",
+  "parametres": [
+   "nb_casiers",
+   "prix_casier",
+   "remise"
+  ],
+  "types": {
+   "nb_casiers": "int",
+   "prix_casier": "float",
+   "remise": "float"
+  },
+  "doc": "Renvoie le prix de nb_casiers casiers, remise déduite (0.05 pour 5 %), consigne non comprise."
+ },
+ "cas": [
+  {
+   "libelle": "Sans remise : 12 casiers du Laitier à 26,40 €, 316,80 €",
+   "args": [
+    12,
+    26.4
+   ],
+   "attendu": 316.8
+  },
+  {
+   "libelle": "Avec 5 % de remise : 300,96 €",
+   "args": [
+    12,
+    26.4,
+    0.05
+   ],
+   "attendu": 300.96
+  },
+  {
+   "libelle": "10 casiers de L'Étincelle avec 2 % de remise : 294,00 €",
+   "args": [
+    10,
+    30.0,
+    0.02
+   ],
+   "attendu": 294.0,
+   "groupe": "bonus"
+  }
+ ],
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel"
+ ],
+ "etoiles": {
+  "description1": "Le prix est juste sans remise et avec 5 % de remise",
+  "description2": "Avec une valeur par défaut dans la ligne def",
+  "description3": "Le prix est juste avec 2 % de remise",
+  "notion": {
+   "exige": [
+    "defaut"
+   ],
+   "texte": "Avec une valeur par défaut dans la ligne def"
+  }
+ },
+ "indices": [
+  "Une valeur par défaut s'écrit dans la ligne def : remise=0.",
+  "Le prix remisé, c'est total - total * remise."
+ ],
+ "depart": "def prix_casiers(nb_casiers, prix_casier):\n    \"\"\"Renvoie le prix de nb_casiers casiers, remise déduite (0.05 pour 5 %), consigne non comprise.\"\"\"\n    total = nb_casiers * prix_casier\n    return total\n",
+ "construire": "Le nouveau paramètre se règle dans la ligne def, dans le code à droite : ajoutez remise, avec 0 pour valeur par défaut ; le bâtiment prix_casiers reçoit alors une entrée de plus. Une « Calculatrice » calcule le total ; le « Retour (return) » renvoie le prix, remise déduite."
+}

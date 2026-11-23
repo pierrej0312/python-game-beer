@@ -7,8 +7,8 @@
  "dureeIndicativeMin": 8,
  "titre": "Un dictionnaire compte les fûts par quai",
  "notion": "dictionnaires, get, compteur",
- "enonce": "Mission bonus. Chaque élément de la liste est le quai d'un fût. Complétez futs_par_quai() pour qu'elle renvoie un dictionnaire : le quai pour clé, le nombre de fûts pour valeur.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Chaque fût qui sort porte le code de son quai : la liste futs en contient un par fût, par exemple [\"Q1\", \"Q3\", \"Q1\"]. Complétez futs_par_quai() : elle renvoie un dictionnaire, avec le quai pour clé et le nombre de fûts pour valeur.",
+ "reussiSi": "les 2 cas de test renvoient le bon dictionnaire.",
  "fonction": {
   "nom": "futs_par_quai",
   "parametres": [
@@ -90,15 +90,22 @@
   "ajouter_set"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 4 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent",
+  "description2": "En remplissant le dictionnaire clé par clé dans une boucle for",
   "description3": "Sans fût, le dictionnaire est vide",
-  "max": 4
+  "notion": {
+   "exige": [
+    "for",
+    "ecrire_cle"
+   ],
+   "texte": "En remplissant le dictionnaire clé par clé dans une boucle for"
+  }
  },
  "indices": [
   "par_quai.get(quai, 0) renvoie le compte actuel, ou 0 si le quai n'est pas encore dans le dictionnaire.",
   "À chaque tour : par_quai[quai] = par_quai.get(quai, 0) + 1."
  ],
- "depart": "def futs_par_quai(futs):\n    \"\"\"Renvoie le nombre de fûts de chaque quai, dans un dictionnaire.\"\"\"\n    par_quai = {}\n    # À vous de jouer\n    return par_quai\n"
+ "depart": "def futs_par_quai(futs):\n    \"\"\"Renvoie le nombre de fûts de chaque quai, dans un dictionnaire.\"\"\"\n    par_quai = {}\n    # À vous de jouer\n    return par_quai\n",
+ "construire": "Des « Casiers » vides pour le résultat. Un « Distributeur (for) » envoie les fûts un par un. Dans la boucle, un « Casiers : écrire » ajoute 1 au casier du quai, en lisant l'ancien total sans risque (get, 0 si le quai est nouveau). Le « Retour (return) » renvoie les casiers.",
+ "exemple": "futs_par_quai([\"Q1\", \"Q3\", \"Q1\"])  →  {\"Q1\": 2, \"Q3\": 1}"
 }

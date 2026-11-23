@@ -396,7 +396,7 @@ def textes_affiches():
         textes[str(f.relative_to(SITE))] = "\n".join(chaines_json(json.loads(f.read_text(encoding="utf-8"))))
     for f in sorted(list(SITE.glob("missions/**/*.py")) + list(SITE.glob("ligne/niveaux/**/*.py")) + list(SITE.glob("atelier/missions/**/*.py")) + list(SITE.glob("python/*.py"))):
         textes[str(f.relative_to(SITE))] = f.read_text(encoding="utf-8")
-    for f in sorted(list(SITE.glob("js/*.js")) + list(SITE.glob("js/commun/*.js")) + list(SITE.glob("js/ligne/*.js")) + list(SITE.glob("js/atelier/*.js")) + list(SITE.glob("worker/*.mjs"))):
+    for f in sorted(list(SITE.glob("js/*.js")) + list(SITE.glob("js/commun/*.js")) + list(SITE.glob("js/ligne/*.js")) + list(SITE.glob("js/usine/*.js")) + list(SITE.glob("js/combat/*.js")) + list(SITE.glob("worker/*.mjs"))):
         source = f.read_text(encoding="utf-8")
         textes[str(f.relative_to(SITE))] = "\n".join(m.group(0) for m in re.finditer(r"\"(?:[^\"\\\n]|\\.)*\"|`(?:[^`\\]|\\.)*`|'(?:[^'\\\n]|\\.)*'", source))
     return textes

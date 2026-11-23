@@ -1,0 +1,70 @@
+{
+ "id": "8.3-lot-trie",
+ "serie": 8,
+ "numero": 3,
+ "bonus": false,
+ "surprise": false,
+ "dureeIndicativeMin": 10,
+ "titre": "Les commandes fausses sont mises de côté",
+ "notion": "import csv, DictReader, try / except, in",
+ "enonce": "Le lot du vendredi (lot_vendredi.csv) contient 16 commandes, et toutes ne sont pas justes. Lisez le fichier avec le module csv et rangez chaque commande dans la liste acceptees ou dans la liste rejetees. Une commande est rejetée si sa quantité n'est pas un nombre entier positif, ou si son client n'existe pas : les clients vont de C01 à C08. Affichez ensuite le nombre de commandes de chaque liste.",
+ "exemple": "Affichage attendu : 12 acceptées, 4 rejetées\n(11 et 5 quand la date impossible est rejetée aussi : étoile 3)",
+ "reussiSi": "les quatre commandes fausses sont dans rejetees, les autres dans acceptees.",
+ "fichiers": {
+  "lot_vendredi.csv": "date;client;biere;format;quantite\n2026-11-20;C02;B01;fut;5\n2026-11-20;C04;B03;casier;8\n2026-11-20;C05;B01;casier;10\n2026-11-20;C06;B02;casier;2\n2026-11-20;C01;B04;fut;3\n2026-11-20;C08;B05;casier;douze\n2026-11-20;C04;B01;casier;4\n2026-11-20;C11;B03;casier;6\n2026-11-20;C05;B05;casier;-2\n2026-11-31;C06;B04;casier;1\n2026-11-20;C07;B01;fut;10\n2026-11-20;C05;B03;casier;5\n2026-11-20;C03;B02;fut;2\n2026-11-20;C08;B02;casier;\n2026-11-20;C04;B04;casier;3\n2026-11-20;C02;B05;fut;4\n"
+ },
+ "palette": [
+  "variable",
+  "calcul",
+  "si",
+  "elif",
+  "else",
+  "afficher",
+  "renvoyer",
+  "creer_liste",
+  "creer_tuple",
+  "lire_case",
+  "tranche",
+  "longueur",
+  "ajouter",
+  "retirer",
+  "contient",
+  "trier_copie",
+  "trier_sur_place",
+  "remplacer_case",
+  "decomposer",
+  "pour",
+  "tantque",
+  "creer_dict",
+  "creer_set",
+  "lire_cle",
+  "lire_get",
+  "ecrire_cle",
+  "ajouter_set",
+  "fonction",
+  "appel",
+  "importer",
+  "essayer",
+  "avec",
+  "suivant",
+  "sortir"
+ ],
+ "etoiles": {
+  "description1": "Les quatre commandes fausses sont rejetées, les autres acceptées",
+  "description2": "Avec le module csv, et try / except",
+  "description3": "La date impossible (31 novembre) est rejetée aussi",
+  "notion": {
+   "exige": [
+    "import:csv",
+    "try"
+   ],
+   "texte": "Avec le module csv, et try / except"
+  }
+ },
+ "indices": [
+  "csv.DictReader(f, delimiter=\";\") donne chaque commande sous forme de dictionnaire : ligne[\"quantite\"], ligne[\"client\"].",
+  "int() lève ValueError sur un texte illisible : un try / except autour de la conversion, et la commande va dans rejetees."
+ ],
+ "depart": "",
+ "construire": "Une « Livraison (import) » apporte csv. Un « Sas de fichier (with open) » ouvre le lot, un « Distributeur (for) » en envoie les lignes une par une. Dans la boucle, un « Sas de sécurité (try / except) » convertit la quantité, puis un « Trieur (if) » envoie chaque commande vers un « Chargeur » : acceptees ou rejetees. Deux « Imprimante (print) » à la fin."
+}

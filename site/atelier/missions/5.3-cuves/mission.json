@@ -7,8 +7,8 @@
  "dureeIndicativeMin": 7,
  "titre": "Une boucle contrôle chaque cuve",
  "notion": "for, zip, if, or",
- "enonce": "Le brasseur de la Fonderie veut ses cuves entre 18 et 22 °C, bornes incluses. Complétez cuves_hors_plage() pour qu'elle renvoie la liste des cuves hors de cette plage.",
- "reussiSi": "les 2 cas de test renvoient le bon résultat.",
+ "enonce": "Le brasseur veut ses cuves de fermentation entre 18 et 22 °C, bornes comprises. Complétez cuves_hors_plage() : elle reçoit la liste des cuves et la liste de leurs températures, dans le même ordre, et renvoie la liste des cuves hors de cette plage.",
+ "reussiSi": "les 2 cas de test renvoient les bonnes cuves.",
  "fonction": {
   "nom": "cuves_hors_plage",
   "parametres": [
@@ -101,15 +101,21 @@
   "tantque"
  ],
  "etoiles": {
-  "critere": "postes",
-  "description1": "Les cas de test renvoient le bon résultat",
-  "description2": "Fonction courte : 5 postes (instructions) au plus",
+  "description1": "Les 2 cas de test passent",
+  "description2": "Avec une boucle for",
   "description3": "18 °C et 22 °C tout juste sont dans la plage",
-  "max": 5
+  "notion": {
+   "exige": [
+    "for|comprehension"
+   ],
+   "texte": "Avec une boucle for"
+  }
  },
  "indices": [
   "zip(cuves, temperatures) donne une cuve et sa température à chaque tour.",
-  "Hors plage : plus petit que 18, ou plus grand que 22. Les bornes sont dans la plage."
+  "Hors plage : plus petit que 18, ou plus grand que 22. Les deux tests se combinent avec or."
  ],
- "depart": "def cuves_hors_plage(cuves, temperatures):\n    \"\"\"Renvoie la liste des cuves dont la température sort de 18 à 22 °C.\"\"\"\n    alertes = []\n    # À vous de jouer : parcourez les deux listes en même temps\n    return alertes\n"
+ "depart": "def cuves_hors_plage(cuves, temperatures):\n    \"\"\"Renvoie la liste des cuves dont la température sort de 18 à 22 °C.\"\"\"\n    alertes = []\n    # À vous de jouer : parcourez les deux listes en même temps\n    return alertes\n",
+ "construire": "Un « Rayonnage » vide pour les alertes. Un « Distributeur (for) » envoie chaque cuve avec sa température. Dans la boucle, un « Trieur (if) » garde les températures hors de la plage, et sur sa voie un « Chargeur » ajoute la cuve. Le « Retour (return) » renvoie les alertes.",
+ "exemple": "cuves_hors_plage([\"C1\", \"C2\", \"C3\"], [19.2, 22.6, 17.1])  →  [\"C2\", \"C3\"]"
 }
