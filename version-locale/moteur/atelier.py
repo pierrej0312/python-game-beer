@@ -295,8 +295,13 @@ def analyser(code, fonction=None, modules=False):
     # une ligne écrite sans retrait, après la fonction : Python l'exécuterait hors de la fonction, et le hall ne la verrait pas
     for n in autres:
         if not isinstance(n, (ast.FunctionDef, ast.Import, ast.ImportFrom)):
-            return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True,
-                    "message": f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre"}}
+            # un appel de test (print(quantite_valide("5")), x = quantite_valide(...)) : l'usine teste la fonction elle-même
+            appel_test = n.lineno > definition.end_lineno and any(
+                isinstance(c, ast.Call) and isinstance(c.func, ast.Name) and c.func.id == fonction["nom"] for c in ast.walk(n))
+            message = (f"la ligne {n.lineno} appelle {fonction['nom']}() pour la tester : l'usine la teste elle-même avec les cas de la mission, supprimez cette ligne"
+                       if appel_test else
+                       f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre")
+            return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True, "message": message}}
     corps = definition.body
     entete_fin = definition.body[0].end_lineno if corps and isinstance(corps[0], ast.Expr) and isinstance(getattr(corps[0], "value", None), ast.Constant) and isinstance(corps[0].value.value, str) else definition.lineno
     indent_corps = definition.body[0].col_offset if definition.body else definition.col_offset + 4
