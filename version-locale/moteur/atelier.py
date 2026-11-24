@@ -277,6 +277,11 @@ class _Analyse:
         return postes
 
 
+def _essais(arbre, definition):
+    """Les instructions écrites sous la fonction de la mission, hors def et import : les essais du stagiaire."""
+    return [n for n in arbre.body if n.lineno > definition.end_lineno and not isinstance(n, (ast.FunctionDef, ast.Import, ast.ImportFrom))]
+
+
 def analyser(code, fonction=None, modules=False):
     """Découpe le code en postes. Mission à fonction : seul le corps de la fonction devient des postes.
     modules (l'usine) : dans un programme, chaque fonction définie (def) devient un poste « module » qui contient ses postes."""
@@ -292,16 +297,15 @@ def analyser(code, fonction=None, modules=False):
     if definition is None:
         return {"ok": False, "erreur": {"ligne": 1, "message": f"la fonction {fonction['nom']} est absente : gardez la ligne def {fonction['nom']}(…)"}, "postes": []}
     autres = [n for n in arbre.body if n is not definition]
-    # une ligne écrite sans retrait, après la fonction : Python l'exécuterait hors de la fonction, et le hall ne la verrait pas
+    # vos essais : le script écrit sous la fonction de la mission (print(quantite_valide("5")), ...). Il devient une ligne à part,
+    # que l'usine fait tourner après ses cas de test, sans la noter (décision du formateur du 23/11/2026)
+    essais = _essais(arbre, definition)
+    # une ligne écrite sans retrait avant la fin de la fonction : Python l'exécuterait hors de la fonction, et le hall ne la verrait pas
     for n in autres:
-        if not isinstance(n, (ast.FunctionDef, ast.Import, ast.ImportFrom)):
-            # un appel de test (print(quantite_valide("5")), x = quantite_valide(...)) : l'usine teste la fonction elle-même
-            appel_test = n.lineno > definition.end_lineno and any(
-                isinstance(c, ast.Call) and isinstance(c.func, ast.Name) and c.func.id == fonction["nom"] for c in ast.walk(n))
-            message = (f"la ligne {n.lineno} appelle {fonction['nom']}() pour la tester : l'usine la teste elle-même avec les cas de la mission, supprimez cette ligne"
-                       if appel_test else
-                       f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre")
-            return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True, "message": message}}
+        if n not in essais and not isinstance(n, (ast.FunctionDef, ast.Import, ast.ImportFrom)):
+            return {"ok": False, "postes": [], "erreur": {"ligne": n.lineno, "horsFonction": True,
+                    "message": f"la ligne {n.lineno} est sortie de la fonction {fonction['nom']} : ajoutez 4 espaces au début de la ligne pour l'y remettre"}}
+    autres = [n for n in autres if n not in essais]
     corps = definition.body
     entete_fin = definition.body[0].end_lineno if corps and isinstance(corps[0], ast.Expr) and isinstance(getattr(corps[0], "value", None), ast.Constant) and isinstance(corps[0].value.value, str) else definition.lineno
     indent_corps = definition.body[0].col_offset if definition.body else definition.col_offset + 4
@@ -318,7 +322,11 @@ def analyser(code, fonction=None, modules=False):
                 if m and m["type"] == "module":
                     m["lignes"] = [n.lineno, n.end_lineno]
                     modules_.append(m)
-    return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres), "modules": modules_,
+    postes_essais = a.liste(essais) if essais else []
+    if essais:
+        a.avertissements.append({"ligne": essais[0].lineno, "essais": True,
+            "message": f"lignes {essais[0].lineno} à {essais[-1].end_lineno} : vos essais. L'usine les fait tourner après ses propres tests, sans les noter"})
+    return {"ok": True, "erreur": None, "postes": postes, "horsFonction": len(autres), "modules": modules_, "essais": postes_essais,
             "parametres": [p.arg for p in definition.args.args], "avertissements": a.avertissements,
             "corps": _Analyse.corps(corps, indent_corps, entete_fin)}
 
@@ -513,6 +521,14 @@ def _executer_fonction(code, mission):
     resultat = {"mode": "fonction", "erreur": erreur, "cas": [], "tests": [], "sortie": []}
     if compile_ is None:
         return resultat
+    essais = None
+    arbre = ast.parse(code, NOM_FICHIER)
+    definition = next((n for n in arbre.body if isinstance(n, ast.FunctionDef) and n.name == fonction["nom"]), None)
+    if definition is not None:
+        liste_essais = _essais(arbre, definition)
+        if liste_essais:
+            compile_ = compile(ast.Module(body=[n for n in arbre.body if n not in liste_essais], type_ignores=[]), NOM_FICHIER, "exec")
+            essais = compile(ast.Module(body=liste_essais, type_ignores=[]), NOM_FICHIER, "exec")
     espace = {"__name__": "__atelier__", "__builtins__": __builtins__}
     try:
         with contextlib.redirect_stdout(io.StringIO()):
@@ -563,6 +579,18 @@ def _executer_fonction(code, mission):
             "sortie": tampon.getvalue().splitlines()})
         resultat["tests"].append({"nom": f"cas_{i}", "libelle": cas.get("libelle") or f"{appel} renvoie {_texte(cas['attendu'])}", "groupe": cas.get("groupe", "visible"),
                                   "ok": ok, "message": message})
+    if essais is not None:
+        suivi, tampon, erreur_essais = _Suivi((), True, fonction["nom"]), io.StringIO(), None
+        try:
+            with contextlib.redirect_stdout(tampon):
+                sys.settrace(suivi)
+                try:
+                    exec(essais, espace)
+                finally:
+                    sys.settrace(None)
+        except Exception as e:
+            erreur_essais = _boucle_sans_fin(_ligne_erreur(e)) if suivi.trop else _erreur(e, _ligne_erreur(e))
+        resultat["essais"] = {"sortie": tampon.getvalue().splitlines(), "erreur": erreur_essais}
     return resultat
 
 

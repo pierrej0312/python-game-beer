@@ -12,6 +12,7 @@
 .legende:empty { display: none; }
 .legende.echec { background: rgba(238, 67, 75, 0.92); }
 .bandeau-erreur { position: absolute; left: 12px; right: 12px; bottom: 10px; padding: 8px 12px; border-radius: 10px; background: #ee434b; color: #fff; font-weight: 600; }
+.bandeau-erreur.info { background: #1f7f80; }   /* vos essais : une information, pas une erreur */
 
 /* La barre de construction : une famille par couleur, comme les machines */
 .barre-construction { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; background: #1b1c22; border-top: 1px solid #2c2f38; }

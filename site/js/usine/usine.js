@@ -100,15 +100,16 @@ async function analyser({ cadrer = false } = {}) {
   try { a = await pilote.analyserAtelier(code, etat.mission.fonction || null, true); } catch { return null; }
   if (!a.ok) {
     etat.syntaxe = a.erreur;
-    $("bandeau").hidden = false;
+    $("bandeau").hidden = false; $("bandeau").classList.remove("info");
     $("bandeau").textContent = a.erreur.horsFonction ? `Ligne ${a.erreur.ligne} : ${a.erreur.message}. L'usine attend que le code soit corrigé.`
       : `Ligne ${a.erreur.ligne} : Python ne comprend pas encore cette ligne (${a.erreur.message}). L'usine attend que le code soit corrigé.`;
     return a;
   }
   etat.syntaxe = null;
   const avert = a.avertissements && a.avertissements[0];
-  $("bandeau").hidden = !avert; if (avert) $("bandeau").textContent = "Attention : " + avert.message;
-  numeroter(a.postes); if (a.modules) numeroter(a.modules, "annexe");
+  $("bandeau").hidden = !avert; $("bandeau").classList.toggle("info", !!(avert && avert.essais));
+  if (avert) $("bandeau").textContent = (avert.essais ? "" : "Attention : ") + avert.message;
+  numeroter(a.postes); if (a.modules) numeroter(a.modules, "annexe"); if (a.essais) numeroter(a.essais, "essai");
   etat.analyse = a;
   const avant = etat.disposition && etat.disposition.etendue;
   etat.disposition = disposer(a, code, { fonction: etat.mission.fonction || null, sectionsOuvertes: etat.sectionsOuvertes, modulesOuverts: etat.modulesOuverts });
@@ -727,7 +728,14 @@ function afficherOnglet(nom) {
     panneau.append(table);
   } else {
     const x = r && (r.mode === "fonction" ? r.cas[etat.casCourant] : r);
-    panneau.append(creer("pre", "ecran", x && x.sortie && x.sortie.length ? x.sortie.join("\n") : "L'écran affiche ici ce que les print() écrivent."));
+    const casSortie = x && x.sortie && x.sortie.length ? x.sortie.join("\n") : null;
+    if (r && r.essais) {
+      // vos essais (mission à fonction) : ce que le script sous la fonction a écrit, après les cas de test, sans note
+      const e = r.essais, lignes = [...e.sortie];
+      if (e.erreur) lignes.push(`Ligne ${e.erreur.ligne} : ${e.erreur.messageOriginal}`);
+      panneau.append(creer("p", "", "Vos essais (non notés) :"), creer("pre", "ecran", lignes.length ? lignes.join("\n") : "(vos essais n'ont rien affiché)"));
+      if (casSortie) panneau.append(creer("p", "", `Pendant le cas ${etat.casCourant + 1} :`), creer("pre", "ecran", casSortie));
+    } else panneau.append(creer("pre", "ecran", casSortie || "L'écran affiche ici ce que les print() écrivent."));
   }
   if (r && r.tests) {
     const v = r.tests.filter((t) => t.groupe === "visible");

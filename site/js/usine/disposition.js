@@ -322,7 +322,25 @@ export function disposer(analyse, code, { fonction = null, sectionsOuvertes = ne
   const chercher = (postes) => postes.forEach((p) => { if (p.type === "module") tousModules.push(p); if (p.branches) p.branches.forEach(chercher); });
   chercher(analyse.postes); chercher(analyse.modules || []);
   placerModules(tousModules, m.bas + 7);
+  if (fonction && analyse.essais && analyse.essais.length) placerEssais(analyse.essais, sortie.etendue.z2 + 2);
   return sortie;
+
+  // ---- vos essais (mission à fonction) : le script écrit sous la fonction (print(quantite_valide("5"))...) ----
+  // Une ligne à part, devant le reste : l'usine la fait tourner après ses cas de test, sans la noter. Pas de fente :
+  // cette ligne s'écrit dans le code, pas à la souris.
+  function placerEssais(postes, zHaut) {
+    const c = mesurerListe(postes), z = zHaut + c.haut + 1;
+    sortie.stations.push({ role: "entree-essais", x: -PAS, z, texte: "Vos essais (non notés)" });
+    sortie.tapis.push({ de: [-PAS, z], a: [0, z] });
+    const fentes = sortie.fentes.length, debut = sortie.machines.length;
+    placerListe(postes, null, 0, z, 0, { essais: true }, null);
+    sortie.fentes.length = fentes;
+    sortie.machines.slice(debut).forEach((o) => { o.essai = true; });
+    sortie.stations.push({ role: "fin", x: c.largeur + PAS / 2, z, texte: "Fin des essais" });
+    sortie.tapis.push({ de: [c.largeur, z], a: [c.largeur + PAS / 2, z] });
+    sortie.etendue.z2 = Math.max(sortie.etendue.z2, z + c.bas + 2);
+    sortie.etendue.x2 = Math.max(sortie.etendue.x2, c.largeur + PAS + 2);
+  }
 
   // ---- les modules (def) : un bâtiment par fonction, devant la ligne ; dedans, sa propre ligne et son propre parc ----
   // Tout ce qui est à l'intérieur porte module: nom (la scène le cache quand le bâtiment est fermé).

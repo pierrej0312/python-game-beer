@@ -328,14 +328,15 @@ export function creerSceneUsine(conteneur, { surFente = () => {}, surMachine = (
 
   function station(s) {
     const g = new THREE.Group(); g.position.set(s.x, 0, s.z);
-    const entree = s.role === "entree" || s.role === "entree-module";
-    const quai = new THREE.Mesh(new RoundedBoxGeometry(1.6, 0.35, 1.8, 3, 0.08), new THREE.MeshStandardMaterial({ color: s.role === "entree-module" ? 0x1f7f80 : entree ? 0x5b4a8a : 0x4a4f5c, roughness: 0.6 }));
+    const entree = s.role === "entree" || s.role === "entree-module" || s.role === "entree-essais";
+    const annexe = s.role === "entree-module" || s.role === "entree-essais";
+    const quai = new THREE.Mesh(new RoundedBoxGeometry(1.6, 0.35, 1.8, 3, 0.08), new THREE.MeshStandardMaterial({ color: annexe ? 0x1f7f80 : entree ? 0x5b4a8a : 0x4a4f5c, roughness: 0.6 }));
     quai.position.y = 0.2; quai.castShadow = quai.receiveShadow = true; g.add(quai);
     if (s.role === "entree") for (let i = 0; i < 3; i++) {
       const caisse = new THREE.Mesh(new RoundedBoxGeometry(0.42, 0.42, 0.42, 2, 0.05), new THREE.MeshStandardMaterial({ color: 0xd9a066, roughness: 0.8 }));
       caisse.position.set(-0.4 + i * 0.4, 0.58, -0.45 + (i % 2) * 0.3); caisse.castShadow = true; g.add(caisse);
     }
-    const e = etiquette(s.texte, { code: entree, fond: s.role === "entree-module" ? "#155c5d" : entree ? "#2e1a6e" : "#3a3d48", encre: "#ffffff" });
+    const e = etiquette(s.texte, { code: entree && s.role !== "entree-essais", fond: annexe ? "#155c5d" : entree ? "#2e1a6e" : "#3a3d48", encre: "#ffffff" });
     e.position.set(0, 1.35, 0); g.add(e);
     parent.add(g);
   }
