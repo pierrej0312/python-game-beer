@@ -145,3 +145,97 @@ code, .code { font-family: var(--police-code); font-variant-ligatures: none; fon
 a.bouton { text-decoration: none; display: inline-flex; align-items: center; }
 .autres-jeux { margin: 18px 0 0; font-size: 15px; }
 .autres-jeux a { color: var(--vert-fonce); font-weight: 600; }
+
+/* ----- carte en halls : un hall peint par série, une dalle par mission (js/carte/) ----- */
+.carte.mode-hall { height: 100%; min-height: 0; display: flex; flex-direction: column; padding: 14px 20px 12px; }
+.carte.mode-hall .carte-entete { margin-bottom: 8px; }
+.carte.mode-hall .message-carte { margin-top: 6px; min-height: 0; }
+.hall { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+.hall-series { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.hall-puce, .hall-dalle, .hall-arche { font: inherit; }
+.hall-puce { width: 46px; height: 46px; border-radius: 50%; border: 2px solid #6b4a2b; background: radial-gradient(circle at 35% 30%, #e7a067, #a85a2c 60%, #6b3a1c); color: #fff6ea; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.5); }
+.hall-puce:hover:not(:disabled) { filter: brightness(1.15); }
+.hall-puce[aria-current="true"] { border-color: #ffd27a; box-shadow: 0 0 0 3px rgba(255,200,90,0.45), 0 0 14px rgba(255,170,60,0.7); }
+.hall-puce.reussie { background: radial-gradient(circle at 35% 30%, #ffe08a, #e0a12a 60%, #9a6512); color: #2a1d06; }
+.hall-puce:disabled { cursor: not-allowed; background: #2f333d; border-color: #4a4f5c; color: #8a8f9c; box-shadow: none; }
+.hall-puce:focus-visible, .hall-dalle:focus-visible, .hall-arche:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.hall-scene { flex: 1; min-height: 0; display: grid; place-items: center; }
+.hall-plateau { position: relative; overflow: hidden; border-radius: 14px; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
+.hall-fond, .hall-calque, .hall-3d { transform-origin: var(--ox, 50%) var(--oy, 50%); transition: transform 0.65s cubic-bezier(0.55, 0, 0.45, 1); }
+.hall-fond { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; }
+.hall-calque, .hall-3d { position: absolute; inset: 0; }
+.hall-3d { pointer-events: none; }
+.hall-3d canvas { display: block; width: 100%; height: 100%; }
+
+/* l'ambiance : lampes, voyants, vapeur, écran */
+.hall-lampe { position: absolute; width: 10em; height: 10em; transform: translate(-50%, -42%); pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(255,205,130,0.55) 0%, rgba(255,170,80,0.16) 32%, rgba(255,150,60,0) 64%); animation: hall-vaciller 4.3s ease-in-out infinite; }
+@keyframes hall-vaciller { 0%, 100% { opacity: 0.9; } 18% { opacity: 1; } 22% { opacity: 0.78; } 26% { opacity: 0.97; } 60% { opacity: 0.86; } }
+.hall-effet { position: absolute; transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen; }
+.hall-effet.voyant { width: 2.6em; height: 2.6em; border-radius: 50%; background: radial-gradient(circle, var(--couleur) 0%, transparent 65%); animation: hall-clignoter 2.2s steps(1) infinite; }
+@keyframes hall-clignoter { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0.15; } }
+.hall-effet.lueur { width: 12em; height: 12em; border-radius: 50%; background: radial-gradient(circle, var(--couleur) 0%, transparent 60%); opacity: 0.35; animation: hall-respirer 3.2s ease-in-out infinite; }
+@keyframes hall-respirer { 50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); } }
+.hall-effet.ecran { width: 7em; height: 5.5em; border-radius: 30%; background: radial-gradient(ellipse, var(--couleur) 0%, transparent 70%); opacity: 0.35; animation: hall-ecran 0.18s steps(2) infinite alternate; }
+@keyframes hall-ecran { to { opacity: 0.45; } }
+.hall-effet.vapeur { width: 10em; height: 12em; transform: translate(-50%, -85%); mix-blend-mode: normal; }
+.hall-effet.vapeur span { position: absolute; left: 35%; bottom: 0; width: 4em; height: 4em; border-radius: 50%; background: radial-gradient(circle, rgba(255,245,230,0.5), rgba(255,245,230,0) 70%); filter: blur(4px); animation: hall-vapeur 4.4s linear infinite; }
+@keyframes hall-vapeur { 0% { transform: translate(0, 0) scale(0.6); opacity: 0; } 20% { opacity: 0.7; } 100% { transform: translate(1.5em, -9em) scale(2.2); opacity: 0; } }
+
+/* les dalles des missions */
+.hall-dalle { position: absolute; transform: translate(-50%, -50%); border: 0; padding: 0; background: transparent; border-radius: 50%; cursor: pointer; }
+.hall-dalle-lueur { position: absolute; inset: -8%; border-radius: 50%; pointer-events: none; mix-blend-mode: screen; transition: opacity 0.2s, transform 0.2s;
+  background: radial-gradient(ellipse, rgba(255,196,110,0.22) 0%, rgba(255,170,70,0) 70%); }
+.hall-dalle:hover .hall-dalle-lueur, .hall-dalle:focus-visible .hall-dalle-lueur { transform: scale(1.12); background: radial-gradient(ellipse, rgba(255,210,130,0.6) 0%, rgba(255,170,70,0) 72%); }
+.hall-dalle.faite .hall-dalle-lueur { border: 0.2em solid rgba(255,214,120,0.95); box-shadow: 0 0 1.4em rgba(255,175,60,0.85), inset 0 0 1.1em rgba(255,205,120,0.7);
+  background: radial-gradient(ellipse, rgba(255,214,140,0.45) 0%, rgba(255,170,70,0) 72%); }
+.hall-dalle.prochaine .hall-dalle-lueur { border: 0.24em solid #ffe39a; box-shadow: 0 0 2em rgba(255,190,70,1), inset 0 0 1.4em rgba(255,220,140,0.9);
+  background: radial-gradient(ellipse, rgba(255,230,160,0.6) 0%, rgba(255,170,70,0) 75%); animation: hall-pulser 1.6s ease-in-out infinite; }
+@keyframes hall-pulser { 50% { transform: scale(1.14); opacity: 0.75; } }
+.hall-dalle.bonus .hall-dalle-lueur { background: radial-gradient(ellipse, rgba(90,240,220,0.3) 0%, rgba(60,220,200,0) 70%); }
+.hall-dalle.bonus.faite .hall-dalle-lueur { border-color: rgba(120,250,230,0.95); box-shadow: 0 0 1.4em rgba(60,230,210,0.85), inset 0 0 1.1em rgba(120,250,230,0.6); }
+.hall-faisceau { position: absolute; left: 50%; bottom: 45%; width: 70%; height: 6.5em; transform: translateX(-50%); pointer-events: none; mix-blend-mode: screen; border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+  background: linear-gradient(to top, rgba(255,220,140,0.55), rgba(255,210,120,0.18) 55%, rgba(255,210,120,0)); animation: hall-faisceau 2.4s ease-in-out infinite; }
+@keyframes hall-faisceau { 50% { opacity: 0.6; } }
+.hall-etiquette { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 0.35em); display: flex; align-items: center; gap: 0.4em; white-space: nowrap; pointer-events: none;
+  padding: 0.18em 0.6em; border-radius: 999px; background: rgba(20,18,30,0.82); border: 1px solid rgba(255,200,120,0.45); color: #fff; font-size: 0.95em; font-weight: 600; }
+.hall-etiquette .etoile { width: 1em; height: 1em; }
+.hall-marque { font-size: 0.78em; font-weight: 700; text-transform: uppercase; padding: 0 0.45em; border-radius: 999px; }
+.hall-marque.surprise { background: #f5b82e; color: #2a1d06; border-left: 0.5em solid; border-image: repeating-linear-gradient(135deg, #2a2418 0 0.2em, #f5b82e 0.2em 0.4em) 1; border-radius: 0 999px 999px 0; }
+.hall-marque.bonus { background: #3cc9b8; color: #082a26; }
+
+/* les arches */
+.hall-arche { position: absolute; width: 8.8%; height: 27%; transform: translate(-50%, -50%); border: 0; padding: 0; background: transparent; border-radius: 48% 48% 6% 6%; cursor: pointer; }
+.hall-arche:disabled { cursor: default; }
+.hall-arche::before { content: ""; position: absolute; inset: -20%; border-radius: 50%; mix-blend-mode: screen; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(ellipse, rgba(255,226,150,0.85) 0%, rgba(255,170,60,0.25) 40%, rgba(255,150,40,0) 70%); }
+.hall-arche:hover:not(:disabled)::before, .hall-arche:focus-visible::before { opacity: 0.7; }
+.hall-arche.sortie.ouverte::before { opacity: 1; animation: hall-pulser 1.8s ease-in-out infinite; }
+.hall-arche-texte { position: absolute; left: 50%; bottom: 104%; transform: translateX(-50%); white-space: nowrap; padding: 0.25em 0.7em; border-radius: 0.4em; font-weight: 700; font-size: 0.95em;
+  background: rgba(20,18,30,0.85); color: #ffe3a8; border: 1px solid rgba(255,200,120,0.5); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.hall-arche.sortie .hall-arche-texte { left: auto; right: 0; transform: none; }
+.hall-arche.entree .hall-arche-texte { left: 0; transform: none; }
+.hall-arche:hover .hall-arche-texte, .hall-arche:focus-visible .hall-arche-texte, .hall-arche.sortie.ouverte .hall-arche-texte { opacity: 1; }
+
+/* la plaque du hall, la bulle d'une mission */
+.hall-plaque { position: absolute; left: 1.2em; top: 1em; pointer-events: none; padding: 0.5em 1em 0.55em; border-radius: 0.45em; background: rgba(18,20,36,0.84); border-left: 0.35em solid #f5b82e; color: #fff; }
+.hall-plaque-numero { font-family: var(--police-titre); font-size: 1.45em; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.hall-plaque-etat { font-size: 0.95em; color: #ffd98a; margin-top: 0.1em; }
+.hall-bulle { position: absolute; transform: translate(-50%, calc(-100% - 6.5em)); width: 19em; pointer-events: none; z-index: 2; padding: 0.75em 1em 0.85em; border-radius: 0.8em;
+  background: #ffffff; color: var(--texte); border-bottom: 0.3em solid #f28c1e; box-shadow: 0 10px 30px rgba(0,0,0,0.45); font-size: 1.05em; }
+.hall-bulle-surtitre { font-size: 0.8em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vert-fonce); }
+.hall-bulle-titre { font-family: var(--police-titre); font-weight: 700; color: var(--violet); font-size: 1.15em; margin: 0.15em 0 0.3em; line-height: 1.2; }
+.hall-bulle .etoile { width: 1.3em; height: 1.3em; }
+.hall-bulle-action { font-size: 0.9em; margin-top: 0.3em; }
+
+/* le passage d'un hall à l'autre, par l'arche */
+.hall-voile { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.65s ease;
+  background: radial-gradient(circle at var(--ox, 50%) var(--oy, 50%), #fff6dc 0%, #ffc46b 30%, rgba(255,160,60,0.85) 60%, rgba(40,20,10,0.9) 100%); }
+.hall-plateau.passage-sortie :is(.hall-fond, .hall-calque, .hall-3d) { transform: scale(2.6); }
+.hall-plateau.passage-sortie .hall-voile { opacity: 1; }
+.hall-plateau.passage-entree :is(.hall-fond, .hall-calque, .hall-3d) { transform: scale(2.6); transition: none; }
+.hall-plateau.passage-entree .hall-voile { opacity: 1; transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hall-lampe, .hall-effet, .hall-effet span, .hall-dalle-lueur, .hall-faisceau, .hall-arche::before { animation: none !important; }
+  .hall-fond, .hall-calque, .hall-3d { transition: none; }
+}

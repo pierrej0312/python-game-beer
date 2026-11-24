@@ -47,6 +47,8 @@ const serieReussie = (n) => missionsDeLaSerie(n).filter((m) => !m.bonus).every((
 const serieOuverte = (n) => TOUT_OUVERT || n === 1 || serieReussie(n - 1);
 
 // ---------- carte ----------
+const ouvrirDepuisCarte = (m) => { if (m.atelier) location.href = lienAtelier(m.id); else location.hash = "mission=" + m.id; };
+
 function afficherCarte() {
   if (etat.rejeu) etat.rejeu.arreter();
   $("vue-mission").hidden = true; $("vue-carte").hidden = false;
@@ -54,6 +56,14 @@ function afficherCarte() {
   const p = progression.lire();
   $("bouton-qualite").textContent = "Qualité : " + (p.qualite === "basse" ? "basse" : "haute");
   $("bouton-sans3d").textContent = p.sans3d ? "Mode : sans 3D" : "Mode : 3D";
+  // deux vues : le hall de la série en cours (par défaut) ou la liste de toutes les missions
+  const forcee = new URLSearchParams(location.search).get("vue");     // ?vue=liste ou ?vue=halls (contrôle qualité, formateur)
+  const liste = forcee ? forcee === "liste" : p.vueCarte === "liste";
+  $("bouton-vue").textContent = liste ? "Vue : liste" : "Vue : halls";
+  $("vue-carte").classList.toggle("mode-hall", !liste);
+  $("hall").hidden = liste; $("series").hidden = !liste;
+  if (!liste) { afficherHall(p); return; }
+  if (etat.carte) { etat.carte.detruire(); etat.carte = null; }
   const zone = $("series"); zone.innerHTML = "";
   for (const serie of etat.index.series) {
     const ouverte = serieOuverte(serie.numero), missions = missionsDeLaSerie(serie.numero);
@@ -70,11 +80,21 @@ function afficherCarte() {
       const etoiles = creer("span", "etoiles"); dessinerEtoiles(etoiles, progression.fiche(m.id).etoiles);
       bouton.append(numero, creer("span", "mission-titre", m.titre), etoiles);
       if (m.atelier) bouton.classList.add("atelier");
-      bouton.addEventListener("click", () => { if (m.atelier) location.href = lienAtelier(m.id); else location.hash = "mission=" + m.id; });
+      bouton.addEventListener("click", () => ouvrirDepuisCarte(m));
       colonne.append(bouton);
     }
     zone.append(colonne);
   }
+}
+
+async function afficherHall(p) {
+  if (etat.carte) { etat.carte.rafraichir(); return; }
+  const { creerCarte } = await import("./carte/carte.js");
+  if (etat.carte) return;
+  etat.carte = creerCarte($("hall"), {
+    index: etat.index, fiche: progression.fiche, serieOuverte, serieReussie, ouvrir: ouvrirDepuisCarte, dessinerEtoiles,
+    qualite: p.qualite === "basse" || p.sans3d ? "basse" : "haute",
+  });
 }
 
 // ---------- scène ou journal en texte ----------
@@ -327,10 +347,12 @@ function brancher() {
   if (progression.reglage("son") === false) { $("bouton-son").setAttribute("aria-pressed", "false"); sons.activer(false); }
   $("bouton-agrandir").addEventListener("click", () => etat.editeur && etat.editeur.agrandir());
   avecConfirmation($("bouton-depart"), "Revenir au code de départ", () => { etat.editeur.ecrire(etat.depart); progression.sauverCode(etat.mission.id, etat.depart); });
-  avecConfirmation($("bouton-zero"), "Recommencer à zéro", () => { const p = progression.lire(), garde = { pseudo: p.pseudo, qualite: p.qualite, sans3d: p.sans3d, son: p.son }; progression.toutEffacer(); Object.entries(garde).forEach(([c, v]) => progression.reglage(c, v)); afficherCarte(); $("message-carte").textContent = "La progression est remise à zéro."; });
+  avecConfirmation($("bouton-zero"), "Recommencer à zéro", () => { const p = progression.lire(), garde = { pseudo: p.pseudo, qualite: p.qualite, sans3d: p.sans3d, son: p.son, vueCarte: p.vueCarte }; progression.toutEffacer(); Object.entries(garde).forEach(([c, v]) => progression.reglage(c, v)); try { localStorage.removeItem("jeux-python.carte.fut"); } catch (e) { /* rien */ } if (etat.carte) { etat.carte.detruire(); etat.carte = null; } afficherCarte(); $("message-carte").textContent = "La progression est remise à zéro."; });
   $("bouton-envoyer").addEventListener("click", envoyerResultats);
-  $("bouton-qualite").addEventListener("click", () => { progression.reglage("qualite", progression.reglage("qualite") === "basse" ? "haute" : "basse"); detruireVue(); afficherCarte(); });
-  $("bouton-sans3d").addEventListener("click", () => { progression.reglage("sans3d", !progression.reglage("sans3d")); detruireVue(); afficherCarte(); });
+  const refaireHall = () => { if (etat.carte) { etat.carte.detruire(); etat.carte = null; } };
+  $("bouton-vue").addEventListener("click", () => { progression.reglage("vueCarte", progression.reglage("vueCarte") === "liste" ? "halls" : "liste"); afficherCarte(); });
+  $("bouton-qualite").addEventListener("click", () => { progression.reglage("qualite", progression.reglage("qualite") === "basse" ? "haute" : "basse"); detruireVue(); refaireHall(); afficherCarte(); });
+  $("bouton-sans3d").addEventListener("click", () => { progression.reglage("sans3d", !progression.reglage("sans3d")); detruireVue(); refaireHall(); afficherCarte(); });
   for (const b of document.querySelectorAll(".onglet")) b.addEventListener("click", () => afficherOnglet(b.dataset.onglet));
   document.addEventListener("keydown", (e) => {
     if ($("vue-mission").hidden) return;
